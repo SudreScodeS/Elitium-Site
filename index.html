@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elitium ERP — Sistema de Gestão Empresarial Inteligente</title>
-  <meta name="description" content="Sistema ERP completo para gestão de vendas, estoque, financeiro, orçamentos e assistente IA. Open source, construído com Next.js e TypeScript.">
-  <meta name="keywords" content="ERP, gestão empresarial, vendas, estoque, financeiro, orçamentos, IA, open source, Next.js">
+  <meta name="description" content="Sistema ERP completo para gestão de vendas, estoque, financeiro, orçamentos e assistente IA. Construído com Next.js e TypeScript.">
+  <meta name="keywords" content="ERP, gestão empresarial, vendas, estoque, financeiro, orçamentos, IA, Next.js">
   <meta property="og:title" content="Elitium ERP — Gestão Empresarial Inteligente">
   <meta property="og:description" content="Sistema ERP completo com dashboard, vendas, estoque, financeiro, orçamentos e assistente IA integrado.">
   <meta property="og:type" content="website">
@@ -126,6 +126,7 @@
     .module-card h3{font-size:16px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
     .module-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
     .module-card .module-tag{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--surface);color:var(--text-muted);border:1px solid var(--border-subtle)}
+    .module-placeholder{visibility:hidden;border:none;padding:0;pointer-events:none}
 
     /* ============ WHO IS IT FOR ============ */
     .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -296,7 +297,7 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="hero-glow hero-glow-3"></div>
     <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span>Open Source &middot; Next.js &middot; TypeScript</div>
+      <div class="hero-badge"><span class="dot"></span>Next.js &middot; TypeScript &middot; Prisma</div>
       <h1>Gestão empresarial<br><span class="gradient">completa e inteligente</span></h1>
       <p>Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.</p>
       <div class="hero-actions">
@@ -323,7 +324,7 @@
   <section id="o-que-e">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">💡 Entenda o Elitium</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> Entenda o Elitium</span>
         <h2>O que é um ERP<br>e por que você precisa de um?</h2>
         <p>ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.</p>
       </div>
@@ -333,7 +334,7 @@
           <h3>Pare de usar planilhas separadas</h3>
           <p>Em vez de ter suas vendas em uma planilha, o estoque em outra, e o financeiro em um caderno — o Elitium reúne tudo isso em um painel único. Você vê o panorama completo do seu negócio em tempo real.</p>
           <p>Com inteligência artificial integrada, o sistema não só organiza seus dados — ele também <strong>analisa tendências, prevê demanda</strong> e ajuda você a tomar decisões melhores.</p>
-          <p style="color:var(--text-muted);font-size:14px">E se você é desenvolvedor: sim, é open source, com API REST documentada, testes automatizados e CI/CD.</p>
+          <p style="color:var(--text-muted);font-size:14px">E se você é desenvolvedor: API REST documentada, testes automatizados e CI/CD incluso.</p>
         </div>
         <div class="intro-visual">
           <div class="mini-dashboard">
@@ -368,7 +369,7 @@
   <section id="modulos" style="background:linear-gradient(180deg,transparent,rgba(124,92,191,.02),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">🧩 Módulos</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg> Módulos</span>
         <h2>Tudo que seu negócio precisa,<br>em um só sistema</h2>
         <p>Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.</p>
       </div>
@@ -508,6 +509,7 @@
           <p>Painel administrativo para configurações avançadas do sistema, gestão de preços e parâmetros globais da aplicação.</p>
           <span class="module-tag">Config</span>
         </div>
+        <div class="module-card module-placeholder"></div>
       </div>
     </div>
   </section>
@@ -516,14 +518,14 @@
   <section id="para-quem">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">👥 Para Quem</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Para Quem</span>
         <h2>Feito para todos os perfis</h2>
         <p>Não importa se você é dono de negócio ou desenvolvedor — o Elitium foi pensado para os dois.</p>
       </div>
 
       <div class="audience-grid reveal">
         <div class="audience-card">
-          <div class="audience-icon" style="background:var(--accent-glow);border:1px solid rgba(124,92,191,.15);border-radius:14px">🏢</div>
+          <div class="audience-icon" style="background:var(--accent-glow);border:1px solid rgba(124,92,191,.15);border-radius:14px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
           <h3>Para Gestores e Empresários</h3>
           <p>Se você quer organizar as operações da sua empresa sem precisar de um departamento de TI inteiro, o Elitium é pra você.</p>
           <ul class="audience-list">
@@ -536,7 +538,7 @@
         </div>
 
         <div class="audience-card">
-          <div class="audience-icon" style="background:var(--green-glow);border:1px solid rgba(34,197,94,.15);border-radius:14px">💻</div>
+          <div class="audience-icon" style="background:var(--green-glow);border:1px solid rgba(34,197,94,.15);border-radius:14px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
           <h3>Para Desenvolvedores</h3>
           <p>Se você quer estudar, contribuir ou adaptar o sistema para outro projeto — o código é limpo, documentado e testado.</p>
           <ul class="audience-list">
@@ -556,7 +558,7 @@
   <section id="arquitetura">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">🏗️ Arquitetura</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m9 9 3 3 3-3"/><path d="M12 12v6"/></svg> Arquitetura</span>
         <h2>Construído para escalar</h2>
         <p>Stack moderna com separação clara de responsabilidades. Cada camada faz o que sabe fazer melhor.</p>
       </div>
@@ -631,7 +633,7 @@
   <section id="api" style="background:linear-gradient(180deg,transparent,rgba(59,130,246,.02),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">📡 API</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 12h8"/></svg> API</span>
         <h2>Documentada & Padronizada</h2>
         <p>Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.</p>
       </div>
@@ -684,7 +686,7 @@
   <section id="seguranca">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">🔒 Segurança</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Segurança</span>
         <h2>Segurança por design</h2>
         <p>Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.</p>
       </div>
@@ -739,7 +741,7 @@
   <section id="comecar" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,.02),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">🚀 Começar</span>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Começar</span>
         <h2>Do clone ao rodar<br>em 3 minutos</h2>
         <p>Pré-requisitos: Node.js 18+ e npm. Opcional: Ollama para o assistente IA.</p>
       </div>
@@ -794,18 +796,14 @@
     <div class="cta-glow"></div>
     <div class="cta-content reveal">
       <h2>Pronto para organizar<br>seu negócio?</h2>
-      <p>Clone, configure e tenha seu ERP rodando em minutos. Open source, gratuito e sem limites.</p>
+      <p>Configure e tenha seu ERP rodando em minutos. Gratuito e sem limites de usuários.</p>
       <div class="cta-actions">
         <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
           Acessar Repositório
         </a>
-        <a href="https://github.com/SudreScodeS/Elitium-ERP/fork" target="_blank" class="btn btn-green btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>
-          Fork no GitHub
-        </a>
       </div>
-      <p class="cta-note">Gratuito &middot; Open Source &middot; Sem limites de usuários</p>
+      <p class="cta-note">Gratuito &middot; Sem limites de usuários</p>
     </div>
   </section>
 
