@@ -55,6 +55,11 @@
     .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width var(--transition)}
     .nav-links a:hover::after{width:100%}
     .nav-mobile{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:8px}
+    .lang-toggle{display:inline-flex;align-items:center;gap:0;padding:2px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);cursor:pointer;font-size:12px;font-weight:600;transition:all var(--transition-fast)}
+    .lang-toggle:hover{border-color:var(--border)}
+    .lang-toggle span{padding:5px 10px;border-radius:6px;color:var(--text-muted);transition:all var(--transition-fast);user-select:none}
+    .lang-toggle span.active{background:var(--accent);color:#fff}
+    .lang-toggle span:not(.active):hover{color:var(--text-secondary)}
 
     /* ============ BUTTONS ============ */
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--transition);cursor:pointer;border:none;font-family:inherit;white-space:nowrap}
@@ -272,12 +277,18 @@
         <span>Elitium</span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#o-que-e">O que é</a></li>
-        <li><a href="#modulos">Módulos</a></li>
-        <li><a href="#arquitetura">Arquitetura</a></li>
+        <li><a href="#o-que-e" data-i18n="nav.about">O que é</a></li>
+        <li><a href="#modulos" data-i18n="nav.modules">Módulos</a></li>
+        <li><a href="#arquitetura" data-i18n="nav.arch">Arquitetura</a></li>
         <li><a href="#api">API</a></li>
-        <li><a href="#seguranca">Segurança</a></li>
-        <li><a href="#comecar">Começar</a></li>
+        <li><a href="#seguranca" data-i18n="nav.security">Segurança</a></li>
+        <li><a href="#comecar" data-i18n="nav.start">Começar</a></li>
+        <li>
+          <div class="lang-toggle" id="langToggle">
+            <span class="active" data-lang="pt">PT</span>
+            <span data-lang="en">EN</span>
+          </div>
+        </li>
         <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="padding:8px 16px;font-size:13px">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
@@ -297,28 +308,28 @@
     <div class="hero-content">
       <div class="hero-badge"><span class="dot"></span>Next.js &middot; TypeScript &middot; Prisma</div>
       <img src="LogoE.svg" alt="Elitium ERP" class="hero-logo">
-      <h1>Gestão empresarial<br><span class="gradient">completa e inteligente</span></h1>
-      <p>Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.</p>
+      <h1 data-i18n="hero.h1a">Gestão empresarial<br><span class="gradient" data-i18n="hero.h1b">completa e inteligente</span></h1>
+      <p data-i18n="hero.p">Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.</p>
       <div class="hero-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          Acessar Demo
+          <span data-i18n="hero.demo">Acessar Demo</span>
         </a>
         <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          Ver no GitHub
+          <span data-i18n="hero.github">Ver no GitHub</span>
         </a>
         <a href="#o-que-e" class="btn btn-ghost btn-lg">
-          Entenda o projeto
+          <span data-i18n="hero.understand">Entenda o projeto</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
         </a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="number">15+</div><div class="label">Módulos</div></div>
-        <div class="hero-stat"><div class="number">REST</div><div class="label">API Completa</div></div>
-        <div class="hero-stat"><div class="number">JWT</div><div class="label">Autenticação</div></div>
-        <div class="hero-stat"><div class="number">IA</div><div class="label">Integrada</div></div>
-        <div class="hero-stat"><div class="number">i18n</div><div class="label">Bilíngue</div></div>
+        <div class="hero-stat"><div class="number">15+</div><div class="label" data-i18n="hero.stat1">Módulos</div></div>
+        <div class="hero-stat"><div class="number">REST</div><div class="label" data-i18n="hero.stat2">API Completa</div></div>
+        <div class="hero-stat"><div class="number">JWT</div><div class="label" data-i18n="hero.stat3">Autenticação</div></div>
+        <div class="hero-stat"><div class="number">IA</div><div class="label" data-i18n="hero.stat4">Integrada</div></div>
+        <div class="hero-stat"><div class="number">i18n</div><div class="label" data-i18n="hero.stat5">Bilíngue</div></div>
       </div>
     </div>
   </section>
@@ -327,39 +338,39 @@
   <section id="o-que-e">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> Entenda o Elitium</span>
-        <h2>O que é um ERP<br>e por que você precisa de um?</h2>
-        <p>ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg data-i18n="about.tag">Entenda o Elitium</span>
+        <h2 data-i18n="about.h2a">O que é um ERP<br data-i18n="about.h2b">e por que você precisa de um?</h2>
+        <p data-i18n="about.p1">ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.</p>
       </div>
 
       <div class="intro-grid reveal">
         <div class="intro-text">
-          <h3>Pare de usar planilhas separadas</h3>
-          <p>Em vez de ter suas vendas em uma planilha, o estoque em outra, e o financeiro em um caderno — o Elitium reúne tudo isso em um painel único. Você vê o panorama completo do seu negócio em tempo real.</p>
-          <p>Com inteligência artificial integrada, o sistema não só organiza seus dados — ele também <strong>analisa tendências, prevê demanda</strong> e ajuda você a tomar decisões melhores.</p>
-          <p style="color:var(--text-muted);font-size:14px">E se você é desenvolvedor: API REST documentada, testes automatizados e CI/CD incluso.</p>
+          <h3 data-i18n="about.h3">Pare de usar planilhas separadas</h3>
+          <p data-i18n="about.p2">Em vez de ter suas vendas em uma planilha, o estoque em outra, e o financeiro em um caderno — o Elitium reúne tudo isso em um painel único. Você vê o panorama completo do seu negócio em tempo real.</p>
+          <p data-i18n="about.p3">Com inteligência artificial integrada, o sistema não só organiza seus dados — ele também <strong>analisa tendências, prevê demanda</strong> e ajuda você a tomar decisões melhores.</p>
+          <p style="color:var(--text-muted);font-size:14px" data-i18n="about.p4">E se você é desenvolvedor: API REST documentada, testes automatizados e CI/CD incluso.</p>
         </div>
         <div class="intro-visual">
           <div class="mini-dashboard">
             <div class="mini-stat">
-              <div class="mini-label">Vendas do Mês</div>
-              <div class="mini-value">R$ 84.520</div>
-              <div class="mini-change up">↑ 12% vs mês anterior</div>
+              <div class="mini-label" data-i18n="about.card1l">Vendas do Mês</div>
+              <div class="mini-value" data-i18n="about.card1v">R$ 84.520</div>
+              <div class="mini-change up" data-i18n="about.card1c">↑ 12% vs mês anterior</div>
             </div>
             <div class="mini-stat">
-              <div class="mini-label">Produtos Ativos</div>
+              <div class="mini-label" data-i18n="about.card2l">Produtos Ativos</div>
               <div class="mini-value">342</div>
-              <div class="mini-change up">↑ 8 novos</div>
+              <div class="mini-change up" data-i18n="about.card2c">↑ 8 novos</div>
             </div>
             <div class="mini-stat">
-              <div class="mini-label">Orçamentos Pendentes</div>
+              <div class="mini-label" data-i18n="about.card3l">Orçamentos Pendentes</div>
               <div class="mini-value">17</div>
-              <div class="mini-change down">↓ 3 expiram hoje</div>
+              <div class="mini-change down" data-i18n="about.card3c">↓ 3 expiram hoje</div>
             </div>
             <div class="mini-stat">
-              <div class="mini-label">Lucro Líquido</div>
-              <div class="mini-value">R$ 23.180</div>
-              <div class="mini-change up">↑ Margem 27%</div>
+              <div class="mini-label" data-i18n="about.card4l">Lucro Líquido</div>
+              <div class="mini-value" data-i18n="about.card4v">R$ 23.180</div>
+              <div class="mini-change up" data-i18n="about.card4c">↑ Margem 27%</div>
             </div>
             <div class="mini-chart" id="miniChart"></div>
           </div>
@@ -372,9 +383,9 @@
   <section id="modulos" style="background:linear-gradient(180deg,transparent,rgba(124,92,191,.02),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg> Módulos</span>
-        <h2>Tudo que seu negócio precisa,<br>em um só sistema</h2>
-        <p>Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg data-i18n="mod.tag">Módulos</span>
+        <h2 data-i18n="mod.h2a">Tudo que seu negócio precisa,<br data-i18n="mod.h2b">em um só sistema</h2>
+        <p data-i18n="mod.p">Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.</p>
       </div>
 
       <div class="modules-grid reveal">
@@ -382,80 +393,80 @@
           <div class="module-icon purple">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
           </div>
-          <h3>Dashboard</h3>
-          <p>Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance. Totalmente personalizável com layout arrastável.</p>
-          <span class="module-tag">Visão geral</span>
+          <h3 data-i18n="mod.dashboard">Dashboard</h3>
+          <p data-i18n="mod.dashboard.p">Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance. Totalmente personalizável com layout arrastável.</p>
+          <span class="module-tag" data-i18n="mod.dashboard.t">Visão geral</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon green">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
           </div>
-          <h3>Vendas</h3>
-          <p>Crie e acompanhe pedidos de venda do início ao fim. Histórico completo, status em tempo real e integração com estoque e financeiro.</p>
-          <span class="module-tag">Pedidos</span>
+          <h3 data-i18n="mod.sales">Vendas</h3>
+          <p data-i18n="mod.sales.p">Crie e acompanhe pedidos de venda do início ao fim. Histórico completo, status em tempo real e integração com estoque e financeiro.</p>
+          <span class="module-tag" data-i18n="mod.sales.t">Pedidos</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon blue">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
           </div>
-          <h3>Orçamentos</h3>
-          <p>Envie propostas comerciais profissionais para seus clientes. Gere PDFs elegantes, acompanhe aprovações e converta orçamentos em pedidos com um clique.</p>
-          <span class="module-tag">Propostas</span>
+          <h3 data-i18n="mod.quotes">Orçamentos</h3>
+          <p data-i18n="mod.quotes.p">Envie propostas comerciais profissionais para seus clientes. Gere PDFs elegantes, acompanhe aprovações e converta orçamentos em pedidos com um clique.</p>
+          <span class="module-tag" data-i18n="mod.quotes.t">Propostas</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon orange">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
           </div>
-          <h3>Estoque</h3>
-          <p>Controle completo de produtos, grupos e variantes. Alertas de estoque baixo, organização por categorias e gerenciamento de fornecedores.</p>
-          <span class="module-tag">Inventário</span>
+          <h3 data-i18n="mod.inv">Estoque</h3>
+          <p data-i18n="mod.inv.p">Controle completo de produtos, grupos e variantes. Alertas de estoque baixo, organização por categorias e gerenciamento de fornecedores.</p>
+          <span class="module-tag" data-i18n="mod.inv.t">Inventário</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon cyan">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <h3>Clientes</h3>
-          <p>Cadastro completo de clientes com CNPJ, telefone, endereço e histórico de compras. Busca rápida e integração com orçamentos e vendas.</p>
-          <span class="module-tag">CRM</span>
+          <h3 data-i18n="mod.clients">Clientes</h3>
+          <p data-i18n="mod.clients.p">Cadastro completo de clientes com CNPJ, telefone, endereço e histórico de compras. Busca rápida e integração com orçamentos e vendas.</p>
+          <span class="module-tag" data-i18n="mod.clients.t">CRM</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon green">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
-          <h3>Compras</h3>
-          <p>Gerencie pedidos de compra para fornecedores. Controle o que entra no estoque, acompanhe entregas e mantenha a cadeia de suprimentos organizada.</p>
-          <span class="module-tag">Fornecedores</span>
+          <h3 data-i18n="mod.purch">Compras</h3>
+          <p data-i18n="mod.purch.p">Gerencie pedidos de compra para fornecedores. Controle o que entra no estoque, acompanhe entregas e mantenha a cadeia de suprimentos organizada.</p>
+          <span class="module-tag" data-i18n="mod.purch.t">Fornecedores</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon purple">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           </div>
-          <h3>Financeiro</h3>
-          <p>Receitas, despesas e lucros — tudo registrado e categorizado. Fluxo de caixa claro com filtros por período e tipo de transação.</p>
-          <span class="module-tag">Controle</span>
+          <h3 data-i18n="mod.fin">Financeiro</h3>
+          <p data-i18n="mod.fin.p">Receitas, despesas e lucros — tudo registrado e categorizado. Fluxo de caixa claro com filtros por período e tipo de transação.</p>
+          <span class="module-tag" data-i18n="mod.fin.t">Controle</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon blue">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/></svg>
           </div>
-          <h3>Faturamento</h3>
-          <p>Relatórios detalhados de faturamento por produto, cliente e período. Entenda o que mais vende e onde está o maior retorno.</p>
-          <span class="module-tag">Relatórios</span>
+          <h3 data-i18n="mod.inv2">Faturamento</h3>
+          <p data-i18n="mod.inv2.p">Relatórios detalhados de faturamento por produto, cliente e período. Entenda o que mais vende e onde está o maior retorno.</p>
+          <span class="module-tag" data-i18n="mod.inv2.t">Relatórios</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon orange">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
           </div>
-          <h3>Assistente IA</h3>
-          <p>Converse com uma inteligência artificial que conhece seus dados. Pergunte sobre vendas, peça sugestões, analise tendências — tudo em linguagem natural.</p>
+          <h3 data-i18n="mod.ai">Assistente IA</h3>
+          <p data-i18n="mod.ai.p">Converse com uma inteligência artificial que conhece seus dados. Pergunte sobre vendas, peça sugestões, analise tendências — tudo em linguagem natural.</p>
           <span class="module-tag">Google Gemini</span>
         </div>
 
@@ -463,35 +474,35 @@
           <div class="module-icon cyan">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <h3>Previsão de Demanda</h3>
-          <p>Algoritmos analisam seu histórico de vendas e mostram tendências futuras. Saiba o que estocar antes da demanda chegar.</p>
-          <span class="module-tag">Preditivo</span>
+          <h3 data-i18n="mod.forecast">Previsão de Demanda</h3>
+          <p data-i18n="mod.forecast.p">Algoritmos analisam seu histórico de vendas e mostram tendências futuras. Saiba o que estocar antes da demanda chegar.</p>
+          <span class="module-tag" data-i18n="mod.forecast.t">Preditivo</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon red">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 10v4"/><rect width="18" height="12" x="3" y="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
           </div>
-          <h3>Usuários & Permissões</h3>
-          <p>Controle de acesso granular: admins veem tudo, vendedores veem o que precisam. Perfis de permissão configuráveis por módulo.</p>
-          <span class="module-tag">RBAC</span>
+          <h3 data-i18n="mod.users">Usuários & Permissões</h3>
+          <p data-i18n="mod.users.p">Controle de acesso granular: admins veem tudo, vendedores veem o que precisam. Perfis de permissão configuráveis por módulo.</p>
+          <span class="module-tag" data-i18n="mod.users.t">RBAC</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon green">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
           </div>
-          <h3>Notificações & Auditoria</h3>
-          <p>Log completo de todas as ações no sistema. Saiba quem fez o quê e quando. Sistema de notificações para alertas importantes.</p>
-          <span class="module-tag">Rastreabilidade</span>
+          <h3 data-i18n="mod.notif">Notificações & Auditoria</h3>
+          <p data-i18n="mod.notif.p">Log completo de todas as ações no sistema. Saiba quem fez o quê e quando. Sistema de notificações para alertas importantes.</p>
+          <span class="module-tag" data-i18n="mod.notif.t">Rastreabilidade</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon purple">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
           </div>
-          <h3>Internacionalização</h3>
-          <p>Interface em Português (Brasil) e Inglês. Ideal para equipes multilíngues ou negócios que operam em mercados internacionais.</p>
+          <h3 data-i18n="mod.i18n">Internacionalização</h3>
+          <p data-i18n="mod.i18n.p">Interface em Português (Brasil) e Inglês. Ideal para equipes multilíngues ou negócios que operam em mercados internacionais.</p>
           <span class="module-tag">PT-BR / EN-US</span>
         </div>
 
@@ -499,18 +510,18 @@
           <div class="module-icon blue">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
           </div>
-          <h3>Central de Ajuda</h3>
-          <p>Painel de ajuda integrado com atalhos de teclado, documentação contextual e guias rápidos. Nunca fique perdido no sistema.</p>
-          <span class="module-tag">UX</span>
+          <h3 data-i18n="mod.help">Central de Ajuda</h3>
+          <p data-i18n="mod.help.p">Painel de ajuda integrado com atalhos de teclado, documentação contextual e guias rápidos. Nunca fique perdido no sistema.</p>
+          <span class="module-tag" data-i18n="mod.help.t">UX</span>
         </div>
 
         <div class="module-card">
           <div class="module-icon orange">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>
           </div>
-          <h3>Admin & Pricing</h3>
-          <p>Painel administrativo para configurações avançadas do sistema, gestão de preços e parâmetros globais da aplicação.</p>
-          <span class="module-tag">Config</span>
+          <h3 data-i18n="mod.admin">Admin & Pricing</h3>
+          <p data-i18n="mod.admin.p">Painel administrativo para configurações avançadas do sistema, gestão de preços e parâmetros globais da aplicação.</p>
+          <span class="module-tag" data-i18n="mod.admin.t">Config</span>
         </div>
         <div class="module-card module-placeholder"></div>
       </div>
@@ -521,16 +532,16 @@
   <section id="para-quem">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Para Quem</span>
-        <h2>Feito para todos os perfis</h2>
-        <p>Não importa se você é dono de negócio ou desenvolvedor — o Elitium foi pensado para os dois.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg data-i18n="who.tag">Para Quem</span>
+        <h2 data-i18n="who.h2">Feito para todos os perfis</h2>
+        <p data-i18n="who.p">Não importa se você é dono de negócio ou desenvolvedor — o Elitium foi pensado para os dois.</p>
       </div>
 
       <div class="audience-grid reveal">
         <div class="audience-card">
           <div class="audience-icon" style="background:var(--accent-glow);border:1px solid rgba(124,92,191,.15);border-radius:14px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
-          <h3>Para Gestores e Empresários</h3>
-          <p>Se você quer organizar as operações da sua empresa sem precisar de um departamento de TI inteiro, o Elitium é pra você.</p>
+          <h3 data-i18n="who.biz.h3">Para Gestores e Empresários</h3>
+          <p data-i18n="who.biz.p">Se você quer organizar as operações da sua empresa sem precisar de um departamento de TI inteiro, o Elitium é pra você.</p>
           <ul class="audience-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Dashboard visual com métricas em tempo real</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Orçamentos profissionais com PDF em segundos</li>
@@ -542,8 +553,8 @@
 
         <div class="audience-card">
           <div class="audience-icon" style="background:var(--green-glow);border:1px solid rgba(34,197,94,.15);border-radius:14px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <h3>Para Desenvolvedores</h3>
-          <p>Se você quer estudar, contribuir ou adaptar o sistema para outro projeto — o código é limpo, documentado e testado.</p>
+          <h3 data-i18n="who.dev.h3">Para Desenvolvedores</h3>
+          <p data-i18n="who.dev.p">Se você quer estudar, contribuir ou adaptar o sistema para outro projeto — o código é limpo, documentado e testado.</p>
           <ul class="audience-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Next.js 16 + React 19 + TypeScript + Tailwind CSS</li>
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> API REST versionada com respostas padronizadas</li>
@@ -560,9 +571,9 @@
   <section id="arquitetura">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m9 9 3 3 3-3"/><path d="M12 12v6"/></svg> Arquitetura</span>
-        <h2>Construído para escalar</h2>
-        <p>Stack moderna com separação clara de responsabilidades. Cada camada faz o que sabe fazer melhor.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m9 9 3 3 3-3"/><path d="M12 12v6"/></svg data-i18n="arch.tag">Arquitetura</span>
+        <h2 data-i18n="arch.h2">Construído para escalar</h2>
+        <p data-i18n="arch.p">Stack moderna com separação clara de responsabilidades. Cada camada faz o que sabe fazer melhor.</p>
       </div>
 
       <div class="arch-grid reveal">
@@ -571,8 +582,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
             Frontend
           </div>
-          <h3>Interface Moderna</h3>
-          <p>React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro, drag-and-drop no dashboard, e suporte a PWA para acesso offline.</p>
+          <h3 data-i18n="arch.fe.h3">Interface Moderna</h3>
+          <p data-i18n="arch.fe.p">React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro, drag-and-drop no dashboard, e suporte a PWA para acesso offline.</p>
           <div class="tech-tags">
             <span class="tech-tag">Next.js 16</span>
             <span class="tech-tag">React 19</span>
@@ -587,8 +598,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             Backend
           </div>
-          <h3>API Robusta</h3>
-          <p>API REST versionada (v1) com autenticação JWT, rate limiting, proteção CSRF e respostas padronizadas com metadados de rastreamento.</p>
+          <h3 data-i18n="arch.be.h3">API Robusta</h3>
+          <p data-i18n="arch.be.p">API REST versionada (v1) com autenticação JWT, rate limiting, proteção CSRF e respostas padronizadas com metadados de rastreamento.</p>
           <div class="tech-tags">
             <span class="tech-tag">API Routes</span>
             <span class="tech-tag">JWT + Refresh</span>
@@ -603,8 +614,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
             Dados
           </div>
-          <h3>Banco & ORM</h3>
-          <p>Prisma ORM com migrations versionadas, seed scripts para dados iniciais e tipagem forte do banco até o frontend.</p>
+          <h3 data-i18n="arch.data.h3">Banco & ORM</h3>
+          <p data-i18n="arch.data.p">Prisma ORM com migrations versionadas, seed scripts para dados iniciais e tipagem forte do banco até o frontend.</p>
           <div class="tech-tags">
             <span class="tech-tag">Prisma</span>
             <span class="tech-tag">PostgreSQL</span>
@@ -618,8 +629,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
             Inteligência
           </div>
-          <h3>IA & Previsão</h3>
-          <p>Integração com Google Gemini para chat com IA. Algoritmos de previsão de demanda baseados no histórico de vendas.</p>
+          <h3 data-i18n="arch.ai.h3">IA & Previsão</h3>
+          <p data-i18n="arch.ai.p">Integração com Google Gemini para chat com IA. Algoritmos de previsão de demanda baseados no histórico de vendas.</p>
           <div class="tech-tags">
             <span class="tech-tag">Google Gemini</span>
             <span class="tech-tag">LLM Local</span>
@@ -635,25 +646,25 @@
   <section id="api" style="background:linear-gradient(180deg,transparent,rgba(59,130,246,.02),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 12h8"/></svg> API</span>
-        <h2>Documentada & Padronizada</h2>
-        <p>Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 12h8"/></svg data-i18n="api.tag">API</span>
+        <h2 data-i18n="api.h2">Documentada & Padronizada</h2>
+        <p data-i18n="api.p">Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.</p>
       </div>
 
       <div class="api-split reveal">
         <div class="api-info">
-          <h3>Contrato consistente</h3>
-          <p>Toda resposta da API vem no mesmo formato: sucesso, mensagem, dados e metadados com timestamp e ID de rastreamento. Se algo der errado, o erro vem estruturado com código e detalhes.</p>
+          <h3 data-i18n="api.h3">Contrato consistente</h3>
+          <p data-i18n="api.desc">Toda resposta da API vem no mesmo formato: sucesso, mensagem, dados e metadados com timestamp e ID de rastreamento. Se algo der errado, o erro vem estruturado com código e detalhes.</p>
           <div class="api-endpoints">
-            <div class="api-endpoint"><span class="method post">POST</span><span class="route">/api/v1/auth/login</span><span class="desc">Autenticação</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/dashboard</span><span class="desc">Métricas</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/orders</span><span class="desc">Pedidos</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/quotes</span><span class="desc">Orçamentos</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/inventory</span><span class="desc">Produtos</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/finance</span><span class="desc">Financeiro</span></div>
-            <div class="api-endpoint"><span class="method post">POST</span><span class="route">/api/v1/assistant</span><span class="desc">Chat IA</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/suppliers</span><span class="desc">Fornecedores</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/reports/faturamento</span><span class="desc">Relatórios</span></div>
+            <div class="api-endpoint"><span class="method post">POST</span><span class="route">/api/v1/auth/login</span><span class="desc" data-i18n="api.d1">Autenticação</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/dashboard</span><span class="desc" data-i18n="api.d2">Métricas</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/orders</span><span class="desc" data-i18n="api.d3">Pedidos</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/quotes</span><span class="desc" data-i18n="api.d4">Orçamentos</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/inventory</span><span class="desc" data-i18n="api.d5">Produtos</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/finance</span><span class="desc" data-i18n="api.d6">Financeiro</span></div>
+            <div class="api-endpoint"><span class="method post">POST</span><span class="route">/api/v1/assistant</span><span class="desc" data-i18n="api.d7">Chat IA</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/suppliers</span><span class="desc" data-i18n="api.d8">Fornecedores</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/reports/faturamento</span><span class="desc" data-i18n="api.d9">Relatórios</span></div>
           </div>
         </div>
 
@@ -688,9 +699,9 @@
   <section id="seguranca">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Segurança</span>
-        <h2>Segurança por design</h2>
-        <p>Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg data-i18n="sec.tag">Segurança</span>
+        <h2 data-i18n="sec.h2">Segurança por design</h2>
+        <p data-i18n="sec.p">Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.</p>
       </div>
 
       <div class="security-grid reveal">
@@ -698,42 +709,42 @@
           <div class="security-icon green">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78Zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
           </div>
-          <div><h4>JWT com Rotação</h4><p>Access tokens curtos (1h) com refresh tokens rotativos. Se um token vazar, expira rápido.</p></div>
+          <div><h4 data-i18n="sec.jwt.h4">JWT com Rotação</h4><p data-i18n="sec.jwt.p">Access tokens curtos (1h) com refresh tokens rotativos. Se um token vazar, expira rápido.</p></div>
         </div>
 
         <div class="security-item">
           <div class="security-icon purple">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
           </div>
-          <div><h4>HttpOnly Cookies</h4><p>Refresh tokens em cookies HttpOnly — JavaScript não consegue acessar. Protegido contra XSS.</p></div>
+          <div><h4 data-i18n="sec.cookie.h4">HttpOnly Cookies</h4><p data-i18n="sec.cookie.p">Refresh tokens em cookies HttpOnly — JavaScript não consegue acessar. Protegido contra XSS.</p></div>
         </div>
 
         <div class="security-item">
           <div class="security-icon blue">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
           </div>
-          <div><h4>Proteção CSRF</h4><p>Todas as operações que alteram dados são protegidas contra ataques de falsificação.</p></div>
+          <div><h4 data-i18n="sec.csrf.h4">Proteção CSRF</h4><p data-i18n="sec.csrf.p">Todas as operações que alteram dados são protegidas contra ataques de falsificação.</p></div>
         </div>
 
         <div class="security-item">
           <div class="security-icon green">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <div><h4>Rate Limiting</h4><p>Controle automático de requisições por IP e usuário. Previne abuso e ataques de força bruta.</p></div>
+          <div><h4 data-i18n="sec.rate.h4">Rate Limiting</h4><p data-i18n="sec.rate.p">Controle automático de requisições por IP e usuário. Previne abuso e ataques de força bruta.</p></div>
         </div>
 
         <div class="security-item">
           <div class="security-icon purple">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <div><h4>Controle de Acesso</h4><p>Roles granulares (admin/seller) com permissões específicas por módulo. Cada pessoa vê só o que precisa.</p></div>
+          <div><h4 data-i18n="sec.acl.h4">Controle de Acesso</h4><p data-i18n="sec.acl.p">Roles granulares (admin/seller) com permissões específicas por módulo. Cada pessoa vê só o que precisa.</p></div>
         </div>
 
         <div class="security-item">
           <div class="security-icon blue">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
           </div>
-          <div><h4>Audit Logs</h4><p>Registro completo de todas as ações. Quem fez, quando, o quê. Rastreabilidade total.</p></div>
+          <div><h4 data-i18n="sec.audit.h4">Audit Logs</h4><p data-i18n="sec.audit.p">Registro completo de todas as ações. Quem fez, quando, o quê. Rastreabilidade total.</p></div>
         </div>
       </div>
     </div>
@@ -743,44 +754,44 @@
   <section id="comecar" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,.02),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Começar</span>
-        <h2>Pronto para usar<br>ou para contribuir</h2>
-        <p>Acesse o sistema já deployado ou clone o repositório para estudar o código.</p>
+        <span class="section-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg data-i18n="start.tag">Começar</span>
+        <h2 data-i18n="start.h2a">Pronto para usar<br data-i18n="start.h2b">ou para contribuir</h2>
+        <p data-i18n="start.p">Acesse o sistema já deployado ou clone o repositório para estudar o código.</p>
       </div>
 
       <div class="steps reveal">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h4>Acesse o sistema</h4>
-            <p>O Elitium já está deployado e pronto para uso. Clique no botão abaixo para abrir.</p>
+            <h4 data-i18n="start.s1.h4">Acesse o sistema</h4>
+            <p data-i18n="start.s1.p">O Elitium já está deployado e pronto para uso. Clique no botão abaixo para abrir.</p>
             <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg" style="margin-top:12px;display:inline-flex">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-              Abrir Elitium ERP
+ data-i18n="start.s1.btn">Abrir Elitium ERP
             </a>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <h4>Clone o repositório (desenvolvedores)</h4>
-            <p>Se quer estudar o código ou contribuir, baixe o código-fonte do GitHub.</p>
+            <h4 data-i18n="start.s2.h4">Clone o repositório (desenvolvedores)</h4>
+            <p data-i18n="start.s2.p">Se quer estudar o código ou contribuir, baixe o código-fonte do GitHub.</p>
             <code>git clone https://github.com/SudreScodeS/Elitium-ERP.git</code>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <h4>Configure o ambiente</h4>
-            <p>Instale as dependências, configure o PostgreSQL e rode as migrations.</p>
+            <h4 data-i18n="start.s3.h4">Configure o ambiente</h4>
+            <p data-i18n="start.s3.p">Instale as dependências, configure o PostgreSQL e rode as migrations.</p>
             <code>cd Elitium-ERP && npm install && cp .env.local.example .env.local</code>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-content">
-            <h4>Inicie o servidor</h4>
-            <p>Pronto! Abra http://localhost:3000 e comece a usar.</p>
+            <h4 data-i18n="start.s4.h4">Inicie o servidor</h4>
+            <p data-i18n="start.s4.p">Pronto! Abra http://localhost:3000 e comece a usar.</p>
             <code>npx prisma migrate dev && npm run db:seed && npm run dev</code>
           </div>
         </div>
@@ -792,19 +803,19 @@
   <section class="cta">
     <div class="cta-glow"></div>
     <div class="cta-content">
-      <h2>Pronto para organizar<br>seu negócio?</h2>
-      <p>Configure e tenha seu ERP rodando em minutos. Escalável e sem limites de usuários.</p>
+      <h2 data-i18n="cta.h2a">Pronto para organizar<br data-i18n="cta.h2b">seu negócio?</h2>
+      <p data-i18n="cta.p">Configure e tenha seu ERP rodando em minutos. Escalável e sem limites de usuários.</p>
       <div class="cta-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          Acessar Elitium ERP
+          <span data-i18n="cta.btn1">Acessar Elitium ERP</span>
         </a>
         <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          Ver no GitHub
+          <span data-i18n="cta.btn2">Ver no GitHub</span>
         </a>
       </div>
-      <p class="cta-note">Escalável &middot; Suporte dedicado &middot; Sem limites de usuários</p>
+      <p class="cta-note" data-i18n="cta.note">Escalável &middot; Suporte dedicado &middot; Sem limites de usuários</p>
     </div>
   </section>
 
@@ -814,14 +825,14 @@
       <div class="footer-content">
         <div class="footer-left">
           <img src="Logo.svg" alt="Elitium" height="20">
-          <span>&copy; 2026 Elitium ERP. All rights reserved.</span>
+          <span data-i18n="footer.copy">&copy; 2026 Elitium ERP. All rights reserved.</span>
         </div>
         <ul class="footer-links">
           <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank">GitHub</a></li>
-          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#modulos" data-i18n="footer.modules">Módulos</a></li>
           <li><a href="#api">API</a></li>
-          <li><a href="#seguranca">Segurança</a></li>
-          <li><a href="#comecar">Começar</a></li>
+          <li><a href="#seguranca" data-i18n="footer.security">Segurança</a></li>
+          <li><a href="#comecar" data-i18n="footer.start">Começar</a></li>
         </ul>
       </div>
     </div>
@@ -874,6 +885,393 @@
         }
       });
     });
+
+    // ============ i18n ============
+    const i18n = {
+      pt: {
+        // Nav
+        'nav.about': 'O que é',
+        'nav.modules': 'Módulos',
+        'nav.arch': 'Arquitetura',
+        'nav.security': 'Segurança',
+        'nav.start': 'Começar',
+        // Hero
+        'hero.h1a': 'Gestão empresarial',
+        'hero.h1b': 'completa e inteligente',
+        'hero.p': 'Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.',
+        'hero.demo': 'Acessar Demo',
+        'hero.github': 'Ver no GitHub',
+        'hero.understand': 'Entenda o projeto',
+        'hero.stat1': 'Módulos',
+        'hero.stat2': 'API Completa',
+        'hero.stat3': 'Autenticação',
+        'hero.stat4': 'Integrada',
+        'hero.stat5': 'Bilíngue',
+        // O que é
+        'about.tag': 'Entenda o Elitium',
+        'about.h2a': 'O que é um ERP',
+        'about.h2b': 'e por que você precisa de um?',
+        'about.p1': 'ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.',
+        'about.h3': 'Pare de usar planilhas separadas',
+        'about.p2': 'Em vez de ter suas vendas em uma planilha, o estoque em outra, e o financeiro em um caderno — o Elitium reúne tudo isso em um painel único. Você vê o panorama completo do seu negócio em tempo real.',
+        'about.p3': 'Com inteligência artificial integrada, o sistema não só organiza seus dados — ele também <strong>analisa tendências, prevê demanda</strong> e ajuda você a tomar decisões melhores.',
+        'about.p4': 'E se você é desenvolvedor: API REST documentada, testes automatizados e CI/CD incluso.',
+        'about.card1l': 'Vendas do Mês',
+        'about.card1v': 'R$ 84.520',
+        'about.card1c': '↑ 12% vs mês anterior',
+        'about.card2l': 'Produtos Ativos',
+        'about.card2v': '342',
+        'about.card2c': '↑ 8 novos',
+        'about.card3l': 'Orçamentos Pendentes',
+        'about.card3v': '17',
+        'about.card3c': '↓ 3 expiram hoje',
+        'about.card4l': 'Lucro Líquido',
+        'about.card4v': 'R$ 23.180',
+        'about.card4c': '↑ Margem 27%',
+        // Módulos
+        'mod.tag': 'Módulos',
+        'mod.h2a': 'Tudo que seu negócio precisa,',
+        'mod.h2b': 'em um só sistema',
+        'mod.p': 'Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.',
+        'mod.dashboard': 'Dashboard',
+        'mod.dashboard.p': 'Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance. Totalmente personalizável com layout arrastável.',
+        'mod.dashboard.t': 'Visão geral',
+        'mod.sales': 'Vendas',
+        'mod.sales.p': 'Crie e acompanhe pedidos de venda do início ao fim. Histórico completo, status em tempo real e integração com estoque e financeiro.',
+        'mod.sales.t': 'Pedidos',
+        'mod.quotes': 'Orçamentos',
+        'mod.quotes.p': 'Envie propostas comerciais profissionais para seus clientes. Gere PDFs elegantes, acompanhe aprovações e converta orçamentos em pedidos com um clique.',
+        'mod.quotes.t': 'Propostas',
+        'mod.inv': 'Estoque',
+        'mod.inv.p': 'Controle completo de produtos, grupos e variantes. Alertas de estoque baixo, organização por categorias e gerenciamento de fornecedores.',
+        'mod.inv.t': 'Inventário',
+        'mod.clients': 'Clientes',
+        'mod.clients.p': 'Cadastro completo de clientes com CNPJ, telefone, endereço e histórico de compras. Busca rápida e integração com orçamentos e vendas.',
+        'mod.clients.t': 'CRM',
+        'mod.purch': 'Compras',
+        'mod.purch.p': 'Gerencie pedidos de compra para fornecedores. Controle o que entra no estoque, acompanhe entregas e mantenha a cadeia de suprimentos organizada.',
+        'mod.purch.t': 'Fornecedores',
+        'mod.fin': 'Financeiro',
+        'mod.fin.p': 'Receitas, despesas e lucros — tudo registrado e categorizado. Fluxo de caixa claro com filtros por período e tipo de transação.',
+        'mod.fin.t': 'Controle',
+        'mod.inv2': 'Faturamento',
+        'mod.inv2.p': 'Relatórios detalhados de faturamento por produto, cliente e período. Entenda o que mais vende e onde está o maior retorno.',
+        'mod.inv2.t': 'Relatórios',
+        'mod.ai': 'Assistente IA',
+        'mod.ai.p': 'Converse com uma inteligência artificial que conhece seus dados. Pergunte sobre vendas, peça sugestões, analise tendências — tudo em linguagem natural.',
+        'mod.forecast': 'Previsão de Demanda',
+        'mod.forecast.p': 'Algoritmos analisam seu histórico de vendas e mostram tendências futuras. Saiba o que estocar antes da demanda chegar.',
+        'mod.forecast.t': 'Preditivo',
+        'mod.users': 'Usuários & Permissões',
+        'mod.users.p': 'Controle de acesso granular: admins veem tudo, vendedores veem o que precisam. Perfis de permissão configuráveis por módulo.',
+        'mod.users.t': 'RBAC',
+        'mod.notif': 'Notificações & Auditoria',
+        'mod.notif.p': 'Log completo de todas as ações no sistema. Saiba quem fez o quê e quando. Sistema de notificações para alertas importantes.',
+        'mod.notif.t': 'Rastreabilidade',
+        'mod.i18n': 'Internacionalização',
+        'mod.i18n.p': 'Interface em Português (Brasil) e Inglês. Ideal para equipes multilíngues ou negócios que operam em mercados internacionais.',
+        'mod.help': 'Central de Ajuda',
+        'mod.help.p': 'Painel de ajuda integrado com atalhos de teclado, documentação contextual e guias rápidos. Nunca fique perdido no sistema.',
+        'mod.help.t': 'UX',
+        'mod.admin': 'Admin & Pricing',
+        'mod.admin.p': 'Painel administrativo para configurações avançadas do sistema, gestão de preços e parâmetros globais da aplicação.',
+        'mod.admin.t': 'Config',
+        // Para quem
+        'who.tag': 'Para Quem',
+        'who.h2': 'Feito para todos os perfis',
+        'who.p': 'Não importa se você é dono de negócio ou desenvolvedor — o Elitium foi pensado para os dois.',
+        'who.biz.h3': 'Para Gestores e Empresários',
+        'who.biz.p': 'Se você quer organizar as operações da sua empresa sem precisar de um departamento de TI inteiro, o Elitium é pra você.',
+        'who.biz.l1': 'Dashboard visual com métricas em tempo real',
+        'who.biz.l2': 'Orçamentos profissionais com PDF em segundos',
+        'who.biz.l3': 'Assistente IA que responde perguntas sobre seu negócio',
+        'who.biz.l4': 'Previsão de demanda para não ficar sem estoque',
+        'who.biz.l5': 'Controle de acesso: cada pessoa vê só o que precisa',
+        'who.dev.h3': 'Para Desenvolvedores',
+        'who.dev.p': 'Se você quer estudar, contribuir ou adaptar o sistema para outro projeto — o código é limpo, documentado e testado.',
+        'who.dev.l2': 'API REST versionada com respostas padronizadas',
+        'who.dev.l3': 'Prisma ORM com migrations e seed scripts',
+        'who.dev.l4': 'Jest + Testing Library para testes unitários',
+        'who.dev.l5': 'Sentry para monitoramento de erros em produção',
+        // Arquitetura
+        'arch.tag': 'Arquitetura',
+        'arch.h2': 'Construído para escalar',
+        'arch.p': 'Stack moderna com separação clara de responsabilidades. Cada camada faz o que sabe fazer melhor.',
+        'arch.fe.h3': 'Interface Moderna',
+        'arch.fe.p': 'React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro, drag-and-drop no dashboard, e suporte a PWA para acesso offline.',
+        'arch.be.h3': 'API Robusta',
+        'arch.be.p': 'API REST versionada (v1) com autenticação JWT, rate limiting, proteção CSRF e respostas padronizadas com metadados de rastreamento.',
+        'arch.data.h3': 'Banco & ORM',
+        'arch.data.p': 'Prisma ORM com migrations versionadas, seed scripts para dados iniciais e tipagem forte do banco até o frontend.',
+        'arch.ai.h3': 'IA & Previsão',
+        'arch.ai.p': 'Integração com Google Gemini para chat com IA. Algoritmos de previsão de demanda baseados no histórico de vendas.',
+        // API
+        'api.tag': 'API',
+        'api.h2': 'Documentada & Padronizada',
+        'api.p': 'Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.',
+        'api.h3': 'Contrato consistente',
+        'api.desc': 'Toda resposta da API vem no mesmo formato: sucesso, mensagem, dados e metadados com timestamp e ID de rastreamento. Se algo der errado, o erro vem estruturado com código e detalhes.',
+        'api.d1': 'Autenticação',
+        'api.d2': 'Métricas',
+        'api.d3': 'Pedidos',
+        'api.d4': 'Orçamentos',
+        'api.d5': 'Produtos',
+        'api.d6': 'Financeiro',
+        'api.d7': 'Chat IA',
+        'api.d8': 'Fornecedores',
+        'api.d9': 'Relatórios',
+        'api.code.msg': '"Operação realizada com sucesso."',
+        // Segurança
+        'sec.tag': 'Segurança',
+        'sec.h2': 'Segurança por design',
+        'sec.p': 'Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.',
+        'sec.jwt.h4': 'JWT com Rotação',
+        'sec.jwt.p': 'Access tokens curtos (1h) com refresh tokens rotativos. Se um token vazar, expira rápido.',
+        'sec.cookie.h4': 'HttpOnly Cookies',
+        'sec.cookie.p': 'Refresh tokens em cookies HttpOnly — JavaScript não consegue acessar. Protegido contra XSS.',
+        'sec.csrf.h4': 'Proteção CSRF',
+        'sec.csrf.p': 'Todas as operações que alteram dados são protegidas contra ataques de falsificação.',
+        'sec.rate.h4': 'Rate Limiting',
+        'sec.rate.p': 'Controle automático de requisições por IP e usuário. Previne abuso e ataques de força bruta.',
+        'sec.acl.h4': 'Controle de Acesso',
+        'sec.acl.p': 'Roles granulares (admin/seller) com permissões específicas por módulo. Cada pessoa vê só o que precisa.',
+        'sec.audit.h4': 'Audit Logs',
+        'sec.audit.p': 'Registro completo de todas as ações. Quem fez, quando, o quê. Rastreabilidade total.',
+        // Começar
+        'start.tag': 'Começar',
+        'start.h2a': 'Pronto para usar',
+        'start.h2b': 'ou para contribuir',
+        'start.p': 'Acesse o sistema já deployado ou clone o repositório para estudar o código.',
+        'start.s1.h4': 'Acesse o sistema',
+        'start.s1.p': 'O Elitium já está deployado e pronto para uso. Clique no botão abaixo para abrir.',
+        'start.s1.btn': 'Abrir Elitium ERP',
+        'start.s2.h4': 'Clone o repositório (desenvolvedores)',
+        'start.s2.p': 'Se quer estudar o código ou contribuir, baixe o código-fonte do GitHub.',
+        'start.s3.h4': 'Configure o ambiente',
+        'start.s3.p': 'Instale as dependências, configure o PostgreSQL e rode as migrations.',
+        'start.s4.h4': 'Inicie o servidor',
+        'start.s4.p': 'Pronto! Abra http://localhost:3000 e comece a usar.',
+        // CTA
+        'cta.h2a': 'Pronto para organizar',
+        'cta.h2b': 'seu negócio?',
+        'cta.p': 'Configure e tenha seu ERP rodando em minutos. Escalável e sem limites de usuários.',
+        'cta.btn1': 'Acessar Elitium ERP',
+        'cta.btn2': 'Ver no GitHub',
+        'cta.note': 'Escalável · Suporte dedicado · Sem limites de usuários',
+        // Footer
+        'footer.copy': '© 2026 Elitium ERP. All rights reserved.',
+        'footer.modules': 'Módulos',
+        'footer.security': 'Segurança',
+        'footer.start': 'Começar',
+      },
+      en: {
+        // Nav
+        'nav.about': 'About',
+        'nav.modules': 'Modules',
+        'nav.arch': 'Architecture',
+        'nav.security': 'Security',
+        'nav.start': 'Get Started',
+        // Hero
+        'hero.h1a': 'Business management',
+        'hero.h1b': 'complete and intelligent',
+        'hero.p': 'From sales control to AI-powered demand forecasting — everything integrated into a single platform. Simple enough for anyone, powerful enough for any business.',
+        'hero.demo': 'Open Demo',
+        'hero.github': 'View on GitHub',
+        'hero.understand': 'Understand the project',
+        'hero.stat1': 'Modules',
+        'hero.stat2': 'Full API',
+        'hero.stat3': 'Authentication',
+        'hero.stat4': 'Integrated',
+        'hero.stat5': 'Bilingual',
+        // About
+        'about.tag': 'Understand Elitium',
+        'about.h2a': 'What is an ERP',
+        'about.h2b': 'and why do you need one?',
+        'about.p1': 'ERP stands for "Enterprise Resource Planning" — a system that centralizes all your company\'s management in one place.',
+        'about.h3': 'Stop using separate spreadsheets',
+        'about.p2': 'Instead of having your sales in one spreadsheet, inventory in another, and finances in a notebook — Elitium brings it all together in a single dashboard. You see the complete picture of your business in real time.',
+        'about.p3': 'With integrated artificial intelligence, the system doesn\'t just organize your data — it also <strong>analyzes trends, forecasts demand</strong> and helps you make better decisions.',
+        'about.p4': 'And if you\'re a developer: documented REST API, automated tests and CI/CD included.',
+        'about.card1l': 'Monthly Sales',
+        'about.card1v': 'R$ 84,520',
+        'about.card1c': '↑ 12% vs previous month',
+        'about.card2l': 'Active Products',
+        'about.card2v': '342',
+        'about.card2c': '↑ 8 new',
+        'about.card3l': 'Pending Quotes',
+        'about.card3v': '17',
+        'about.card3c': '↓ 3 expire today',
+        'about.card4l': 'Net Profit',
+        'about.card4v': 'R$ 23,180',
+        'about.card4c': '↑ 27% margin',
+        // Modules
+        'mod.tag': 'Modules',
+        'mod.h2a': 'Everything your business needs,',
+        'mod.h2b': 'in one system',
+        'mod.p': 'Each module handles an area of your company. Together, they form the complete picture.',
+        'mod.dashboard': 'Dashboard',
+        'mod.dashboard.p': 'Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance. Fully customizable with drag-and-drop layout.',
+        'mod.dashboard.t': 'Overview',
+        'mod.sales': 'Sales',
+        'mod.sales.p': 'Create and track sales orders from start to finish. Complete history, real-time status and integration with inventory and finances.',
+        'mod.sales.t': 'Orders',
+        'mod.quotes': 'Quotes',
+        'mod.quotes.p': 'Send professional commercial proposals to your clients. Generate elegant PDFs, track approvals and convert quotes to orders with one click.',
+        'mod.quotes.t': 'Proposals',
+        'mod.inv': 'Inventory',
+        'mod.inv.p': 'Complete control of products, groups and variants. Low stock alerts, category organization and supplier management.',
+        'mod.inv.t': 'Inventory',
+        'mod.clients': 'Clients',
+        'mod.clients.p': 'Complete client registration with CNPJ, phone, address and purchase history. Quick search and integration with quotes and sales.',
+        'mod.clients.t': 'CRM',
+        'mod.purch': 'Purchases',
+        'mod.purch.p': 'Manage purchase orders for suppliers. Control what comes into inventory, track deliveries and keep the supply chain organized.',
+        'mod.purch.t': 'Suppliers',
+        'mod.fin': 'Finance',
+        'mod.fin.p': 'Revenue, expenses and profits — all recorded and categorized. Clear cash flow with filters by period and transaction type.',
+        'mod.fin.t': 'Control',
+        'mod.inv2': 'Billing',
+        'mod.inv2.p': 'Detailed billing reports by product, client and period. Understand what sells best and where the highest return is.',
+        'mod.inv2.t': 'Reports',
+        'mod.ai': 'AI Assistant',
+        'mod.ai.p': 'Chat with an AI that knows your data. Ask about sales, get suggestions, analyze trends — all in natural language.',
+        'mod.forecast': 'Demand Forecast',
+        'mod.forecast.p': 'Algorithms analyze your sales history and show future trends. Know what to stock before demand arrives.',
+        'mod.forecast.t': 'Predictive',
+        'mod.users': 'Users & Permissions',
+        'mod.users.p': 'Granular access control: admins see everything, salespeople see what they need. Permission profiles configurable by module.',
+        'mod.users.t': 'RBAC',
+        'mod.notif': 'Notifications & Audit',
+        'mod.notif.p': 'Complete log of all actions in the system. Know who did what and when. Notification system for important alerts.',
+        'mod.notif.t': 'Traceability',
+        'mod.i18n': 'Internationalization',
+        'mod.i18n.p': 'Interface in Portuguese (Brazil) and English. Ideal for multilingual teams or businesses operating in international markets.',
+        'mod.help': 'Help Center',
+        'mod.help.p': 'Integrated help panel with keyboard shortcuts, contextual documentation and quick guides. Never get lost in the system.',
+        'mod.help.t': 'UX',
+        'mod.admin': 'Admin & Pricing',
+        'mod.admin.p': 'Administrative panel for advanced system settings, pricing management and global application parameters.',
+        'mod.admin.t': 'Config',
+        // Who
+        'who.tag': 'Who is it for',
+        'who.h2': 'Made for all profiles',
+        'who.p': 'Whether you\'re a business owner or a developer — Elitium was designed for both.',
+        'who.biz.h3': 'For Managers & Business Owners',
+        'who.biz.p': 'If you want to organize your company\'s operations without needing an entire IT department, Elitium is for you.',
+        'who.biz.l1': 'Visual dashboard with real-time metrics',
+        'who.biz.l2': 'Professional quotes with PDF in seconds',
+        'who.biz.l3': 'AI assistant that answers questions about your business',
+        'who.biz.l4': 'Demand forecasting to never run out of stock',
+        'who.biz.l5': 'Access control: each person sees only what they need',
+        'who.dev.h3': 'For Developers',
+        'who.dev.p': 'If you want to study, contribute or adapt the system for another project — the code is clean, documented and tested.',
+        'who.dev.l2': 'Versioned REST API with standardized responses',
+        'who.dev.l3': 'Prisma ORM with migrations and seed scripts',
+        'who.dev.l4': 'Jest + Testing Library for unit tests',
+        'who.dev.l5': 'Sentry for error monitoring in production',
+        // Architecture
+        'arch.tag': 'Architecture',
+        'arch.h2': 'Built to scale',
+        'arch.p': 'Modern stack with clear separation of concerns. Each layer does what it does best.',
+        'arch.fe.h3': 'Modern Interface',
+        'arch.fe.p': 'React 19 with Next.js App Router. Reusable components, light/dark themes, drag-and-drop on the dashboard, and PWA support for offline access.',
+        'arch.be.h3': 'Robust API',
+        'arch.be.p': 'Versioned REST API (v1) with JWT authentication, rate limiting, CSRF protection and standardized responses with tracking metadata.',
+        'arch.data.h3': 'Database & ORM',
+        'arch.data.p': 'Prisma ORM with versioned migrations, seed scripts for initial data and strong typing from database to frontend.',
+        'arch.ai.h3': 'AI & Forecasting',
+        'arch.ai.p': 'Integration with Google Gemini for AI chat. Demand forecasting algorithms based on sales history.',
+        // API
+        'api.tag': 'API',
+        'api.h2': 'Documented & Standardized',
+        'api.p': 'All routes follow the same contract. Predictable, testable and easy to integrate.',
+        'api.h3': 'Consistent contract',
+        'api.desc': 'Every API response comes in the same format: success, message, data and metadata with timestamp and tracking ID. If something goes wrong, the error comes structured with code and details.',
+        'api.d1': 'Authentication',
+        'api.d2': 'Metrics',
+        'api.d3': 'Orders',
+        'api.d4': 'Quotes',
+        'api.d5': 'Products',
+        'api.d6': 'Finance',
+        'api.d7': 'AI Chat',
+        'api.d8': 'Suppliers',
+        'api.d9': 'Reports',
+        'api.code.msg': '"Operation completed successfully."',
+        // Security
+        'sec.tag': 'Security',
+        'sec.h2': 'Security by design',
+        'sec.p': 'Every layer of the system has its protection. It\'s not an extra feature — it\'s part of the foundation.',
+        'sec.jwt.h4': 'JWT with Rotation',
+        'sec.jwt.p': 'Short-lived access tokens (1h) with rotating refresh tokens. If a token leaks, it expires quickly.',
+        'sec.cookie.h4': 'HttpOnly Cookies',
+        'sec.cookie.p': 'Refresh tokens in HttpOnly cookies — JavaScript can\'t access them. Protected against XSS.',
+        'sec.csrf.h4': 'CSRF Protection',
+        'sec.csrf.p': 'All data-modifying operations are protected against forgery attacks.',
+        'sec.rate.h4': 'Rate Limiting',
+        'sec.rate.p': 'Automatic request control per IP and user. Prevents abuse and brute force attacks.',
+        'sec.acl.h4': 'Access Control',
+        'sec.acl.p': 'Granular roles (admin/seller) with module-specific permissions. Each person sees only what they need.',
+        'sec.audit.h4': 'Audit Logs',
+        'sec.audit.p': 'Complete record of all actions. Who did it, when, what. Full traceability.',
+        // Get Started
+        'start.tag': 'Get Started',
+        'start.h2a': 'Ready to use',
+        'start.h2b': 'or to contribute',
+        'start.p': 'Access the deployed system or clone the repository to study the code.',
+        'start.s1.h4': 'Access the system',
+        'start.s1.p': 'Elitium is already deployed and ready to use. Click the button below to open it.',
+        'start.s1.btn': 'Open Elitium ERP',
+        'start.s2.h4': 'Clone the repository (developers)',
+        'start.s2.p': 'If you want to study the code or contribute, download the source from GitHub.',
+        'start.s3.h4': 'Set up the environment',
+        'start.s3.p': 'Install dependencies, configure PostgreSQL and run migrations.',
+        'start.s4.h4': 'Start the server',
+        'start.s4.p': 'Done! Open http://localhost:3000 and start using it.',
+        // CTA
+        'cta.h2a': 'Ready to organize',
+        'cta.h2b': 'your business?',
+        'cta.p': 'Set up and have your ERP running in minutes. Scalable with no user limits.',
+        'cta.btn1': 'Open Elitium ERP',
+        'cta.btn2': 'View on GitHub',
+        'cta.note': 'Scalable · Dedicated support · No user limits',
+        // Footer
+        'footer.copy': '© 2026 Elitium ERP. All rights reserved.',
+        'footer.modules': 'Modules',
+        'footer.security': 'Security',
+        'footer.start': 'Get Started',
+      }
+    };
+
+    function setLang(lang) {
+      localStorage.setItem('elitium-lang', lang);
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      const t = i18n[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = t[key];
+          } else {
+            el.innerHTML = t[key];
+          }
+        }
+      });
+      // Update toggle buttons
+      document.querySelectorAll('#langToggle span').forEach(s => {
+        s.classList.toggle('active', s.dataset.lang === lang);
+      });
+    }
+
+    // Initialize language toggle
+    document.getElementById('langToggle').addEventListener('click', e => {
+      const btn = e.target.closest('[data-lang]');
+      if (!btn) return;
+      setLang(btn.dataset.lang);
+    });
+
+    // Load saved language
+    const savedLang = localStorage.getItem('elitium-lang') || 'pt';
+    if (savedLang !== 'pt') setLang(savedLang);
   </script>
 </body>
 </html>
