@@ -638,50 +638,15 @@
     </div>
   </section>
 
-  <!-- GET STARTED -->
-  <section id="start" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,.015),transparent)">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag" data-i18n="start.tag">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          Get Started
-        </span>
-        <h2><span data-i18n="start.h2a">Ready to use</span><br><span data-i18n="start.h2b">or to contribute</span></h2>
-        <p data-i18n="start.p">Access the deployed system or explore the source code on GitHub.</p>
-      </div>
-
-      <div class="steps reveal">
-        <div class="step">
-          <div class="step-num" style="background:var(--green);color:#000;border-color:var(--green);font-size:18px">▶</div>
-          <div class="step-content">
-            <h4 data-i18n="start.s1.h4">Access the system</h4>
-            <p data-i18n="start.s1.p">Elitium is already deployed and ready to use. Click the button below to open it.</p>
-            <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg" style="margin-top:14px;display:inline-flex">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-              <span data-i18n="start.s1.btn">Open Elitium ERP</span>
-            </a>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <h4 data-i18n="start.s2.h4">Explore the code (developers)</h4>
-            <p data-i18n="start.s2.p">If you want to contribute or adapt the system, check out the repository on GitHub.</p>
-            <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="margin-top:10px;display:inline-flex">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA -->
-  <section class="cta">
+  <section id="start" class="cta">
     <div class="cta-content">
-      <h2><span data-i18n="cta.h2a">Ready to organize</span><br><span data-i18n="cta.h2b">your business?</span></h2>
-      <p data-i18n="cta.p">Set up and have your ERP running in minutes. Scalable with no user limits.</p>
+      <span class="section-tag" data-i18n="cta.tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        Get Started
+      </span>
+      <h2 data-i18n="cta.h2">Ready to organize your business?</h2>
+      <p data-i18n="cta.p">Deploy in minutes. Open source. Scalable with no user limits.</p>
       <div class="cta-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -692,7 +657,7 @@
           <span data-i18n="cta.btn2">View on GitHub</span>
         </a>
       </div>
-      <p class="cta-note" data-i18n="cta.note">Scalable · Dedicated support · No user limits</p>
+      <p class="cta-note" data-i18n="cta.note">Open source · Scalable · No user limits</p>
     </div>
   </section>
 
@@ -821,11 +786,8 @@
         'sec.rate.h4':'Rate Limiting','sec.rate.p':'Controle automático de requisições por IP e usuário.',
         'sec.acl.h4':'Controle de Acesso','sec.acl.p':'Roles granulares (admin/seller) com permissões por módulo.',
         'sec.audit.h4':'Audit Logs','sec.audit.p':'Registro completo de todas as ações. Rastreabilidade total.',
-        'start.tag':'Começar','start.h2a':'Pronto para usar','start.h2b':'ou para contribuir','start.p':'Acesse o sistema deployado ou estude o código-fonte no GitHub.',
-        'start.s1.h4':'Acesse o sistema','start.s1.p':'O Elitium já está deployado e pronto para uso.','start.s1.btn':'Abrir Elitium ERP',
-        'start.s2.h4':'Estudar o código (desenvolvedores)','start.s2.p':'Se quer contribuir ou adaptar o sistema, acesse o repositório no GitHub.',
-        'cta.h2a':'Pronto para organizar','cta.h2b':'seu negócio?','cta.p':'Configure e tenha seu ERP rodando em minutos. Escalável e sem limites de usuários.',
-        'cta.btn1':'Acessar Elitium ERP','cta.btn2':'Ver no GitHub','cta.note':'Escalável · Suporte dedicado · Sem limites de usuários',
+        'cta.tag':'Começar','cta.h2':'Pronto para organizar seu negócio?','cta.p':'Deploy em minutos. Open source. Escalável e sem limites de usuários.',
+        'cta.btn1':'Acessar Elitium ERP','cta.btn2':'Ver no GitHub','cta.note':'Open source · Escalável · Sem limites de usuários',
         'footer.copy':'© 2026 Elitium ERP. All rights reserved.','footer.modules':'Módulos','footer.security':'Segurança','footer.start':'Começar',
       },
       en: {
@@ -885,11 +847,8 @@
         'sec.rate.h4':'Rate Limiting','sec.rate.p':'Automatic request control per IP and user. Prevents abuse.',
         'sec.acl.h4':'Access Control','sec.acl.p':'Granular roles (admin/seller) with module-specific permissions.',
         'sec.audit.h4':'Audit Logs','sec.audit.p':'Complete record of all actions. Who did it, when, what.',
-        'start.tag':'Get Started','start.h2a':'Ready to use','start.h2b':'or to contribute','start.p':'Access the deployed system or explore the source code on GitHub.',
-        'start.s1.h4':'Access the system','start.s1.p':'Elitium is already deployed and ready to use.','start.s1.btn':'Open Elitium ERP',
-        'start.s2.h4':'Explore the code (developers)','start.s2.p':'If you want to contribute or adapt the system, check out the repository on GitHub.',
-        'cta.h2a':'Ready to organize','cta.h2b':'your business?','cta.p':'Set up and have your ERP running in minutes. Scalable with no user limits.',
-        'cta.btn1':'Open Elitium ERP','cta.btn2':'View on GitHub','cta.note':'Scalable · Dedicated support · No user limits',
+        'cta.tag':'Get Started','cta.h2':'Ready to organize your business?','cta.p':'Deploy in minutes. Open source. Scalable with no user limits.',
+        'cta.btn1':'Open Elitium ERP','cta.btn2':'View on GitHub','cta.note':'Open source · Scalable · No user limits',
         'footer.copy':'© 2026 Elitium ERP. All rights reserved.','footer.modules':'Modules','footer.security':'Security','footer.start':'Get Started',
       }
     };
