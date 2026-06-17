@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elitium ERP — Intelligent Business Management System</title>
+  <title>Elitium ERP — Intelligent Business Management</title>
   <meta name="description" content="Complete ERP system for sales, inventory, finance, quotes and AI assistant. Built with Next.js and TypeScript.">
   <meta name="keywords" content="ERP, business management, sales, inventory, finance, quotes, AI, Next.js">
   <meta property="og:title" content="Elitium ERP — Intelligent Business Management">
@@ -17,220 +17,201 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --bg:#09090b;--bg-card:#111113;--bg-card-hover:#18181b;--surface:#18181b;
+      --bg:#09090b;--bg-card:#111113;--bg-card-hover:#161618;--surface:#18181b;
       --border:#27272a;--border-subtle:#1e1e22;
       --text:#fafafa;--text-secondary:#a1a1aa;--text-muted:#52525b;
-      --accent:#7c5cbf;--accent-light:#a78bfa;--accent-dim:#6d4fad;
-      --accent-glow:rgba(124,92,191,.12);--accent-glow-strong:rgba(124,92,191,.25);
-      --green:#22c55e;--green-light:#4ade80;--green-glow:rgba(34,197,94,.12);
-      --blue:#3b82f6;--blue-glow:rgba(59,130,246,.12);
-      --orange:#f59e0b;--orange-glow:rgba(245,158,11,.12);
-      --red:#ef4444;--red-glow:rgba(239,68,68,.12);
-      --cyan:#06b6d4;--cyan-glow:rgba(6,182,212,.12);
-      --radius:12px;--radius-lg:20px;--radius-xl:28px;
-      --transition:.3s cubic-bezier(.4,0,.2,1);
+      --accent:#8b5cf6;--accent-light:#a78bfa;--accent-dim:#7c3aed;
+      --accent-glow:rgba(139,92,246,.08);--accent-glow-strong:rgba(139,92,246,.18);
+      --green:#22c55e;--green-light:#4ade80;--green-glow:rgba(34,197,94,.08);
+      --blue:#3b82f6;--blue-glow:rgba(59,130,246,.08);
+      --orange:#f59e0b;--orange-glow:rgba(245,158,11,.08);
+      --red:#ef4444;--red-glow:rgba(239,68,68,.08);
+      --cyan:#06b6d4;--cyan-glow:rgba(6,182,212,.08);
+      --radius:12px;--radius-lg:16px;--radius-xl:24px;
+      --transition:.25s cubic-bezier(.4,0,.2,1);
       --transition-fast:.15s cubic-bezier(.4,0,.2,1);
     }
     html{scroll-behavior:smooth;font-size:16px}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
     .mono{font-family:'JetBrains Mono',monospace}
 
-    /* noise overlay */
-    body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
-
     /* ============ NAV ============ */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0;transition:var(--transition)}
-    nav .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid transparent;transition:var(--transition)}
-    nav.scrolled .nav-inner{border-bottom-color:var(--border-subtle)}
-    nav .nav-bg{position:absolute;inset:0;background:rgba(9,9,11,.85);backdrop-filter:blur(24px) saturate(1.3);opacity:0;transition:var(--transition)}
-    nav.scrolled .nav-bg{opacity:1}
-    nav .container{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:var(--transition)}
+    nav .nav-bg{position:absolute;inset:0;background:rgba(9,9,11,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:var(--transition)}
+    nav.scrolled .nav-bg{border-bottom-color:var(--border-subtle)}
+    nav .container{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative;z-index:1}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-    .nav-logo svg{height:28px;width:auto}
-    .nav-logo span{font-weight:800;font-size:18px;letter-spacing:-.03em}
-    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-    .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--transition);position:relative}
+    .nav-logo img{height:26px;width:auto}
+    .nav-logo span{font-weight:700;font-size:17px;letter-spacing:-.02em}
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+    .nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color var(--transition)}
     .nav-links a:hover{color:var(--text)}
-    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width var(--transition)}
-    .nav-links a:hover::after{width:100%}
     .nav-mobile{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:8px}
-    .lang-toggle{display:inline-flex;align-items:center;gap:0;padding:2px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);cursor:pointer;font-size:12px;font-weight:600;transition:all var(--transition-fast)}
-    .lang-toggle:hover{border-color:var(--border)}
+    .lang-toggle{display:inline-flex;align-items:center;padding:2px;border-radius:8px;background:var(--surface);border:1px solid var(--border-subtle);cursor:pointer;font-size:12px;font-weight:600}
     .lang-toggle span{padding:5px 10px;border-radius:6px;color:var(--text-muted);transition:all var(--transition-fast);user-select:none}
     .lang-toggle span.active{background:var(--accent);color:#fff}
-    .lang-toggle span:not(.active):hover{color:var(--text-secondary)}
 
     /* ============ BUTTONS ============ */
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--transition);cursor:pointer;border:none;font-family:inherit;white-space:nowrap}
-    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 0 0 var(--accent-glow)}
-    .btn-primary:hover{background:var(--accent-light);box-shadow:0 0 24px var(--accent-glow-strong);transform:translateY(-1px)}
-    .btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border)}
-    .btn-ghost:hover{color:var(--text);border-color:var(--text-muted);background:var(--surface)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all var(--transition);cursor:pointer;border:none;font-family:inherit;white-space:nowrap}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-light);transform:translateY(-1px)}
+    .btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
+    .btn-ghost:hover{color:var(--text);border-color:var(--text-muted)}
     .btn-green{background:var(--green);color:#000;font-weight:700}
     .btn-green:hover{background:var(--green-light);transform:translateY(-1px)}
-    .btn-lg{padding:14px 28px;font-size:16px;border-radius:12px}
+    .btn-lg{padding:13px 26px;font-size:15px;border-radius:12px}
 
     /* ============ HERO ============ */
-    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 24px 100px;position:relative;overflow:hidden}
-    .hero-glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;pointer-events:none}
-    .hero-glow-1{top:-120px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,var(--accent-glow-strong) 0%,transparent 70%);width:900px;height:500px}
-    .hero-glow-2{bottom:5%;right:5%;background:radial-gradient(circle,rgba(34,197,94,.06) 0%,transparent 70%);width:500px;height:500px}
-    .hero-glow-3{top:20%;left:-5%;background:radial-gradient(circle,rgba(59,130,246,.04) 0%,transparent 70%);width:400px;height:400px}
-    .hero-content{position:relative;z-index:1;max-width:860px}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;border-radius:100px;background:var(--accent-glow);border:1px solid rgba(124,92,191,.2);color:var(--accent-light);font-size:13px;font-weight:500;margin-bottom:32px;animation:fadeInUp .8s ease-out}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative}
+    .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(139,92,246,.06) 0%,transparent 70%);pointer-events:none}
+    .hero-content{position:relative;z-index:1;max-width:780px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:100px;background:var(--accent-glow);border:1px solid rgba(139,92,246,.12);color:var(--accent-light);font-size:13px;font-weight:500;margin-bottom:28px;animation:fadeUp .6s ease-out}
     .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-    .hero h1{font-size:clamp(42px,7vw,80px);font-weight:900;letter-spacing:-.045em;line-height:1.05;margin-bottom:24px;animation:fadeInUp .8s ease-out .1s both}
-    .hero h1 .gradient{background:linear-gradient(135deg,var(--accent-light),#c4b5fd,#a78bfa,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .hero-logo{display:block;margin:0 auto 28px;width:clamp(200px,30vw,340px);height:auto;animation:fadeInUp .8s ease-out .05s both;filter:drop-shadow(0 0 40px rgba(124,92,191,.2))}
-    .hero p{font-size:clamp(16px,2vw,20px);color:var(--text-secondary);max-width:600px;margin:0 auto 44px;line-height:1.7;animation:fadeInUp .8s ease-out .2s both}
-    .hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;animation:fadeInUp .8s ease-out .3s both;flex-wrap:wrap}
-    .hero-stats{display:flex;justify-content:center;gap:56px;margin-top:72px;animation:fadeInUp .8s ease-out .4s both}
-    .hero-stat{text-align:center;position:relative}
-    .hero-stat::after{content:'';position:absolute;right:-28px;top:50%;transform:translateY(-50%);width:1px;height:32px;background:var(--border-subtle)}
-    .hero-stat:last-child::after{display:none}
-    .hero-stat .number{font-size:36px;font-weight:800;letter-spacing:-.03em;color:var(--text)}
-    .hero-stat .label{font-size:13px;color:var(--text-muted);margin-top:4px;font-weight:500}
+    .hero-logo{display:block;margin:0 auto 24px;width:clamp(180px,28vw,300px);height:auto;animation:fadeUp .6s ease-out .05s both;filter:drop-shadow(0 0 30px rgba(139,92,246,.15))}
+    .hero h1{font-size:clamp(38px,6vw,68px);font-weight:800;letter-spacing:-.04em;line-height:1.08;margin-bottom:20px;animation:fadeUp .6s ease-out .1s both}
+    .hero h1 .gradient{background:linear-gradient(135deg,var(--accent-light),#c4b5fd,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{font-size:clamp(15px,1.8vw,18px);color:var(--text-secondary);max-width:560px;margin:0 auto 36px;line-height:1.7;animation:fadeUp .6s ease-out .15s both}
+    .hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;animation:fadeUp .6s ease-out .25s both;flex-wrap:wrap}
+    .hero-stats{display:flex;justify-content:center;gap:48px;margin-top:64px;animation:fadeUp .6s ease-out .35s both}
+    .hero-stat{text-align:center}
+    .hero-stat .number{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+    .hero-stat .label{font-size:12px;color:var(--text-muted);margin-top:2px;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
 
     /* ============ SECTIONS ============ */
-    section{padding:120px 0}
-    .section-header{text-align:center;margin-bottom:72px}
-    .section-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-light);margin-bottom:16px;padding:5px 14px;border-radius:100px;background:var(--accent-glow);border:1px solid rgba(124,92,191,.15)}
-    .section-header h2{font-size:clamp(30px,4.5vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.12;margin-bottom:18px}
-    .section-header p{font-size:17px;color:var(--text-secondary);max-width:560px;margin:0 auto;line-height:1.7}
+    section{padding:100px 0}
+    .section-header{text-align:center;margin-bottom:56px}
+    .section-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-light);margin-bottom:14px;padding:5px 14px;border-radius:100px;background:var(--accent-glow);border:1px solid rgba(139,92,246,.1)}
+    .section-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
+    .section-header p{font-size:16px;color:var(--text-secondary);max-width:520px;margin:0 auto;line-height:1.7}
 
-    /* ============ INTRO (for non-technical) ============ */
-    .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:80px}
-    .intro-text h3{font-size:28px;font-weight:700;margin-bottom:16px;letter-spacing:-.02em}
-    .intro-text p{color:var(--text-secondary);font-size:16px;line-height:1.75;margin-bottom:20px}
-    .intro-visual{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:32px;position:relative;overflow:hidden}
-    .intro-visual::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent-glow-strong),transparent)}
-    .mini-dashboard{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .mini-stat{background:var(--surface);border-radius:var(--radius);padding:16px;border:1px solid var(--border-subtle)}
-    .mini-stat .mini-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-    .mini-stat .mini-value{font-size:22px;font-weight:700;letter-spacing:-.02em}
-    .mini-stat .mini-change{font-size:12px;margin-top:4px;font-weight:600}
+    /* ============ INTRO ============ */
+    .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+    .intro-text h3{font-size:24px;font-weight:700;margin-bottom:14px;letter-spacing:-.02em}
+    .intro-text p{color:var(--text-secondary);font-size:15px;line-height:1.75;margin-bottom:16px}
+    .intro-visual{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:28px;position:relative;overflow:hidden}
+    .intro-visual::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.15),transparent)}
+    .mini-dashboard{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .mini-stat{background:var(--surface);border-radius:var(--radius);padding:14px;border:1px solid var(--border-subtle)}
+    .mini-stat .mini-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+    .mini-stat .mini-value{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .mini-stat .mini-change{font-size:11px;margin-top:3px;font-weight:600}
     .mini-stat .mini-change.up{color:var(--green)}
     .mini-stat .mini-change.down{color:var(--red)}
-    .mini-chart{grid-column:1/-1;background:var(--surface);border-radius:var(--radius);padding:16px;border:1px solid var(--border-subtle);height:120px;display:flex;align-items:flex-end;gap:6px}
-    .mini-bar{flex:1;background:linear-gradient(to top,var(--accent),var(--accent-light));border-radius:4px 4px 0 0;min-height:8px;transition:height .6s ease-out}
+    .mini-chart{grid-column:1/-1;background:var(--surface);border-radius:var(--radius);padding:14px;border:1px solid var(--border-subtle);height:100px;display:flex;align-items:flex-end;gap:5px}
+    .mini-bar{flex:1;background:linear-gradient(to top,var(--accent),var(--accent-light));border-radius:3px 3px 0 0;min-height:6px;transition:height .6s ease-out}
 
-    /* ============ FEATURES (BUSINESS) ============ */
-    .features-intro{text-align:center;margin-bottom:48px}
-    .features-intro p{font-size:16px;color:var(--text-secondary);max-width:640px;margin:0 auto;line-height:1.7}
-    .modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .module-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px 24px;transition:all var(--transition);position:relative;overflow:hidden;cursor:default}
-    .module-card:hover{border-color:var(--border);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.25)}
+    /* ============ MODULES ============ */
+    .modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .module-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px 20px;transition:all var(--transition);position:relative;overflow:hidden}
+    .module-card:hover{border-color:var(--border);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
     .module-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-light));opacity:0;transition:opacity var(--transition)}
     .module-card:hover::after{opacity:1}
-    .module-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px;border:1px solid}
-    .module-icon.purple{background:var(--accent-glow);border-color:rgba(124,92,191,.15);color:var(--accent-light)}
-    .module-icon.green{background:var(--green-glow);border-color:rgba(34,197,94,.15);color:var(--green)}
-    .module-icon.blue{background:var(--blue-glow);border-color:rgba(59,130,246,.15);color:var(--blue)}
-    .module-icon.orange{background:var(--orange-glow);border-color:rgba(245,158,11,.15);color:var(--orange)}
-    .module-icon.cyan{background:var(--cyan-glow);border-color:rgba(6,182,212,.15);color:var(--cyan)}
-    .module-icon.red{background:var(--red-glow);border-color:rgba(239,68,68,.15);color:var(--red)}
-    .module-card h3{font-size:16px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
-    .module-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
-    .module-card .module-tag{display:inline-block;margin-top:12px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--surface);color:var(--text-muted);border:1px solid var(--border-subtle)}
+    .module-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px;border:1px solid}
+    .module-icon.purple{background:var(--accent-glow);border-color:rgba(139,92,246,.1);color:var(--accent-light)}
+    .module-icon.green{background:var(--green-glow);border-color:rgba(34,197,94,.1);color:var(--green)}
+    .module-icon.blue{background:var(--blue-glow);border-color:rgba(59,130,246,.1);color:var(--blue)}
+    .module-icon.orange{background:var(--orange-glow);border-color:rgba(245,158,11,.1);color:var(--orange)}
+    .module-icon.cyan{background:var(--cyan-glow);border-color:rgba(6,182,212,.1);color:var(--cyan)}
+    .module-icon.red{background:var(--red-glow);border-color:rgba(239,68,68,.1);color:var(--red)}
+    .module-card h3{font-size:15px;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}
+    .module-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.55}
+    .module-card .module-tag{display:inline-block;margin-top:10px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:5px;background:var(--surface);color:var(--text-muted);border:1px solid var(--border-subtle)}
     .module-placeholder{visibility:hidden;border:none;padding:0;pointer-events:none}
 
-    /* ============ WHO IS IT FOR ============ */
-    .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-    .audience-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:40px;transition:all var(--transition);position:relative;overflow:hidden}
+    /* ============ AUDIENCE ============ */
+    .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .audience-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:32px;transition:all var(--transition)}
     .audience-card:hover{border-color:var(--border);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
-    .audience-card .audience-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:26px}
-    .audience-card h3{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
-    .audience-card p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
-    .audience-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-    .audience-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary)}
+    .audience-card .audience-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .audience-card h3{font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:-.02em}
+    .audience-card p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+    .audience-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .audience-list li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)}
     .audience-list li svg{flex-shrink:0;color:var(--green)}
 
     /* ============ ARCHITECTURE ============ */
-    .arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .arch-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:36px;transition:all var(--transition);position:relative;overflow:hidden}
-    .arch-card:hover{border-color:var(--border);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.25)}
-    .arch-card .tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-light);margin-bottom:12px;display:flex;align-items:center;gap:6px}
-    .arch-card h3{font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:-.02em}
-    .arch-card p{font-size:14px;color:var(--text-secondary);line-height:1.65;margin-bottom:20px}
-    .tech-tags{display:flex;flex-wrap:wrap;gap:6px}
-    .tech-tag{padding:4px 11px;border-radius:6px;font-size:12px;font-weight:500;background:var(--surface);color:var(--text-secondary);border:1px solid var(--border-subtle);transition:all var(--transition-fast)}
+    .arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .arch-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;transition:all var(--transition)}
+    .arch-card:hover{border-color:var(--border);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+    .arch-card .tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-light);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+    .arch-card h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-.02em}
+    .arch-card p{font-size:13.5px;color:var(--text-secondary);line-height:1.65;margin-bottom:16px}
+    .tech-tags{display:flex;flex-wrap:wrap;gap:5px}
+    .tech-tag{padding:3px 10px;border-radius:5px;font-size:11px;font-weight:500;background:var(--surface);color:var(--text-secondary);border:1px solid var(--border-subtle);transition:all var(--transition-fast)}
     .tech-tag:hover{border-color:var(--border);color:var(--text)}
 
-    /* ============ API SECTION ============ */
-    .api-split{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-    .api-info h3{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
-    .api-info p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px}
-    .api-endpoints{display:flex;flex-direction:column;gap:8px}
-    .api-endpoint{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--surface);border-radius:8px;border:1px solid var(--border-subtle);font-size:13px;font-family:'JetBrains Mono',monospace;transition:all var(--transition-fast)}
+    /* ============ API ============ */
+    .api-split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .api-info h3{font-size:20px;font-weight:700;margin-bottom:10px;letter-spacing:-.02em}
+    .api-info p{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px}
+    .api-endpoints{display:flex;flex-direction:column;gap:6px}
+    .api-endpoint{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface);border-radius:8px;border:1px solid var(--border-subtle);font-size:12.5px;font-family:'JetBrains Mono',monospace;transition:all var(--transition-fast)}
     .api-endpoint:hover{border-color:var(--border);background:var(--bg-card-hover)}
-    .api-endpoint .method{font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;flex-shrink:0}
+    .api-endpoint .method{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0}
     .api-endpoint .method.get{background:var(--green-glow);color:var(--green)}
     .api-endpoint .method.post{background:var(--blue-glow);color:var(--blue)}
     .api-endpoint .route{color:var(--text-secondary)}
-    .api-endpoint .desc{color:var(--text-muted);font-size:12px;margin-left:auto;font-family:'Inter',sans-serif}
+    .api-endpoint .desc{color:var(--text-muted);font-size:11px;margin-left:auto;font-family:'Inter',sans-serif}
     .code-block{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);overflow:hidden}
-    .code-header{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--border-subtle);background:rgba(24,24,27,.5)}
+    .code-header{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border-subtle);background:rgba(24,24,27,.5)}
     .code-dot{width:10px;height:10px;border-radius:50%}
     .code-dot:nth-child(1){background:#ef4444}
     .code-dot:nth-child(2){background:#eab308}
     .code-dot:nth-child(3){background:#22c55e}
-    .code-header span{margin-left:10px;font-size:13px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
-    .code-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.85;overflow-x:auto;color:var(--text-secondary)}
+    .code-header span{margin-left:10px;font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+    .code-body{padding:16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.8;overflow-x:auto;color:var(--text-secondary)}
     .code-body .kw{color:var(--accent-light)}
     .code-body .str{color:var(--green)}
-    .code-body .cm{color:var(--text-muted)}
     .code-body .prop{color:#f472b6}
     .code-body .num{color:var(--orange)}
 
     /* ============ SECURITY ============ */
-    .security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .security-item{display:flex;align-items:flex-start;gap:14px;padding:24px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);transition:all var(--transition)}
+    .security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .security-item{display:flex;align-items:flex-start;gap:12px;padding:20px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);transition:all var(--transition)}
     .security-item:hover{border-color:var(--border);background:var(--bg-card-hover)}
-    .security-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
-    .security-icon.green{background:var(--green-glow);border:1px solid rgba(34,197,94,.15);color:var(--green)}
-    .security-icon.purple{background:var(--accent-glow);border:1px solid rgba(124,92,191,.15);color:var(--accent-light)}
-    .security-icon.blue{background:var(--blue-glow);border:1px solid rgba(59,130,246,.15);color:var(--blue)}
-    .security-item h4{font-size:14px;font-weight:600;margin-bottom:5px}
-    .security-item p{font-size:13px;color:var(--text-secondary);line-height:1.55}
+    .security-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+    .security-icon.green{background:var(--green-glow);border:1px solid rgba(34,197,94,.1);color:var(--green)}
+    .security-icon.purple{background:var(--accent-glow);border:1px solid rgba(139,92,246,.1);color:var(--accent-light)}
+    .security-icon.blue{background:var(--blue-glow);border:1px solid rgba(59,130,246,.1);color:var(--blue)}
+    .security-item h4{font-size:13px;font-weight:600;margin-bottom:4px}
+    .security-item p{font-size:12px;color:var(--text-secondary);line-height:1.5}
 
-    /* ============ GETTING STARTED ============ */
-    .steps{display:flex;flex-direction:column;gap:0;max-width:720px;margin:0 auto;position:relative}
+    /* ============ STEPS ============ */
+    .steps{display:flex;flex-direction:column;gap:0;max-width:680px;margin:0 auto;position:relative}
     .steps::before{content:'';position:absolute;left:23px;top:48px;bottom:48px;width:2px;background:linear-gradient(to bottom,var(--accent),var(--green))}
-    .step{display:flex;gap:24px;align-items:flex-start;position:relative;padding:20px 0}
+    .step{display:flex;gap:20px;align-items:flex-start;position:relative;padding:16px 0}
     .step-num{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex-shrink:0;background:var(--bg-card);border:2px solid var(--accent);color:var(--accent-light);position:relative;z-index:1}
-    .step-content h4{font-size:16px;font-weight:600;margin-bottom:6px}
-    .step-content p{font-size:14px;color:var(--text-secondary);line-height:1.6}
-    .step-content code{display:block;margin-top:10px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent-light);overflow-x:auto}
+    .step-content h4{font-size:15px;font-weight:600;margin-bottom:4px}
+    .step-content p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+    .step-content code{display:block;margin-top:8px;padding:8px 12px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-light);overflow-x:auto}
 
     /* ============ CTA ============ */
-    .cta{text-align:center;padding:120px 24px;position:relative;overflow:hidden}
-    .cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 70%);filter:blur(80px);pointer-events:none}
+    .cta{text-align:center;padding:100px 24px;position:relative}
+    .cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(139,92,246,.06) 0%,transparent 70%);pointer-events:none}
     .cta-content{position:relative;z-index:1}
-    .cta h2{font-size:clamp(34px,5vw,56px);font-weight:900;letter-spacing:-.04em;margin-bottom:20px}
-    .cta p{font-size:18px;color:var(--text-secondary);max-width:520px;margin:0 auto 40px;line-height:1.7}
-    .cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-    .cta-note{margin-top:24px;font-size:13px;color:var(--text-muted)}
+    .cta h2{font-size:clamp(30px,4.5vw,48px);font-weight:800;letter-spacing:-.035em;margin-bottom:16px}
+    .cta p{font-size:16px;color:var(--text-secondary);max-width:480px;margin:0 auto 32px;line-height:1.7}
+    .cta-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .cta-note{margin-top:20px;font-size:12px;color:var(--text-muted)}
 
     /* ============ FOOTER ============ */
-    footer{border-top:1px solid var(--border-subtle);padding:48px 0}
+    footer{border-top:1px solid var(--border-subtle);padding:40px 0}
     .footer-content{display:flex;align-items:center;justify-content:space-between}
     .footer-left{display:flex;align-items:center;gap:10px}
-    .footer-left svg{height:22px}
-    .footer-left span{font-size:14px;color:var(--text-muted)}
-    .footer-links{display:flex;gap:28px;list-style:none}
-    .footer-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color var(--transition)}
+    .footer-left img{height:20px}
+    .footer-left span{font-size:13px;color:var(--text-muted)}
+    .footer-links{display:flex;gap:24px;list-style:none}
+    .footer-links a{color:var(--text-muted);text-decoration:none;font-size:12px;transition:color var(--transition)}
     .footer-links a:hover{color:var(--text-secondary)}
 
     /* ============ ANIMATIONS ============ */
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease-out,transform .7s ease-out}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out}
     .reveal.visible{opacity:1;transform:translateY(0)}
     .reveal-delay-1{transition-delay:.1s}
     .reveal-delay-2{transition-delay:.2s}
-    .reveal-delay-3{transition-delay:.3s}
 
     /* ============ RESPONSIVE ============ */
     @media(max-width:1024px){
@@ -241,54 +222,50 @@
     @media(max-width:768px){
       .nav-links{display:none}
       .nav-mobile{display:block}
-      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(9,9,11,.98);backdrop-filter:blur(24px);padding:24px;gap:20px;border-bottom:1px solid var(--border-subtle)}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(9,9,11,.98);backdrop-filter:blur(20px);padding:20px;gap:16px;border-bottom:1px solid var(--border-subtle)}
       .modules-grid{grid-template-columns:1fr}
       .arch-grid{grid-template-columns:1fr}
       .security-grid{grid-template-columns:1fr}
       .audience-grid{grid-template-columns:1fr}
       .intro-grid{grid-template-columns:1fr}
-      .hero-stats{gap:20px;flex-wrap:wrap}
-      .hero-stat::after{display:none}
-      .hero-stat .number{font-size:26px}
-      .footer-content{flex-direction:column;gap:16px;text-align:center}
+      .hero-stats{gap:16px;flex-wrap:wrap}
+      .hero-stat .number{font-size:22px}
+      .footer-content{flex-direction:column;gap:12px;text-align:center}
       .footer-links{flex-wrap:wrap;justify-content:center}
       .api-endpoint .desc{display:none}
     }
 
-    /* scrollbar */
     ::-webkit-scrollbar{width:6px}
     ::-webkit-scrollbar-track{background:var(--bg)}
     ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
     ::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
-
-    /* mobile menu btn */
     .menu-icon{display:flex;flex-direction:column;gap:5px}
     .menu-icon span{display:block;width:20px;height:2px;background:var(--text);border-radius:1px;transition:var(--transition)}
   </style>
 </head>
 <body>
 
-  <!-- ============ NAV ============ -->
+  <!-- NAV -->
   <nav id="navbar">
     <div class="nav-bg"></div>
     <div class="container">
       <a href="#" class="nav-logo">
-        <img src="Logo.svg" alt="Elitium" height="28">
+        <img src="Logo.svg" alt="Elitium" height="26">
         <span>Elitium</span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#o-que-e" data-i18n="nav.about">About</a></li>
-        <li><a href="#modulos" data-i18n="nav.modules">Modules</a></li>
-        <li><a href="#arquitetura" data-i18n="nav.arch">Architecture</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#modules" data-i18n="nav.modules">Modules</a></li>
+        <li><a href="#architecture" data-i18n="nav.arch">Architecture</a></li>
         <li><a href="#api">API</a></li>
-        <li><a href="#seguranca" data-i18n="nav.security">Security</a></li>
-        <li><a href="#comecar" data-i18n="nav.start">Get Started</a></li>
-        <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="padding:8px 16px;font-size:13px">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <li><a href="#security" data-i18n="nav.security">Security</a></li>
+        <li><a href="#start" data-i18n="nav.start">Get Started</a></li>
+        <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="padding:7px 14px;font-size:12px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a></li>
       </ul>
-      <div style="display:flex;align-items:center;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px">
         <div class="lang-toggle" id="langToggle">
           <span class="active" data-lang="en">EN</span>
           <span data-lang="pt">PT</span>
@@ -300,62 +277,62 @@
     </div>
   </nav>
 
-  <!-- ============ HERO ============ -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-glow hero-glow-1"></div>
-    <div class="hero-glow hero-glow-2"></div>
-    <div class="hero-glow hero-glow-3"></div>
     <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span>Next.js &middot; TypeScript &middot; Prisma</div>
+      <div class="hero-badge"><span class="dot"></span>Next.js · TypeScript · Prisma</div>
       <img src="LogoE.svg" alt="Elitium ERP" class="hero-logo">
       <h1><span data-i18n="hero.h1a">Business management</span><br><span class="gradient" data-i18n="hero.h1b">complete and intelligent</span></h1>
       <p data-i18n="hero.p">From sales control to AI-powered demand forecasting — everything integrated into a single platform. Simple enough for anyone, powerful enough for any business.</p>
       <div class="hero-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
           <span data-i18n="hero.demo">Open Demo</span>
         </a>
         <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           <span data-i18n="hero.github">View on GitHub</span>
         </a>
-        <a href="#o-que-e" class="btn btn-ghost btn-lg">
+        <a href="#about" class="btn btn-ghost btn-lg">
           <span data-i18n="hero.understand">Understand the project</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
         </a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><div class="number">15+</div><div class="label" data-i18n="hero.stat1">Modules</div></div>
         <div class="hero-stat"><div class="number">REST</div><div class="label" data-i18n="hero.stat2">Full API</div></div>
-        <div class="hero-stat"><div class="number">JWT</div><div class="label" data-i18n="hero.stat3">Authentication</div></div>
-        <div class="hero-stat"><div class="number">IA</div><div class="label" data-i18n="hero.stat4">Integrated</div></div>
+        <div class="hero-stat"><div class="number">JWT</div><div class="label" data-i18n="hero.stat3">Auth</div></div>
+        <div class="hero-stat"><div class="number">AI</div><div class="label" data-i18n="hero.stat4">Integrated</div></div>
         <div class="hero-stat"><div class="number">i18n</div><div class="label" data-i18n="hero.stat5">Bilingual</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ O QUE É (for everyone) ============ -->
-  <section id="o-que-e">
+  <!-- ABOUT -->
+  <section id="about">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="about.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> Entenda o Elitium</span>
+        <span class="section-tag" data-i18n="about.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          Understand Elitium
+        </span>
         <h2><span data-i18n="about.h2a">What is an ERP</span><br><span data-i18n="about.h2b">and why do you need one?</span></h2>
-        <p data-i18n="about.p1">ERP stands for "Enterprise Resource Planning" — a system that centralizes all your company\'s management in one place.</p>
+        <p data-i18n="about.p1">ERP stands for "Enterprise Resource Planning" — a system that centralizes all your company's management in one place.</p>
       </div>
 
       <div class="intro-grid reveal">
         <div class="intro-text">
           <h3 data-i18n="about.h3">Stop using separate spreadsheets</h3>
           <p data-i18n="about.p2">Instead of having your sales in one spreadsheet, inventory in another, and finances in a notebook — Elitium brings it all together in a single dashboard. You see the complete picture of your business in real time.</p>
-          <p data-i18n="about.p3">With integrated artificial intelligence, the system doesn\'t just organize your data — it also <strong>analyzes trends, forecasts demand</strong> and helps you make better decisions.</strong> e ajuda você a tomar decisões melhores.</p>
-          <p style="color:var(--text-muted);font-size:14px" data-i18n="about.p4">And if you\'re a developer: documented REST API, automated tests and CI/CD included.</p>
+          <p data-i18n="about.p3">With integrated artificial intelligence, the system doesn't just organize your data — it also <strong>analyzes trends, forecasts demand</strong> and helps you make better decisions.</p>
+          <p style="color:var(--text-muted);font-size:13px" data-i18n="about.p4">And if you're a developer: documented REST API, automated tests and CI/CD included.</p>
         </div>
         <div class="intro-visual">
           <div class="mini-dashboard">
             <div class="mini-stat">
               <div class="mini-label" data-i18n="about.card1l">Monthly Sales</div>
               <div class="mini-value" data-i18n="about.card1v">R$ 84,520</div>
-              <div class="mini-change up" data-i18n="about.card1c">↑ 12% vs previous month</div>
+              <div class="mini-change up" data-i18n="about.card1c">↑ 12%</div>
             </div>
             <div class="mini-stat">
               <div class="mini-label" data-i18n="about.card2l">Active Products</div>
@@ -365,12 +342,12 @@
             <div class="mini-stat">
               <div class="mini-label" data-i18n="about.card3l">Pending Quotes</div>
               <div class="mini-value">17</div>
-              <div class="mini-change down" data-i18n="about.card3c">↓ 3 expire today</div>
+              <div class="mini-change down" data-i18n="about.card3c">↓ 3 today</div>
             </div>
             <div class="mini-stat">
               <div class="mini-label" data-i18n="about.card4l">Net Profit</div>
               <div class="mini-value" data-i18n="about.card4v">R$ 23,180</div>
-              <div class="mini-change up" data-i18n="about.card4c">↑ 27% margin</div>
+              <div class="mini-change up" data-i18n="about.card4c">↑ 27%</div>
             </div>
             <div class="mini-chart" id="miniChart"></div>
           </div>
@@ -379,148 +356,107 @@
     </div>
   </section>
 
-  <!-- ============ MÓDULOS (for everyone) ============ -->
-  <section id="modulos" style="background:linear-gradient(180deg,transparent,rgba(124,92,191,.02),transparent)">
+  <!-- MODULES -->
+  <section id="modules" style="background:linear-gradient(180deg,transparent,rgba(139,92,246,.015),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="mod.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg> Módulos</span>
+        <span class="section-tag" data-i18n="mod.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+          Modules
+        </span>
         <h2><span data-i18n="mod.h2a">Everything your business needs,</span><br><span data-i18n="mod.h2b">in one system</span></h2>
         <p data-i18n="mod.p">Each module handles an area of your company. Together, they form the complete picture.</p>
       </div>
 
       <div class="modules-grid reveal">
         <div class="module-card">
-          <div class="module-icon purple">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-          </div>
+          <div class="module-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
           <h3 data-i18n="mod.dashboard">Dashboard</h3>
-          <p data-i18n="mod.dashboard.p">Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance. Fully customizable with drag-and-drop layout.</p>
+          <p data-i18n="mod.dashboard.p">Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance.</p>
           <span class="module-tag" data-i18n="mod.dashboard.t">Overview</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon green">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-          </div>
+          <div class="module-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div>
           <h3 data-i18n="mod.sales">Sales</h3>
-          <p data-i18n="mod.sales.p">Create and track sales orders from start to finish. Complete history, real-time status and integration with inventory and finances.</p>
+          <p data-i18n="mod.sales.p">Create and track sales orders from start to finish. Complete history and real-time status.</p>
           <span class="module-tag" data-i18n="mod.sales.t">Orders</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon blue">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
-          </div>
+          <div class="module-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
           <h3 data-i18n="mod.quotes">Quotes</h3>
-          <p data-i18n="mod.quotes.p">Send professional commercial proposals to your clients. Generate elegant PDFs, track approvals and convert quotes to orders with one click.</p>
+          <p data-i18n="mod.quotes.p">Send professional commercial proposals. Generate PDFs, track approvals and convert to orders.</p>
           <span class="module-tag" data-i18n="mod.quotes.t">Proposals</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon orange">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-          </div>
+          <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
           <h3 data-i18n="mod.inv">Inventory</h3>
-          <p data-i18n="mod.inv.p">Complete control of products, groups and variants. Low stock alerts, category organization and supplier management.</p>
+          <p data-i18n="mod.inv.p">Complete control of products, groups and variants. Low stock alerts and category organization.</p>
           <span class="module-tag" data-i18n="mod.inv.t">Inventory</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon cyan">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
+          <div class="module-icon cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3 data-i18n="mod.clients">Clients</h3>
-          <p data-i18n="mod.clients.p">Complete client registration with CNPJ, phone, address and purchase history. Quick search and integration with quotes and sales.</p>
+          <p data-i18n="mod.clients.p">Complete client registration with CNPJ, phone, address and purchase history.</p>
           <span class="module-tag" data-i18n="mod.clients.t">CRM</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon green">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          </div>
+          <div class="module-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
           <h3 data-i18n="mod.purch">Purchases</h3>
-          <p data-i18n="mod.purch.p">Manage purchase orders for suppliers. Control what comes into inventory, track deliveries and keep the supply chain organized.</p>
+          <p data-i18n="mod.purch.p">Manage purchase orders for suppliers. Control inventory intake and track deliveries.</p>
           <span class="module-tag" data-i18n="mod.purch.t">Suppliers</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon purple">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
+          <div class="module-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
           <h3 data-i18n="mod.fin">Finance</h3>
-          <p data-i18n="mod.fin.p">Revenue, expenses and profits — all recorded and categorized. Clear cash flow with filters by period and transaction type.</p>
+          <p data-i18n="mod.fin.p">Revenue, expenses and profits — all recorded and categorized. Clear cash flow.</p>
           <span class="module-tag" data-i18n="mod.fin.t">Control</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon blue">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/></svg>
-          </div>
+          <div class="module-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/></svg></div>
           <h3 data-i18n="mod.inv2">Billing</h3>
-          <p data-i18n="mod.inv2.p">Detailed billing reports by product, client and period. Understand what sells best and where the highest return is.</p>
+          <p data-i18n="mod.inv2.p">Detailed billing reports by product, client and period. Understand what sells best.</p>
           <span class="module-tag" data-i18n="mod.inv2.t">Reports</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon orange">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-          </div>
+          <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
           <h3 data-i18n="mod.ai">AI Assistant</h3>
-          <p data-i18n="mod.ai.p">Chat with an AI that knows your data. Ask about sales, get suggestions, analyze trends — all in natural language.</p>
+          <p data-i18n="mod.ai.p">Chat with an AI that knows your data. Ask about sales, analyze trends in natural language.</p>
           <span class="module-tag">Google Gemini</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon cyan">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
+          <div class="module-icon cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
           <h3 data-i18n="mod.forecast">Demand Forecast</h3>
-          <p data-i18n="mod.forecast.p">Algorithms analyze your sales history and show future trends. Know what to stock before demand arrives.</p>
+          <p data-i18n="mod.forecast.p">Algorithms analyze your sales history and show future trends. Know what to stock.</p>
           <span class="module-tag" data-i18n="mod.forecast.t">Predictive</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon red">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 10v4"/><rect width="18" height="12" x="3" y="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
-          </div>
+          <div class="module-icon red"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 10v4"/><rect width="18" height="12" x="3" y="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></div>
           <h3 data-i18n="mod.users">Users & Permissions</h3>
-          <p data-i18n="mod.users.p">Granular access control: admins see everything, salespeople see what they need. Permission profiles configurable by module.</p>
+          <p data-i18n="mod.users.p">Granular access control: admins see everything, salespeople see what they need.</p>
           <span class="module-tag" data-i18n="mod.users.t">RBAC</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon green">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
-          </div>
+          <div class="module-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg></div>
           <h3 data-i18n="mod.notif">Notifications & Audit</h3>
-          <p data-i18n="mod.notif.p">Complete log of all actions in the system. Know who did what and when. Notification system for important alerts.</p>
+          <p data-i18n="mod.notif.p">Complete log of all actions. Know who did what and when. Full traceability.</p>
           <span class="module-tag" data-i18n="mod.notif.t">Traceability</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon purple">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
-          </div>
+          <div class="module-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></div>
           <h3 data-i18n="mod.i18n">Internationalization</h3>
-          <p data-i18n="mod.i18n.p">Interface in Portuguese (Brazil) and English. Ideal for multilingual teams or businesses operating in international markets.</p>
+          <p data-i18n="mod.i18n.p">Interface in Portuguese (Brazil) and English. Ideal for multilingual teams.</p>
           <span class="module-tag">PT-BR / EN-US</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon blue">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-          </div>
+          <div class="module-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
           <h3 data-i18n="mod.help">Help Center</h3>
-          <p data-i18n="mod.help.p">Integrated help panel with keyboard shortcuts, contextual documentation and quick guides. Never get lost in the system.</p>
+          <p data-i18n="mod.help.p">Integrated help panel with keyboard shortcuts and contextual documentation.</p>
           <span class="module-tag" data-i18n="mod.help.t">UX</span>
         </div>
-
         <div class="module-card">
-          <div class="module-icon orange">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>
-          </div>
+          <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg></div>
           <h3 data-i18n="mod.admin">Admin & Pricing</h3>
-          <p data-i18n="mod.admin.p">Administrative panel for advanced system settings, pricing management and global application parameters.</p>
+          <p data-i18n="mod.admin.p">Administrative panel for advanced settings, pricing management and global parameters.</p>
           <span class="module-tag" data-i18n="mod.admin.t">Config</span>
         </div>
         <div class="module-card module-placeholder"></div>
@@ -528,125 +464,104 @@
     </div>
   </section>
 
-  <!-- ============ PARA QUEM ============ -->
-  <section id="para-quem">
+  <!-- AUDIENCE -->
+  <section id="audience">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="who.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Para Quem</span>
+        <span class="section-tag" data-i18n="who.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Who is it for
+        </span>
         <h2 data-i18n="who.h2">Made for all profiles</h2>
-        <p data-i18n="who.p">Whether you\'re a business owner or a developer — Elitium was designed for both.</p>
+        <p data-i18n="who.p">Whether you're a business owner or a developer — Elitium was designed for both.</p>
       </div>
 
       <div class="audience-grid reveal">
         <div class="audience-card">
-          <div class="audience-icon" style="background:var(--accent-glow);border:1px solid rgba(124,92,191,.15);border-radius:14px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
+          <div class="audience-icon" style="background:var(--accent-glow);border:1px solid rgba(139,92,246,.1);border-radius:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
           <h3 data-i18n="who.biz.h3">For Managers & Business Owners</h3>
-          <p data-i18n="who.biz.p">If you want to organize your company\'s operations without needing an entire IT department, Elitium is for you.</p>
+          <p data-i18n="who.biz.p">If you want to organize your company's operations without needing an entire IT department, Elitium is for you.</p>
           <ul class="audience-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l1">Visual dashboard with real-time metrics</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l2">Professional quotes with PDF in seconds</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l3">AI assistant that answers questions about your business</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l4">Demand forecasting to never run out of stock</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l5">Access control: each person sees only what they need</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l1">Visual dashboard with real-time metrics</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l2">Professional quotes with PDF in seconds</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l3">AI assistant that answers questions about your business</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l4">Demand forecasting to never run out of stock</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.biz.l5">Access control: each person sees only what they need</span></li>
           </ul>
         </div>
-
         <div class="audience-card">
-          <div class="audience-icon" style="background:var(--green-glow);border:1px solid rgba(34,197,94,.15);border-radius:14px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div class="audience-icon" style="background:var(--green-glow);border:1px solid rgba(34,197,94,.1);border-radius:12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
           <h3 data-i18n="who.dev.h3">For Developers</h3>
           <p data-i18n="who.dev.p">If you want to study, contribute or adapt the system for another project — the code is clean, documented and tested.</p>
           <ul class="audience-list">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l1">Next.js 16 + React 19 + TypeScript + Tailwind CSS</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l2">Versioned REST API with standardized responses</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l3">Prisma ORM with migrations and seed scripts</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l4">Jest + Testing Library for unit tests</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l5">Sentry for error monitoring in production</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l1">Next.js 16 + React 19 + TypeScript + Tailwind CSS</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l2">Versioned REST API with standardized responses</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l3">Prisma ORM with migrations and seed scripts</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l4">Jest + Testing Library for unit tests</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="who.dev.l5">Sentry for error monitoring in production</span></li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ARQUITETURA ============ -->
-  <section id="arquitetura">
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="arch.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m9 9 3 3 3-3"/><path d="M12 12v6"/></svg> Arquitetura</span>
+        <span class="section-tag" data-i18n="arch.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m9 9 3 3 3-3"/><path d="M12 12v6"/></svg>
+          Architecture
+        </span>
         <h2 data-i18n="arch.h2">Built to scale</h2>
         <p data-i18n="arch.p">Modern stack with clear separation of concerns. Each layer does what it does best.</p>
       </div>
 
       <div class="arch-grid reveal">
         <div class="arch-card">
-          <div class="tag">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
-            Frontend
-          </div>
+          <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></svg> Frontend</div>
           <h3 data-i18n="arch.fe.h3">Modern Interface</h3>
-          <p data-i18n="arch.fe.p">React 19 with Next.js App Router. Reusable components, light/dark themes, drag-and-drop on the dashboard, and PWA support for offline access.</p>
+          <p data-i18n="arch.fe.p">React 19 with Next.js App Router. Reusable components, light/dark themes, drag-and-drop on the dashboard, and PWA support.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Next.js 16</span>
-            <span class="tech-tag">React 19</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Tailwind CSS 4</span>
-            <span class="tech-tag">PWA</span>
+            <span class="tech-tag">Next.js 16</span><span class="tech-tag">React 19</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Tailwind CSS 4</span><span class="tech-tag">PWA</span>
           </div>
         </div>
-
         <div class="arch-card">
-          <div class="tag">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            Backend
-          </div>
+          <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Backend</div>
           <h3 data-i18n="arch.be.h3">Robust API</h3>
-          <p data-i18n="arch.be.p">Versioned REST API (v1) with JWT authentication, rate limiting, CSRF protection and standardized responses with tracking metadata.</p>
+          <p data-i18n="arch.be.p">Versioned REST API (v1) with JWT authentication, rate limiting, CSRF protection and standardized responses.</p>
           <div class="tech-tags">
-            <span class="tech-tag">API Routes</span>
-            <span class="tech-tag">JWT + Refresh</span>
-            <span class="tech-tag">Middleware</span>
-            <span class="tech-tag">CSRF</span>
-            <span class="tech-tag">Rate Limiting</span>
+            <span class="tech-tag">API Routes</span><span class="tech-tag">JWT + Refresh</span><span class="tech-tag">Middleware</span><span class="tech-tag">CSRF</span><span class="tech-tag">Rate Limiting</span>
           </div>
         </div>
-
         <div class="arch-card">
-          <div class="tag">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
-            Dados
-          </div>
+          <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg> Data</div>
           <h3 data-i18n="arch.data.h3">Database & ORM</h3>
-          <p data-i18n="arch.data.p">Prisma ORM with versioned migrations, seed scripts for initial data and strong typing from database to frontend.</p>
+          <p data-i18n="arch.data.p">Prisma ORM with versioned migrations, seed scripts and strong typing from database to frontend.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Prisma</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Migrations</span>
-            <span class="tech-tag">Zod</span>
+            <span class="tech-tag">Prisma</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Migrations</span><span class="tech-tag">Zod</span>
           </div>
         </div>
-
         <div class="arch-card">
-          <div class="tag">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-            Inteligência
-          </div>
+          <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg> Intelligence</div>
           <h3 data-i18n="arch.ai.h3">AI & Forecasting</h3>
           <p data-i18n="arch.ai.p">Integration with Google Gemini for AI chat. Demand forecasting algorithms based on sales history.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Google Gemini</span>
-            <span class="tech-tag">LLM Local</span>
-            <span class="tech-tag">Google Gemini</span>
-            <span class="tech-tag">Previsão</span>
+            <span class="tech-tag">Google Gemini</span><span class="tech-tag">LLM Local</span><span class="tech-tag">Forecasting</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ API ============ -->
-  <section id="api" style="background:linear-gradient(180deg,transparent,rgba(59,130,246,.02),transparent)">
+  <!-- API -->
+  <section id="api" style="background:linear-gradient(180deg,transparent,rgba(59,130,246,.015),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="api.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 12h8"/></svg> API</span>
+        <span class="section-tag" data-i18n="api.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 12h8"/></svg>
+          API
+        </span>
         <h2 data-i18n="api.h2">Documented & Standardized</h2>
         <p data-i18n="api.p">All routes follow the same contract. Predictable, testable and easy to integrate.</p>
       </div>
@@ -654,7 +569,7 @@
       <div class="api-split reveal">
         <div class="api-info">
           <h3 data-i18n="api.h3">Consistent contract</h3>
-          <p data-i18n="api.desc">Every API response comes in the same format: success, message, data and metadata with timestamp and tracking ID. If something goes wrong, the error comes structured with code and details.</p>
+          <p data-i18n="api.desc">Every API response comes in the same format: success, message, data and metadata with timestamp and tracking ID.</p>
           <div class="api-endpoints">
             <div class="api-endpoint"><span class="method post">POST</span><span class="route">/api/v1/auth/login</span><span class="desc" data-i18n="api.d1">Authentication</span></div>
             <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/dashboard</span><span class="desc" data-i18n="api.d2">Metrics</span></div>
@@ -667,117 +582,99 @@
             <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/reports/faturamento</span><span class="desc" data-i18n="api.d9">Reports</span></div>
           </div>
         </div>
-
         <div class="code-block">
-          <div class="code-header">
-            <span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span>
-            <span>GET /api/v1/dashboard</span>
-          </div>
-          <div class="code-body">
-<pre>{
+          <div class="code-header"><span class="code-dot"></span><span class="code-dot"></span><span class="code-dot"></span><span>GET /api/v1/dashboard</span></div>
+          <div class="code-body"><pre>{
   <span class="prop">"success"</span>: <span class="kw">true</span>,
   <span class="prop">"message"</span>: <span class="str" data-i18n="api.code.msg">"Operation completed successfully."</span>,
   <span class="prop">"data"</span>: {
     <span class="prop">"totalVendas"</span>: <span class="num">1284</span>,
     <span class="prop">"receitaMes"</span>: <span class="str">"R$ 84.520,00"</span>,
     <span class="prop">"produtosAtivos"</span>: <span class="num">342</span>,
-    <span class="prop">"orcamentosPendentes"</span>: <span class="num">17</span>,
     <span class="prop">"lucroLiquido"</span>: <span class="str">"R$ 23.180,00"</span>
   },
   <span class="prop">"meta"</span>: {
-    <span class="prop">"timestamp"</span>: <span class="str">"2026-01-15T10:30:00.000Z"</span>,
+    <span class="prop">"timestamp"</span>: <span class="str">"2026-01-15T10:30:00Z"</span>,
     <span class="prop">"requestId"</span>: <span class="str">"req_abc123"</span>
   }
-}</pre>
-          </div>
+}</pre></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ SEGURANÇA ============ -->
-  <section id="seguranca">
+  <!-- SECURITY -->
+  <section id="security">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="sec.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Segurança</span>
+        <span class="section-tag" data-i18n="sec.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Security
+        </span>
         <h2 data-i18n="sec.h2">Security by design</h2>
-        <p data-i18n="sec.p">Every layer of the system has its protection. It\'s not an extra feature — it\'s part of the foundation.</p>
+        <p data-i18n="sec.p">Every layer of the system has its protection. It's not an extra feature — it's part of the foundation.</p>
       </div>
 
       <div class="security-grid reveal">
         <div class="security-item">
-          <div class="security-icon green">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78Zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-          </div>
-          <div><h4 data-i18n="sec.jwt.h4">JWT with Rotation</h4><p data-i18n="sec.jwt.p">Short-lived access tokens (1h) with rotating refresh tokens. If a token leaks, it expires quickly.</p></div>
+          <div class="security-icon green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78Zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+          <div><h4 data-i18n="sec.jwt.h4">JWT with Rotation</h4><p data-i18n="sec.jwt.p">Short-lived access tokens (1h) with rotating refresh tokens.</p></div>
         </div>
-
         <div class="security-item">
-          <div class="security-icon purple">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
-          </div>
-          <div><h4 data-i18n="sec.cookie.h4">HttpOnly Cookies</h4><p data-i18n="sec.cookie.p">Refresh tokens in HttpOnly cookies — JavaScript can\'t access them. Protected against XSS.</p></div>
+          <div class="security-icon purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg></div>
+          <div><h4 data-i18n="sec.cookie.h4">HttpOnly Cookies</h4><p data-i18n="sec.cookie.p">Refresh tokens in HttpOnly cookies. Protected against XSS.</p></div>
         </div>
-
         <div class="security-item">
-          <div class="security-icon blue">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-          </div>
+          <div class="security-icon blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
           <div><h4 data-i18n="sec.csrf.h4">CSRF Protection</h4><p data-i18n="sec.csrf.p">All data-modifying operations are protected against forgery attacks.</p></div>
         </div>
-
         <div class="security-item">
-          <div class="security-icon green">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div><h4 data-i18n="sec.rate.h4">Rate Limiting</h4><p data-i18n="sec.rate.p">Automatic request control per IP and user. Prevents abuse and brute force attacks.</p></div>
+          <div class="security-icon green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><h4 data-i18n="sec.rate.h4">Rate Limiting</h4><p data-i18n="sec.rate.p">Automatic request control per IP and user. Prevents abuse.</p></div>
         </div>
-
         <div class="security-item">
-          <div class="security-icon purple">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div><h4 data-i18n="sec.acl.h4">Access Control</h4><p data-i18n="sec.acl.p">Granular roles (admin/seller) with module-specific permissions. Each person sees only what they need.</p></div>
+          <div class="security-icon purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><h4 data-i18n="sec.acl.h4">Access Control</h4><p data-i18n="sec.acl.p">Granular roles (admin/seller) with module-specific permissions.</p></div>
         </div>
-
         <div class="security-item">
-          <div class="security-icon blue">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
-          </div>
-          <div><h4 data-i18n="sec.audit.h4">Audit Logs</h4><p data-i18n="sec.audit.p">Complete record of all actions. Who did it, when, what. Full traceability.</p></div>
+          <div class="security-icon blue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg></div>
+          <div><h4 data-i18n="sec.audit.h4">Audit Logs</h4><p data-i18n="sec.audit.p">Complete record of all actions. Who did it, when, what.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ COMEÇAR ============ -->
-  <section id="comecar" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,.02),transparent)">
+  <!-- GET STARTED -->
+  <section id="start" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,.015),transparent)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag" data-i18n="start.tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Começar</span>
+        <span class="section-tag" data-i18n="start.tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          Get Started
+        </span>
         <h2><span data-i18n="start.h2a">Ready to use</span><br><span data-i18n="start.h2b">or to contribute</span></h2>
-        <p data-i18n="start.p">Access the deployed system or clone the repository to study the code.</p>
+        <p data-i18n="start.p">Access the deployed system or explore the source code on GitHub.</p>
       </div>
 
       <div class="steps reveal">
         <div class="step">
-          <div class="step-num" style="background:var(--green);color:#000;border-color:var(--green);font-size:20px">▶</div>
+          <div class="step-num" style="background:var(--green);color:#000;border-color:var(--green);font-size:18px">▶</div>
           <div class="step-content">
-            <h4 data-i18n="start.s1.h4">Acesse o sistema</h4>
-            <p data-i18n="start.s1.p">O Elitium já está deployado e pronto para uso. Clique no botão abaixo para abrir.</p>
-            <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg" style="margin-top:16px;display:inline-flex">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-              <span data-i18n="start.s1.btn">Abrir Elitium ERP</span>
+            <h4 data-i18n="start.s1.h4">Access the system</h4>
+            <p data-i18n="start.s1.p">Elitium is already deployed and ready to use. Click the button below to open it.</p>
+            <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg" style="margin-top:14px;display:inline-flex">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              <span data-i18n="start.s1.btn">Open Elitium ERP</span>
             </a>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <h4 data-i18n="start.s2.h4">Estudar o código (desenvolvedores)</h4>
-            <p data-i18n="start.s2.p">Se quer contribuir ou adaptar o sistema, acesse o repositório no GitHub.</p>
-            <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="margin-top:12px;display:inline-flex">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <h4 data-i18n="start.s2.h4">Explore the code (developers)</h4>
+            <p data-i18n="start.s2.p">If you want to contribute or adapt the system, check out the repository on GitHub.</p>
+            <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="margin-top:10px;display:inline-flex">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub
             </a>
           </div>
@@ -786,19 +683,18 @@
     </div>
   </section>
 
-  <!-- ============ CTA ============ -->
+  <!-- CTA -->
   <section class="cta">
-    <div class="cta-glow"></div>
     <div class="cta-content">
       <h2><span data-i18n="cta.h2a">Ready to organize</span><br><span data-i18n="cta.h2b">your business?</span></h2>
       <p data-i18n="cta.p">Set up and have your ERP running in minutes. Scalable with no user limits.</p>
       <div class="cta-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
           <span data-i18n="cta.btn1">Open Elitium ERP</span>
         </a>
         <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
           <span data-i18n="cta.btn2">View on GitHub</span>
         </a>
       </div>
@@ -806,7 +702,7 @@
     </div>
   </section>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-content">
@@ -816,10 +712,10 @@
         </div>
         <ul class="footer-links">
           <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank">GitHub</a></li>
-          <li><a href="#modulos" data-i18n="footer.modules">Modules</a></li>
+          <li><a href="#modules" data-i18n="footer.modules">Modules</a></li>
           <li><a href="#api">API</a></li>
-          <li><a href="#seguranca" data-i18n="footer.security">Security</a></li>
-          <li><a href="#comecar" data-i18n="footer.start">Get Started</a></li>
+          <li><a href="#security" data-i18n="footer.security">Security</a></li>
+          <li><a href="#start" data-i18n="footer.start">Get Started</a></li>
         </ul>
       </div>
     </div>
@@ -852,16 +748,15 @@
 
     // Mini chart bars
     const chart = document.getElementById('miniChart');
-    const barData = [35, 52, 45, 68, 55, 72, 60, 85, 70, 92, 78, 95];
-    barData.forEach((h, i) => {
+    [35,52,45,68,55,72,60,85,70,92,78,95].forEach((h,i) => {
       const bar = document.createElement('div');
       bar.className = 'mini-bar';
       bar.style.height = '0%';
       chart.appendChild(bar);
-      setTimeout(() => { bar.style.height = h + '%'; }, 600 + i * 80);
+      setTimeout(() => { bar.style.height = h + '%'; }, 500 + i * 70);
     });
 
-    // Smooth scroll for nav links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
@@ -873,359 +768,139 @@
       });
     });
 
-    // ============ i18n ============
+    // i18n
     const i18n = {
       pt: {
-        // Nav
-        'nav.about': 'O que é',
-        'nav.modules': 'Módulos',
-        'nav.arch': 'Arquitetura',
-        'nav.security': 'Segurança',
-        'nav.start': 'Começar',
-        // Hero
-        'hero.h1a': 'Gestão empresarial',
-        'hero.h1b': 'completa e inteligente',
-        'hero.p': 'Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.',
-        'hero.demo': 'Acessar Demo',
-        'hero.github': 'Ver no GitHub',
-        'hero.understand': 'Entenda o projeto',
-        'hero.stat1': 'Módulos',
-        'hero.stat2': 'API Completa',
-        'hero.stat3': 'Autenticação',
-        'hero.stat4': 'Integrada',
-        'hero.stat5': 'Bilíngue',
-        // O que é
-        'about.tag': 'Entenda o Elitium',
-        'about.h2a': 'O que é um ERP',
-        'about.h2b': 'e por que você precisa de um?',
-        'about.p1': 'ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.',
-        'about.h3': 'Pare de usar planilhas separadas',
-        'about.p2': 'Em vez de ter suas vendas em uma planilha, o estoque em outra, e o financeiro em um caderno — o Elitium reúne tudo isso em um painel único. Você vê o panorama completo do seu negócio em tempo real.',
-        'about.p3': 'Com inteligência artificial integrada, o sistema não só organiza seus dados — ele também <strong>analisa tendências, prevê demanda</strong> e ajuda você a tomar decisões melhores.',
-        'about.p4': 'E se você é desenvolvedor: API REST documentada, testes automatizados e CI/CD incluso.',
-        'about.card1l': 'Vendas do Mês',
-        'about.card1v': 'R$ 84.520',
-        'about.card1c': '↑ 12% vs mês anterior',
-        'about.card2l': 'Produtos Ativos',
-        'about.card2v': '342',
-        'about.card2c': '↑ 8 novos',
-        'about.card3l': 'Orçamentos Pendentes',
-        'about.card3v': '17',
-        'about.card3c': '↓ 3 expiram hoje',
-        'about.card4l': 'Lucro Líquido',
-        'about.card4v': 'R$ 23.180',
-        'about.card4c': '↑ Margem 27%',
-        // Módulos
-        'mod.tag': 'Módulos',
-        'mod.h2a': 'Tudo que seu negócio precisa,',
-        'mod.h2b': 'em um só sistema',
-        'mod.p': 'Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.',
-        'mod.dashboard': 'Dashboard',
-        'mod.dashboard.p': 'Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance. Totalmente personalizável com layout arrastável.',
-        'mod.dashboard.t': 'Visão geral',
-        'mod.sales': 'Vendas',
-        'mod.sales.p': 'Crie e acompanhe pedidos de venda do início ao fim. Histórico completo, status em tempo real e integração com estoque e financeiro.',
-        'mod.sales.t': 'Pedidos',
-        'mod.quotes': 'Orçamentos',
-        'mod.quotes.p': 'Envie propostas comerciais profissionais para seus clientes. Gere PDFs elegantes, acompanhe aprovações e converta orçamentos em pedidos com um clique.',
-        'mod.quotes.t': 'Propostas',
-        'mod.inv': 'Estoque',
-        'mod.inv.p': 'Controle completo de produtos, grupos e variantes. Alertas de estoque baixo, organização por categorias e gerenciamento de fornecedores.',
-        'mod.inv.t': 'Inventário',
-        'mod.clients': 'Clientes',
-        'mod.clients.p': 'Cadastro completo de clientes com CNPJ, telefone, endereço e histórico de compras. Busca rápida e integração com orçamentos e vendas.',
-        'mod.clients.t': 'CRM',
-        'mod.purch': 'Compras',
-        'mod.purch.p': 'Gerencie pedidos de compra para fornecedores. Controle o que entra no estoque, acompanhe entregas e mantenha a cadeia de suprimentos organizada.',
-        'mod.purch.t': 'Fornecedores',
-        'mod.fin': 'Financeiro',
-        'mod.fin.p': 'Receitas, despesas e lucros — tudo registrado e categorizado. Fluxo de caixa claro com filtros por período e tipo de transação.',
-        'mod.fin.t': 'Controle',
-        'mod.inv2': 'Faturamento',
-        'mod.inv2.p': 'Relatórios detalhados de faturamento por produto, cliente e período. Entenda o que mais vende e onde está o maior retorno.',
-        'mod.inv2.t': 'Relatórios',
-        'mod.ai': 'Assistente IA',
-        'mod.ai.p': 'Converse com uma inteligência artificial que conhece seus dados. Pergunte sobre vendas, peça sugestões, analise tendências — tudo em linguagem natural.',
-        'mod.forecast': 'Previsão de Demanda',
-        'mod.forecast.p': 'Algoritmos analisam seu histórico de vendas e mostram tendências futuras. Saiba o que estocar antes da demanda chegar.',
-        'mod.forecast.t': 'Preditivo',
-        'mod.users': 'Usuários & Permissões',
-        'mod.users.p': 'Controle de acesso granular: admins veem tudo, vendedores veem o que precisam. Perfis de permissão configuráveis por módulo.',
-        'mod.users.t': 'RBAC',
-        'mod.notif': 'Notificações & Auditoria',
-        'mod.notif.p': 'Log completo de todas as ações no sistema. Saiba quem fez o quê e quando. Sistema de notificações para alertas importantes.',
-        'mod.notif.t': 'Rastreabilidade',
-        'mod.i18n': 'Internacionalização',
-        'mod.i18n.p': 'Interface em Português (Brasil) e Inglês. Ideal para equipes multilíngues ou negócios que operam em mercados internacionais.',
-        'mod.help': 'Central de Ajuda',
-        'mod.help.p': 'Painel de ajuda integrado com atalhos de teclado, documentação contextual e guias rápidos. Nunca fique perdido no sistema.',
-        'mod.help.t': 'UX',
-        'mod.admin': 'Admin & Pricing',
-        'mod.admin.p': 'Painel administrativo para configurações avançadas do sistema, gestão de preços e parâmetros globais da aplicação.',
-        'mod.admin.t': 'Config',
-        // Para quem
-        'who.tag': 'Para Quem',
-        'who.h2': 'Feito para todos os perfis',
-        'who.p': 'Não importa se você é dono de negócio ou desenvolvedor — o Elitium foi pensado para os dois.',
-        'who.biz.h3': 'Para Gestores e Empresários',
-        'who.biz.p': 'Se você quer organizar as operações da sua empresa sem precisar de um departamento de TI inteiro, o Elitium é pra você.',
-        'who.biz.l1': 'Dashboard visual com métricas em tempo real',
-        'who.biz.l2': 'Orçamentos profissionais com PDF em segundos',
-        'who.biz.l3': 'Assistente IA que responde perguntas sobre seu negócio',
-        'who.biz.l4': 'Previsão de demanda para não ficar sem estoque',
-        'who.biz.l5': 'Controle de acesso: cada pessoa vê só o que precisa',
-        'who.dev.h3': 'Para Desenvolvedores',
-        'who.dev.p': 'Se você quer estudar, contribuir ou adaptar o sistema para outro projeto — o código é limpo, documentado e testado.',
-        'who.dev.l2': 'API REST versionada com respostas padronizadas',
-        'who.dev.l3': 'Prisma ORM com migrations e seed scripts',
-        'who.dev.l4': 'Jest + Testing Library para testes unitários',
-        'who.dev.l5': 'Sentry para monitoramento de erros em produção',
-        // Arquitetura
-        'arch.tag': 'Arquitetura',
-        'arch.h2': 'Construído para escalar',
-        'arch.p': 'Stack moderna com separação clara de responsabilidades. Cada camada faz o que sabe fazer melhor.',
-        'arch.fe.h3': 'Interface Moderna',
-        'arch.fe.p': 'React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro, drag-and-drop no dashboard, e suporte a PWA para acesso offline.',
-        'arch.be.h3': 'API Robusta',
-        'arch.be.p': 'API REST versionada (v1) com autenticação JWT, rate limiting, proteção CSRF e respostas padronizadas com metadados de rastreamento.',
-        'arch.data.h3': 'Banco & ORM',
-        'arch.data.p': 'Prisma ORM com migrations versionadas, seed scripts para dados iniciais e tipagem forte do banco até o frontend.',
-        'arch.ai.h3': 'IA & Previsão',
-        'arch.ai.p': 'Integração com Google Gemini para chat com IA. Algoritmos de previsão de demanda baseados no histórico de vendas.',
-        // API
-        'api.tag': 'API',
-        'api.h2': 'Documentada & Padronizada',
-        'api.p': 'Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.',
-        'api.h3': 'Contrato consistente',
-        'api.desc': 'Toda resposta da API vem no mesmo formato: sucesso, mensagem, dados e metadados com timestamp e ID de rastreamento. Se algo der errado, o erro vem estruturado com código e detalhes.',
-        'api.d1': 'Autenticação',
-        'api.d2': 'Métricas',
-        'api.d3': 'Pedidos',
-        'api.d4': 'Orçamentos',
-        'api.d5': 'Produtos',
-        'api.d6': 'Financeiro',
-        'api.d7': 'Chat IA',
-        'api.d8': 'Fornecedores',
-        'api.d9': 'Relatórios',
-        'api.code.msg': '"Operação realizada com sucesso."',
-        // Segurança
-        'sec.tag': 'Segurança',
-        'sec.h2': 'Segurança por design',
-        'sec.p': 'Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.',
-        'sec.jwt.h4': 'JWT com Rotação',
-        'sec.jwt.p': 'Access tokens curtos (1h) com refresh tokens rotativos. Se um token vazar, expira rápido.',
-        'sec.cookie.h4': 'HttpOnly Cookies',
-        'sec.cookie.p': 'Refresh tokens em cookies HttpOnly — JavaScript não consegue acessar. Protegido contra XSS.',
-        'sec.csrf.h4': 'Proteção CSRF',
-        'sec.csrf.p': 'Todas as operações que alteram dados são protegidas contra ataques de falsificação.',
-        'sec.rate.h4': 'Rate Limiting',
-        'sec.rate.p': 'Controle automático de requisições por IP e usuário. Previne abuso e ataques de força bruta.',
-        'sec.acl.h4': 'Controle de Acesso',
-        'sec.acl.p': 'Roles granulares (admin/seller) com permissões específicas por módulo. Cada pessoa vê só o que precisa.',
-        'sec.audit.h4': 'Audit Logs',
-        'sec.audit.p': 'Registro completo de todas as ações. Quem fez, quando, o quê. Rastreabilidade total.',
-        // Começar
-        'start.tag': 'Começar',
-        'start.h2a': 'Pronto para usar',
-        'start.h2b': 'ou para contribuir',
-        'start.p': 'Acesse o sistema deployado ou estude o código-fonte no GitHub.',
-        'start.s1.h4': 'Acesse o sistema',
-        'start.s1.p': 'O Elitium já está deployado e pronto para uso. Clique no botão abaixo para abrir.',
-        'start.s1.btn': 'Abrir Elitium ERP',
-        'start.s2.h4': 'Estudar o código (desenvolvedores)',
-        'start.s2.p': 'Se quer contribuir ou adaptar o sistema, acesse o repositório no GitHub.',
-        'start.s3.h4': 'Configure o ambiente',
-        'start.s3.p': 'Instale as dependências, configure o PostgreSQL e rode as migrations.',
-        'start.s4.h4': 'Inicie o servidor',
-        'start.s4.p': 'Pronto! Abra http://localhost:3000 e comece a usar.',
-        // CTA
-        'cta.h2a': 'Pronto para organizar',
-        'cta.h2b': 'seu negócio?',
-        'cta.p': 'Configure e tenha seu ERP rodando em minutos. Escalável e sem limites de usuários.',
-        'cta.btn1': 'Acessar Elitium ERP',
-        'cta.btn2': 'Ver no GitHub',
-        'cta.note': 'Escalável · Suporte dedicado · Sem limites de usuários',
-        // Footer
-        'footer.copy': '© 2026 Elitium ERP. All rights reserved.',
-        'footer.modules': 'Módulos',
-        'footer.security': 'Segurança',
-        'footer.start': 'Começar',
+        'nav.about':'O que é','nav.modules':'Módulos','nav.arch':'Arquitetura','nav.security':'Segurança','nav.start':'Começar',
+        'hero.h1a':'Gestão empresarial','hero.h1b':'completa e inteligente',
+        'hero.p':'Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.',
+        'hero.demo':'Acessar Demo','hero.github':'Ver no GitHub','hero.understand':'Entenda o projeto',
+        'hero.stat1':'Módulos','hero.stat2':'API Completa','hero.stat3':'Autenticação','hero.stat4':'Integrada','hero.stat5':'Bilíngue',
+        'about.tag':'Entenda o Elitium','about.h2a':'O que é um ERP','about.h2b':'e por que você precisa de um?',
+        'about.p1':'ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.',
+        'about.h3':'Pare de usar planilhas separadas',
+        'about.p2':'Em vez de ter suas vendas em uma planilha, o estoque em outra, e o financeiro em um caderno — o Elitium reúne tudo isso em um painel único. Você vê o panorama completo do seu negócio em tempo real.',
+        'about.p3':'Com inteligência artificial integrada, o sistema não só organiza seus dados — ele também <strong>analisa tendências, prevê demanda</strong> e ajuda você a tomar decisões melhores.',
+        'about.p4':'E se você é desenvolvedor: API REST documentada, testes automatizados e CI/CD incluso.',
+        'about.card1l':'Vendas do Mês','about.card1v':'R$ 84.520','about.card1c':'↑ 12%',
+        'about.card2l':'Produtos Ativos','about.card2v':'342','about.card2c':'↑ 8 novos',
+        'about.card3l':'Orçamentos Pendentes','about.card3v':'17','about.card3c':'↓ 3 hoje',
+        'about.card4l':'Lucro Líquido','about.card4v':'R$ 23.180','about.card4c':'↑ Margem 27%',
+        'mod.tag':'Módulos','mod.h2a':'Tudo que seu negócio precisa,','mod.h2b':'em um só sistema',
+        'mod.p':'Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.',
+        'mod.dashboard':'Dashboard','mod.dashboard.p':'Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance.','mod.dashboard.t':'Visão geral',
+        'mod.sales':'Vendas','mod.sales.p':'Crie e acompanhe pedidos de venda do início ao fim. Histórico completo e status em tempo real.','mod.sales.t':'Pedidos',
+        'mod.quotes':'Orçamentos','mod.quotes.p':'Envie propostas comerciais profissionais. Gere PDFs elegantes e converta orçamentos em pedidos.','mod.quotes.t':'Propostas',
+        'mod.inv':'Estoque','mod.inv.p':'Controle completo de produtos, grupos e variantes. Alertas de estoque baixo.','mod.inv.t':'Inventário',
+        'mod.clients':'Clientes','mod.clients.p':'Cadastro completo com CNPJ, telefone, endereço e histórico de compras.','mod.clients.t':'CRM',
+        'mod.purch':'Compras','mod.purch.p':'Gerencie pedidos de compra para fornecedores. Controle o que entra no estoque.','mod.purch.t':'Fornecedores',
+        'mod.fin':'Financeiro','mod.fin.p':'Receitas, despesas e lucros — tudo registrado e categorizado.','mod.fin.t':'Controle',
+        'mod.inv2':'Faturamento','mod.inv2.p':'Relatórios detalhados por produto, cliente e período.','mod.inv2.t':'Relatórios',
+        'mod.ai':'Assistente IA','mod.ai.p':'Converse com uma IA que conhece seus dados. Pergunte sobre vendas, analise tendências.',
+        'mod.forecast':'Previsão de Demanda','mod.forecast.p':'Algoritmos analisam seu histórico e mostram tendências futuras.','mod.forecast.t':'Preditivo',
+        'mod.users':'Usuários & Permissões','mod.users.p':'Controle de acesso granular: admins veem tudo, vendedores veem o que precisam.','mod.users.t':'RBAC',
+        'mod.notif':'Notificações & Auditoria','mod.notif.p':'Log completo de todas as ações. Quem fez o quê e quando.','mod.notif.t':'Rastreabilidade',
+        'mod.i18n':'Internacionalização','mod.i18n.p':'Interface em Português (Brasil) e Inglês.',
+        'mod.help':'Central de Ajuda','mod.help.p':'Painel de ajuda integrado com atalhos de teclado e documentação.','mod.help.t':'UX',
+        'mod.admin':'Admin & Pricing','mod.admin.p':'Painel administrativo para configurações avançadas e gestão de preços.','mod.admin.t':'Config',
+        'who.tag':'Para Quem','who.h2':'Feito para todos os perfis','who.p':'Não importa se você é dono de negócio ou desenvolvedor — o Elitium foi pensado para os dois.',
+        'who.biz.h3':'Para Gestores e Empresários','who.biz.p':'Se você quer organizar as operações da sua empresa sem precisar de um departamento de TI inteiro, o Elitium é pra você.',
+        'who.biz.l1':'Dashboard visual com métricas em tempo real','who.biz.l2':'Orçamentos profissionais com PDF em segundos',
+        'who.biz.l3':'Assistente IA que responde perguntas sobre seu negócio','who.biz.l4':'Previsão de demanda para não ficar sem estoque',
+        'who.biz.l5':'Controle de acesso: cada pessoa vê só o que precisa',
+        'who.dev.h3':'Para Desenvolvedores','who.dev.p':'Se você quer estudar, contribuir ou adaptar o sistema — o código é limpo, documentado e testado.',
+        'who.dev.l1':'Next.js 16 + React 19 + TypeScript + Tailwind CSS','who.dev.l2':'API REST versionada com respostas padronizadas',
+        'who.dev.l3':'Prisma ORM com migrations e seed scripts','who.dev.l4':'Jest + Testing Library para testes unitários',
+        'who.dev.l5':'Sentry para monitoramento de erros em produção',
+        'arch.tag':'Arquitetura','arch.h2':'Construído para escalar','arch.p':'Stack moderna com separação clara de responsabilidades.',
+        'arch.fe.h3':'Interface Moderna','arch.fe.p':'React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro e suporte a PWA.',
+        'arch.be.h3':'API Robusta','arch.be.p':'API REST versionada (v1) com autenticação JWT, rate limiting e proteção CSRF.',
+        'arch.data.h3':'Banco & ORM','arch.data.p':'Prisma ORM com migrations versionadas e tipagem forte do banco até o frontend.',
+        'arch.ai.h3':'IA & Previsão','arch.ai.p':'Integração com Google Gemini para chat com IA. Algoritmos de previsão de demanda.',
+        'api.tag':'API','api.h2':'Documentada & Padronizada','api.p':'Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.',
+        'api.h3':'Contrato consistente','api.desc':'Toda resposta da API vem no mesmo formato: sucesso, mensagem, dados e metadados com timestamp e ID de rastreamento.',
+        'api.d1':'Autenticação','api.d2':'Métricas','api.d3':'Pedidos','api.d4':'Orçamentos','api.d5':'Produtos',
+        'api.d6':'Financeiro','api.d7':'Chat IA','api.d8':'Fornecedores','api.d9':'Relatórios',
+        'api.code.msg':'"Operação realizada com sucesso."',
+        'sec.tag':'Segurança','sec.h2':'Segurança por design','sec.p':'Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.',
+        'sec.jwt.h4':'JWT com Rotação','sec.jwt.p':'Access tokens curtos (1h) com refresh tokens rotativos.',
+        'sec.cookie.h4':'HttpOnly Cookies','sec.cookie.p':'Refresh tokens em cookies HttpOnly. Protegido contra XSS.',
+        'sec.csrf.h4':'Proteção CSRF','sec.csrf.p':'Todas as operações que alteram dados são protegidas contra falsificação.',
+        'sec.rate.h4':'Rate Limiting','sec.rate.p':'Controle automático de requisições por IP e usuário.',
+        'sec.acl.h4':'Controle de Acesso','sec.acl.p':'Roles granulares (admin/seller) com permissões por módulo.',
+        'sec.audit.h4':'Audit Logs','sec.audit.p':'Registro completo de todas as ações. Rastreabilidade total.',
+        'start.tag':'Começar','start.h2a':'Pronto para usar','start.h2b':'ou para contribuir','start.p':'Acesse o sistema deployado ou estude o código-fonte no GitHub.',
+        'start.s1.h4':'Acesse o sistema','start.s1.p':'O Elitium já está deployado e pronto para uso.','start.s1.btn':'Abrir Elitium ERP',
+        'start.s2.h4':'Estudar o código (desenvolvedores)','start.s2.p':'Se quer contribuir ou adaptar o sistema, acesse o repositório no GitHub.',
+        'cta.h2a':'Pronto para organizar','cta.h2b':'seu negócio?','cta.p':'Configure e tenha seu ERP rodando em minutos. Escalável e sem limites de usuários.',
+        'cta.btn1':'Acessar Elitium ERP','cta.btn2':'Ver no GitHub','cta.note':'Escalável · Suporte dedicado · Sem limites de usuários',
+        'footer.copy':'© 2026 Elitium ERP. All rights reserved.','footer.modules':'Módulos','footer.security':'Segurança','footer.start':'Começar',
       },
       en: {
-        // Nav
-        'nav.about': 'About',
-        'nav.modules': 'Modules',
-        'nav.arch': 'Architecture',
-        'nav.security': 'Security',
-        'nav.start': 'Get Started',
-        // Hero
-        'hero.h1a': 'Business management',
-        'hero.h1b': 'complete and intelligent',
-        'hero.p': 'From sales control to AI-powered demand forecasting — everything integrated into a single platform. Simple enough for anyone, powerful enough for any business.',
-        'hero.demo': 'Open Demo',
-        'hero.github': 'View on GitHub',
-        'hero.understand': 'Understand the project',
-        'hero.stat1': 'Modules',
-        'hero.stat2': 'Full API',
-        'hero.stat3': 'Authentication',
-        'hero.stat4': 'Integrated',
-        'hero.stat5': 'Bilingual',
-        // About
-        'about.tag': 'Understand Elitium',
-        'about.h2a': 'What is an ERP',
-        'about.h2b': 'and why do you need one?',
-        'about.p1': 'ERP stands for "Enterprise Resource Planning" — a system that centralizes all your company\'s management in one place.',
-        'about.h3': 'Stop using separate spreadsheets',
-        'about.p2': 'Instead of having your sales in one spreadsheet, inventory in another, and finances in a notebook — Elitium brings it all together in a single dashboard. You see the complete picture of your business in real time.',
-        'about.p3': 'With integrated artificial intelligence, the system doesn\'t just organize your data — it also <strong>analyzes trends, forecasts demand</strong> and helps you make better decisions.',
-        'about.p4': 'And if you\'re a developer: documented REST API, automated tests and CI/CD included.',
-        'about.card1l': 'Monthly Sales',
-        'about.card1v': 'R$ 84,520',
-        'about.card1c': '↑ 12% vs previous month',
-        'about.card2l': 'Active Products',
-        'about.card2v': '342',
-        'about.card2c': '↑ 8 new',
-        'about.card3l': 'Pending Quotes',
-        'about.card3v': '17',
-        'about.card3c': '↓ 3 expire today',
-        'about.card4l': 'Net Profit',
-        'about.card4v': 'R$ 23,180',
-        'about.card4c': '↑ 27% margin',
-        // Modules
-        'mod.tag': 'Modules',
-        'mod.h2a': 'Everything your business needs,',
-        'mod.h2b': 'in one system',
-        'mod.p': 'Each module handles an area of your company. Together, they form the complete picture.',
-        'mod.dashboard': 'Dashboard',
-        'mod.dashboard.p': 'Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance. Fully customizable with drag-and-drop layout.',
-        'mod.dashboard.t': 'Overview',
-        'mod.sales': 'Sales',
-        'mod.sales.p': 'Create and track sales orders from start to finish. Complete history, real-time status and integration with inventory and finances.',
-        'mod.sales.t': 'Orders',
-        'mod.quotes': 'Quotes',
-        'mod.quotes.p': 'Send professional commercial proposals to your clients. Generate elegant PDFs, track approvals and convert quotes to orders with one click.',
-        'mod.quotes.t': 'Proposals',
-        'mod.inv': 'Inventory',
-        'mod.inv.p': 'Complete control of products, groups and variants. Low stock alerts, category organization and supplier management.',
-        'mod.inv.t': 'Inventory',
-        'mod.clients': 'Clients',
-        'mod.clients.p': 'Complete client registration with CNPJ, phone, address and purchase history. Quick search and integration with quotes and sales.',
-        'mod.clients.t': 'CRM',
-        'mod.purch': 'Purchases',
-        'mod.purch.p': 'Manage purchase orders for suppliers. Control what comes into inventory, track deliveries and keep the supply chain organized.',
-        'mod.purch.t': 'Suppliers',
-        'mod.fin': 'Finance',
-        'mod.fin.p': 'Revenue, expenses and profits — all recorded and categorized. Clear cash flow with filters by period and transaction type.',
-        'mod.fin.t': 'Control',
-        'mod.inv2': 'Billing',
-        'mod.inv2.p': 'Detailed billing reports by product, client and period. Understand what sells best and where the highest return is.',
-        'mod.inv2.t': 'Reports',
-        'mod.ai': 'AI Assistant',
-        'mod.ai.p': 'Chat with an AI that knows your data. Ask about sales, get suggestions, analyze trends — all in natural language.',
-        'mod.forecast': 'Demand Forecast',
-        'mod.forecast.p': 'Algorithms analyze your sales history and show future trends. Know what to stock before demand arrives.',
-        'mod.forecast.t': 'Predictive',
-        'mod.users': 'Users & Permissions',
-        'mod.users.p': 'Granular access control: admins see everything, salespeople see what they need. Permission profiles configurable by module.',
-        'mod.users.t': 'RBAC',
-        'mod.notif': 'Notifications & Audit',
-        'mod.notif.p': 'Complete log of all actions in the system. Know who did what and when. Notification system for important alerts.',
-        'mod.notif.t': 'Traceability',
-        'mod.i18n': 'Internationalization',
-        'mod.i18n.p': 'Interface in Portuguese (Brazil) and English. Ideal for multilingual teams or businesses operating in international markets.',
-        'mod.help': 'Help Center',
-        'mod.help.p': 'Integrated help panel with keyboard shortcuts, contextual documentation and quick guides. Never get lost in the system.',
-        'mod.help.t': 'UX',
-        'mod.admin': 'Admin & Pricing',
-        'mod.admin.p': 'Administrative panel for advanced system settings, pricing management and global application parameters.',
-        'mod.admin.t': 'Config',
-        // Who
-        'who.tag': 'Who is it for',
-        'who.h2': 'Made for all profiles',
-        'who.p': 'Whether you\'re a business owner or a developer — Elitium was designed for both.',
-        'who.biz.h3': 'For Managers & Business Owners',
-        'who.biz.p': 'If you want to organize your company\'s operations without needing an entire IT department, Elitium is for you.',
-        'who.biz.l1': 'Visual dashboard with real-time metrics',
-        'who.biz.l2': 'Professional quotes with PDF in seconds',
-        'who.biz.l3': 'AI assistant that answers questions about your business',
-        'who.biz.l4': 'Demand forecasting to never run out of stock',
-        'who.biz.l5': 'Access control: each person sees only what they need',
-        'who.dev.h3': 'For Developers',
-        'who.dev.p': 'If you want to study, contribute or adapt the system for another project — the code is clean, documented and tested.',
-        'who.dev.l2': 'Versioned REST API with standardized responses',
-        'who.dev.l3': 'Prisma ORM with migrations and seed scripts',
-        'who.dev.l4': 'Jest + Testing Library for unit tests',
-        'who.dev.l5': 'Sentry for error monitoring in production',
-        // Architecture
-        'arch.tag': 'Architecture',
-        'arch.h2': 'Built to scale',
-        'arch.p': 'Modern stack with clear separation of concerns. Each layer does what it does best.',
-        'arch.fe.h3': 'Modern Interface',
-        'arch.fe.p': 'React 19 with Next.js App Router. Reusable components, light/dark themes, drag-and-drop on the dashboard, and PWA support for offline access.',
-        'arch.be.h3': 'Robust API',
-        'arch.be.p': 'Versioned REST API (v1) with JWT authentication, rate limiting, CSRF protection and standardized responses with tracking metadata.',
-        'arch.data.h3': 'Database & ORM',
-        'arch.data.p': 'Prisma ORM with versioned migrations, seed scripts for initial data and strong typing from database to frontend.',
-        'arch.ai.h3': 'AI & Forecasting',
-        'arch.ai.p': 'Integration with Google Gemini for AI chat. Demand forecasting algorithms based on sales history.',
-        // API
-        'api.tag': 'API',
-        'api.h2': 'Documented & Standardized',
-        'api.p': 'All routes follow the same contract. Predictable, testable and easy to integrate.',
-        'api.h3': 'Consistent contract',
-        'api.desc': 'Every API response comes in the same format: success, message, data and metadata with timestamp and tracking ID. If something goes wrong, the error comes structured with code and details.',
-        'api.d1': 'Authentication',
-        'api.d2': 'Metrics',
-        'api.d3': 'Orders',
-        'api.d4': 'Quotes',
-        'api.d5': 'Products',
-        'api.d6': 'Finance',
-        'api.d7': 'AI Chat',
-        'api.d8': 'Suppliers',
-        'api.d9': 'Reports',
-        'api.code.msg': '"Operation completed successfully."',
-        // Security
-        'sec.tag': 'Security',
-        'sec.h2': 'Security by design',
-        'sec.p': 'Every layer of the system has its protection. It\'s not an extra feature — it\'s part of the foundation.',
-        'sec.jwt.h4': 'JWT with Rotation',
-        'sec.jwt.p': 'Short-lived access tokens (1h) with rotating refresh tokens. If a token leaks, it expires quickly.',
-        'sec.cookie.h4': 'HttpOnly Cookies',
-        'sec.cookie.p': 'Refresh tokens in HttpOnly cookies — JavaScript can\'t access them. Protected against XSS.',
-        'sec.csrf.h4': 'CSRF Protection',
-        'sec.csrf.p': 'All data-modifying operations are protected against forgery attacks.',
-        'sec.rate.h4': 'Rate Limiting',
-        'sec.rate.p': 'Automatic request control per IP and user. Prevents abuse and brute force attacks.',
-        'sec.acl.h4': 'Access Control',
-        'sec.acl.p': 'Granular roles (admin/seller) with module-specific permissions. Each person sees only what they need.',
-        'sec.audit.h4': 'Audit Logs',
-        'sec.audit.p': 'Complete record of all actions. Who did it, when, what. Full traceability.',
-        // Get Started
-        'start.tag': 'Get Started',
-        'start.h2a': 'Ready to use',
-        'start.h2b': 'or to contribute',
-        'start.p': 'Access the deployed system or explore the source code on GitHub.',
-        'start.s1.h4': 'Access the system',
-        'start.s1.p': 'Elitium is already deployed and ready to use. Click the button below to open it.',
-        'start.s1.btn': 'Open Elitium ERP',
-        'start.s2.h4': 'Explore the code (developers)',
-        'start.s2.p': 'If you want to contribute or adapt the system, check out the repository on GitHub.',
-        'start.s3.h4': 'Set up the environment',
-        'start.s3.p': 'Install dependencies, configure PostgreSQL and run migrations.',
-        'start.s4.h4': 'Start the server',
-        'start.s4.p': 'Done! Open http://localhost:3000 and start using it.',
-        // CTA
-        'cta.h2a': 'Ready to organize',
-        'cta.h2b': 'your business?',
-        'cta.p': 'Set up and have your ERP running in minutes. Scalable with no user limits.',
-        'cta.btn1': 'Open Elitium ERP',
-        'cta.btn2': 'View on GitHub',
-        'cta.note': 'Scalable · Dedicated support · No user limits',
-        // Footer
-        'footer.copy': '© 2026 Elitium ERP. All rights reserved.',
-        'footer.modules': 'Modules',
-        'footer.security': 'Security',
-        'footer.start': 'Get Started',
+        'nav.about':'About','nav.modules':'Modules','nav.arch':'Architecture','nav.security':'Security','nav.start':'Get Started',
+        'hero.h1a':'Business management','hero.h1b':'complete and intelligent',
+        'hero.p':'From sales control to AI-powered demand forecasting — everything integrated into a single platform. Simple enough for anyone, powerful enough for any business.',
+        'hero.demo':'Open Demo','hero.github':'View on GitHub','hero.understand':'Understand the project',
+        'hero.stat1':'Modules','hero.stat2':'Full API','hero.stat3':'Auth','hero.stat4':'Integrated','hero.stat5':'Bilingual',
+        'about.tag':'Understand Elitium','about.h2a':'What is an ERP','about.h2b':'and why do you need one?',
+        'about.p1':'ERP stands for "Enterprise Resource Planning" — a system that centralizes all your company\'s management in one place.',
+        'about.h3':'Stop using separate spreadsheets',
+        'about.p2':'Instead of having your sales in one spreadsheet, inventory in another, and finances in a notebook — Elitium brings it all together in a single dashboard.',
+        'about.p3':'With integrated artificial intelligence, the system doesn\'t just organize your data — it also <strong>analyzes trends, forecasts demand</strong> and helps you make better decisions.',
+        'about.p4':'And if you\'re a developer: documented REST API, automated tests and CI/CD included.',
+        'about.card1l':'Monthly Sales','about.card1v':'R$ 84,520','about.card1c':'↑ 12%',
+        'about.card2l':'Active Products','about.card2v':'342','about.card2c':'↑ 8 new',
+        'about.card3l':'Pending Quotes','about.card3v':'17','about.card3c':'↓ 3 today',
+        'about.card4l':'Net Profit','about.card4v':'R$ 23,180','about.card4c':'↑ 27%',
+        'mod.tag':'Modules','mod.h2a':'Everything your business needs,','mod.h2b':'in one system',
+        'mod.p':'Each module handles an area of your company. Together, they form the complete picture.',
+        'mod.dashboard':'Dashboard','mod.dashboard.p':'Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance.','mod.dashboard.t':'Overview',
+        'mod.sales':'Sales','mod.sales.p':'Create and track sales orders from start to finish. Complete history and real-time status.','mod.sales.t':'Orders',
+        'mod.quotes':'Quotes','mod.quotes.p':'Send professional commercial proposals. Generate PDFs and convert quotes to orders.','mod.quotes.t':'Proposals',
+        'mod.inv':'Inventory','mod.inv.p':'Complete control of products, groups and variants. Low stock alerts.','mod.inv.t':'Inventory',
+        'mod.clients':'Clients','mod.clients.p':'Complete client registration with CNPJ, phone, address and purchase history.','mod.clients.t':'CRM',
+        'mod.purch':'Purchases','mod.purch.p':'Manage purchase orders for suppliers. Control inventory intake.','mod.purch.t':'Suppliers',
+        'mod.fin':'Finance','mod.fin.p':'Revenue, expenses and profits — all recorded and categorized.','mod.fin.t':'Control',
+        'mod.inv2':'Billing','mod.inv2.p':'Detailed billing reports by product, client and period.','mod.inv2.t':'Reports',
+        'mod.ai':'AI Assistant','mod.ai.p':'Chat with an AI that knows your data. Ask about sales, analyze trends.',
+        'mod.forecast':'Demand Forecast','mod.forecast.p':'Algorithms analyze your sales history and show future trends.','mod.forecast.t':'Predictive',
+        'mod.users':'Users & Permissions','mod.users.p':'Granular access control: admins see everything, salespeople see what they need.','mod.users.t':'RBAC',
+        'mod.notif':'Notifications & Audit','mod.notif.p':'Complete log of all actions. Know who did what and when.','mod.notif.t':'Traceability',
+        'mod.i18n':'Internationalization','mod.i18n.p':'Interface in Portuguese (Brazil) and English.',
+        'mod.help':'Help Center','mod.help.p':'Integrated help panel with keyboard shortcuts and documentation.','mod.help.t':'UX',
+        'mod.admin':'Admin & Pricing','mod.admin.p':'Administrative panel for advanced settings and pricing management.','mod.admin.t':'Config',
+        'who.tag':'Who is it for','who.h2':'Made for all profiles','who.p':'Whether you\'re a business owner or a developer — Elitium was designed for both.',
+        'who.biz.h3':'For Managers & Business Owners','who.biz.p':'If you want to organize your company\'s operations without needing an entire IT department, Elitium is for you.',
+        'who.biz.l1':'Visual dashboard with real-time metrics','who.biz.l2':'Professional quotes with PDF in seconds',
+        'who.biz.l3':'AI assistant that answers questions about your business','who.biz.l4':'Demand forecasting to never run out of stock',
+        'who.biz.l5':'Access control: each person sees only what they need',
+        'who.dev.h3':'For Developers','who.dev.p':'If you want to study, contribute or adapt the system — the code is clean, documented and tested.',
+        'who.dev.l1':'Next.js 16 + React 19 + TypeScript + Tailwind CSS','who.dev.l2':'Versioned REST API with standardized responses',
+        'who.dev.l3':'Prisma ORM with migrations and seed scripts','who.dev.l4':'Jest + Testing Library for unit tests',
+        'who.dev.l5':'Sentry for error monitoring in production',
+        'arch.tag':'Architecture','arch.h2':'Built to scale','arch.p':'Modern stack with clear separation of concerns.',
+        'arch.fe.h3':'Modern Interface','arch.fe.p':'React 19 with Next.js App Router. Reusable components, light/dark themes and PWA support.',
+        'arch.be.h3':'Robust API','arch.be.p':'Versioned REST API (v1) with JWT authentication, rate limiting and CSRF protection.',
+        'arch.data.h3':'Database & ORM','arch.data.p':'Prisma ORM with versioned migrations and strong typing from database to frontend.',
+        'arch.ai.h3':'AI & Forecasting','arch.ai.p':'Integration with Google Gemini for AI chat. Demand forecasting algorithms.',
+        'api.tag':'API','api.h2':'Documented & Standardized','api.p':'All routes follow the same contract. Predictable, testable and easy to integrate.',
+        'api.h3':'Consistent contract','api.desc':'Every API response comes in the same format: success, message, data and metadata with timestamp and tracking ID.',
+        'api.d1':'Authentication','api.d2':'Metrics','api.d3':'Orders','api.d4':'Quotes','api.d5':'Products',
+        'api.d6':'Finance','api.d7':'AI Chat','api.d8':'Suppliers','api.d9':'Reports',
+        'api.code.msg':'"Operation completed successfully."',
+        'sec.tag':'Security','sec.h2':'Security by design','sec.p':'Every layer of the system has its protection. It\'s part of the foundation.',
+        'sec.jwt.h4':'JWT with Rotation','sec.jwt.p':'Short-lived access tokens (1h) with rotating refresh tokens.',
+        'sec.cookie.h4':'HttpOnly Cookies','sec.cookie.p':'Refresh tokens in HttpOnly cookies. Protected against XSS.',
+        'sec.csrf.h4':'CSRF Protection','sec.csrf.p':'All data-modifying operations are protected against forgery attacks.',
+        'sec.rate.h4':'Rate Limiting','sec.rate.p':'Automatic request control per IP and user. Prevents abuse.',
+        'sec.acl.h4':'Access Control','sec.acl.p':'Granular roles (admin/seller) with module-specific permissions.',
+        'sec.audit.h4':'Audit Logs','sec.audit.p':'Complete record of all actions. Who did it, when, what.',
+        'start.tag':'Get Started','start.h2a':'Ready to use','start.h2b':'or to contribute','start.p':'Access the deployed system or explore the source code on GitHub.',
+        'start.s1.h4':'Access the system','start.s1.p':'Elitium is already deployed and ready to use.','start.s1.btn':'Open Elitium ERP',
+        'start.s2.h4':'Explore the code (developers)','start.s2.p':'If you want to contribute or adapt the system, check out the repository on GitHub.',
+        'cta.h2a':'Ready to organize','cta.h2b':'your business?','cta.p':'Set up and have your ERP running in minutes. Scalable with no user limits.',
+        'cta.btn1':'Open Elitium ERP','cta.btn2':'View on GitHub','cta.note':'Scalable · Dedicated support · No user limits',
+        'footer.copy':'© 2026 Elitium ERP. All rights reserved.','footer.modules':'Modules','footer.security':'Security','footer.start':'Get Started',
       }
     };
 
@@ -1239,29 +914,24 @@
           if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
             el.placeholder = t[key];
           } else if (el.querySelector('svg')) {
-            // Preserve SVG icons, only replace text after them
             const svg = el.querySelector('svg');
-            const svgHtml = svg.outerHTML;
-            el.innerHTML = svgHtml + ' ' + t[key];
+            el.innerHTML = svg.outerHTML + ' ' + t[key];
           } else {
             el.innerHTML = t[key];
           }
         }
       });
-      // Update toggle buttons
       document.querySelectorAll('#langToggle span').forEach(s => {
         s.classList.toggle('active', s.dataset.lang === lang);
       });
     }
 
-    // Initialize language toggle
     document.getElementById('langToggle').addEventListener('click', e => {
       const btn = e.target.closest('[data-lang]');
       if (!btn) return;
       setLang(btn.dataset.lang);
     });
 
-    // Load saved language (default: English)
     const savedLang = localStorage.getItem('elitium-lang') || 'en';
     if (savedLang !== 'pt') setLang(savedLang);
   </script>
