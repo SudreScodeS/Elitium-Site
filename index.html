@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elitium ERP — Intelligent Business Management</title>
-  <meta name="description" content="Complete ERP system for sales, inventory, finance, quotes and AI assistant. Built with Next.js and TypeScript.">
-  <meta name="keywords" content="ERP, business management, sales, inventory, finance, quotes, AI, Next.js">
-  <meta property="og:title" content="Elitium ERP — Intelligent Business Management">
-  <meta property="og:description" content="Complete ERP system with dashboard, sales, inventory, finance, quotes and integrated AI assistant.">
+  <title>Elitium ERP — Gestão Empresarial Inteligente</title>
+  <meta name="description" content="ERP completo: vendas, estoque em rolo, orçamentos com validade e prazo, compras com recebimento e PDF, financeiro e assistente IA. Next.js e TypeScript.">
+  <meta name="keywords" content="ERP, gestão empresarial, vendas, estoque, rolo, orçamentos, compras, recebimento, financeiro, IA, Next.js">
+  <meta property="og:title" content="Elitium ERP — Gestão Empresarial Inteligente">
+  <meta property="og:description" content="Orçamentos com validade e prazo, estoque em rolo com alertas por %, compras pedido→receber com PDF para fornecedor, dashboard e IA.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#7c5cbf">
   <link rel="icon" type="image/svg+xml" href="Logo.svg">
@@ -280,10 +280,10 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span>Next.js · TypeScript · Prisma</div>
+      <div class="hero-badge"><span class="dot"></span><span data-i18n="hero.badge">2026 · Orçamentos · Estoque em rolo · Compras com recebimento</span></div>
       <img src="LogoE.svg" alt="Elitium ERP" class="hero-logo">
       <h1><span data-i18n="hero.h1a">Business management</span><br><span class="gradient" data-i18n="hero.h1b">complete and intelligent</span></h1>
-      <p data-i18n="hero.p">From sales control to AI-powered demand forecasting — everything integrated into a single platform. Simple enough for anyone, powerful enough for any business.</p>
+      <p data-i18n="hero.p">Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Orçamentos com validade e prazo, estoque em rolo com alertas por % e compras com recebimento e PDF para o fornecedor.</p>
       <div class="hero-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -384,14 +384,14 @@
         <div class="module-card">
           <div class="module-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
           <h3 data-i18n="mod.quotes">Quotes</h3>
-          <p data-i18n="mod.quotes.p">Send professional commercial proposals. Generate PDFs, track approvals and convert to orders.</p>
-          <span class="module-tag" data-i18n="mod.quotes.t">Proposals</span>
+          <p data-i18n="mod.quotes.p">Quote date, editable validity, delivery deadline in days from approval, PDF and conversion to orders.</p>
+          <span class="module-tag" data-i18n="mod.quotes.t">Commercial</span>
         </div>
         <div class="module-card">
           <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
           <h3 data-i18n="mod.inv">Inventory</h3>
-          <p data-i18n="mod.inv.p">Complete control of products, groups and variants. Low stock alerts and category organization.</p>
-          <span class="module-tag" data-i18n="mod.inv.t">Inventory</span>
+          <p data-i18n="mod.inv.p">Products, roll materials with waste-aware costing, % remaining alerts and clear stock health.</p>
+          <span class="module-tag" data-i18n="mod.inv.t">Rolls & units</span>
         </div>
         <div class="module-card">
           <div class="module-icon cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -402,8 +402,8 @@
         <div class="module-card">
           <div class="module-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
           <h3 data-i18n="mod.purch">Purchases</h3>
-          <p data-i18n="mod.purch.p">Manage purchase orders for suppliers. Control inventory intake and track deliveries.</p>
-          <span class="module-tag" data-i18n="mod.purch.t">Suppliers</span>
+          <p data-i18n="mod.purch.p">Order → receive flow: stock rises only on receipt, supplier PDF and intake control.</p>
+          <span class="module-tag" data-i18n="mod.purch.t">Receive + PDF</span>
         </div>
         <div class="module-card">
           <div class="module-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
@@ -480,10 +480,10 @@
         <div class="audience-card">
           <ul class="audience-list">
             <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l1">Visual dashboard with real-time metrics</span></li>
-            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l2">Professional quotes with PDF in seconds</span></li>
-            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l3">AI assistant that knows your data</span></li>
-            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l4">Demand forecasting with predictive algorithms</span></li>
-            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l5">Granular access control per role</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l2">Quotes with validity, delivery deadline and PDF</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l3">Roll stock with % alerts and waste-aware pricing</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l4">Purchases: order, receive and supplier PDF</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l5">AI assistant, forecasts and role-based access</span></li>
           </ul>
         </div>
         <div class="audience-card">
@@ -731,8 +731,9 @@
     const i18n = {
       pt: {
         'nav.about':'O que é','nav.modules':'Módulos','nav.arch':'Arquitetura','nav.security':'Segurança','nav.start':'Começar',
+        'hero.badge':'2026 · Orçamentos · Estoque em rolo · Compras com recebimento',
         'hero.h1a':'Gestão empresarial','hero.h1b':'completa e inteligente',
-        'hero.p':'Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Simples o suficiente para qualquer pessoa, poderosa o suficiente para qualquer negócio.',
+        'hero.p':'Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Orçamentos com validade e prazo, estoque em rolo com alertas por % e compras com recebimento e PDF para o fornecedor.',
         'hero.demo':'Acessar Demo','hero.github':'Ver no GitHub','hero.understand':'Entenda o projeto',
         'hero.stat1':'Módulos','hero.stat2':'API Completa','hero.stat3':'Autenticação','hero.stat4':'Integrada','hero.stat5':'Bilíngue',
         'about.tag':'Entenda o Elitium','about.h2a':'O que é um ERP','about.h2b':'e por que você precisa de um?',
@@ -749,10 +750,10 @@
         'mod.p':'Cada módulo cuida de uma área da sua empresa. Juntos, eles formam a visão completa.',
         'mod.dashboard':'Dashboard','mod.dashboard.p':'Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance.','mod.dashboard.t':'Visão geral',
         'mod.sales':'Vendas','mod.sales.p':'Crie e acompanhe pedidos de venda do início ao fim. Histórico completo e status em tempo real.','mod.sales.t':'Pedidos',
-        'mod.quotes':'Orçamentos','mod.quotes.p':'Envie propostas comerciais profissionais. Gere PDFs elegantes e converta orçamentos em pedidos.','mod.quotes.t':'Propostas',
-        'mod.inv':'Estoque','mod.inv.p':'Controle completo de produtos, grupos e variantes. Alertas de estoque baixo.','mod.inv.t':'Inventário',
+        'mod.quotes':'Orçamentos','mod.quotes.p':'Data do orçamento, validade editável, prazo de entrega em dias após aprovação, PDF e conversão em pedido.','mod.quotes.t':'Comercial',
+        'mod.inv':'Estoque','mod.inv.p':'Produtos, materiais em rolo com custo por aproveitamento, alertas por % restante e saúde do estoque clara.','mod.inv.t':'Rolos e unidades',
         'mod.clients':'Clientes','mod.clients.p':'Cadastro completo com CNPJ, telefone, endereço e histórico de compras.','mod.clients.t':'CRM',
-        'mod.purch':'Compras','mod.purch.p':'Gerencie pedidos de compra para fornecedores. Controle o que entra no estoque.','mod.purch.t':'Fornecedores',
+        'mod.purch':'Compras','mod.purch.p':'Fluxo pedido → receber: estoque sobe só no recebimento, PDF para o fornecedor e controle de entrada.','mod.purch.t':'Receber + PDF',
         'mod.fin':'Financeiro','mod.fin.p':'Receitas, despesas e lucros — tudo registrado e categorizado.','mod.fin.t':'Controle',
         'mod.inv2':'Faturamento','mod.inv2.p':'Relatórios detalhados por produto, cliente e período.','mod.inv2.t':'Relatórios',
         'mod.ai':'Assistente IA','mod.ai.p':'Converse com uma IA que conhece seus dados. Pergunte sobre vendas, analise tendências.',
@@ -763,9 +764,9 @@
         'mod.help':'Central de Ajuda','mod.help.p':'Painel de ajuda integrado com atalhos de teclado e documentação.','mod.help.t':'UX',
         'mod.admin':'Admin & Pricing','mod.admin.p':'Painel administrativo para configurações avançadas e gestão de preços.','mod.admin.t':'Config',
         'why.tag':'Por que Elitium','why.h2':'Simples para qualquer pessoa. Poderoso para qualquer negócio.','why.p':'Gerencie toda a sua operação em uma única plataforma — com código limpo que desenvolvedores podem confiar.',
-        'why.l1':'Dashboard visual com métricas em tempo real','why.l2':'Orçamentos profissionais com PDF em segundos',
-        'why.l3':'Assistente IA que conhece seus dados','why.l4':'Previsão de demanda com algoritmos preditivos',
-        'why.l5':'Controle de acesso granular por perfil',
+        'why.l1':'Dashboard visual com métricas em tempo real','why.l2':'Orçamentos com validade, prazo de entrega e PDF',
+        'why.l3':'Estoque em rolo com alertas por % e preço com desperdício','why.l4':'Compras: pedir, receber e PDF para fornecedor',
+        'why.l5':'Assistente IA, previsões e acesso por perfil',
         'why.l6':'Next.js 16 + React 19 + TypeScript','why.l7':'API REST versionada com autenticação JWT',
         'why.l8':'Prisma ORM com migrations tipadas','why.l9':'Testes automatizados e CI/CD pronto',
         'why.l10':'Monitoramento de erros com Sentry',
@@ -792,8 +793,9 @@
       },
       en: {
         'nav.about':'About','nav.modules':'Modules','nav.arch':'Architecture','nav.security':'Security','nav.start':'Get Started',
+        'hero.badge':'2026 · Quotes · Roll inventory · Purchases with receiving',
         'hero.h1a':'Business management','hero.h1b':'complete and intelligent',
-        'hero.p':'From sales control to AI-powered demand forecasting — everything integrated into a single platform. Simple enough for anyone, powerful enough for any business.',
+        'hero.p':'From sales control to AI-powered demand forecasting — everything in one platform. Quotes with validity and delivery deadlines, roll stock with % alerts, and purchases with receive flow plus supplier PDF.',
         'hero.demo':'Open Demo','hero.github':'View on GitHub','hero.understand':'Understand the project',
         'hero.stat1':'Modules','hero.stat2':'Full API','hero.stat3':'Auth','hero.stat4':'Integrated','hero.stat5':'Bilingual',
         'about.tag':'Understand Elitium','about.h2a':'What is an ERP','about.h2b':'and why do you need one?',
@@ -810,10 +812,10 @@
         'mod.p':'Each module handles an area of your company. Together, they form the complete picture.',
         'mod.dashboard':'Dashboard','mod.dashboard.p':'Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance.','mod.dashboard.t':'Overview',
         'mod.sales':'Sales','mod.sales.p':'Create and track sales orders from start to finish. Complete history and real-time status.','mod.sales.t':'Orders',
-        'mod.quotes':'Quotes','mod.quotes.p':'Send professional commercial proposals. Generate PDFs and convert quotes to orders.','mod.quotes.t':'Proposals',
-        'mod.inv':'Inventory','mod.inv.p':'Complete control of products, groups and variants. Low stock alerts.','mod.inv.t':'Inventory',
+        'mod.quotes':'Quotes','mod.quotes.p':'Quote date, editable validity, delivery deadline in days from approval, PDF and conversion to orders.','mod.quotes.t':'Commercial',
+        'mod.inv':'Inventory','mod.inv.p':'Products, roll materials with waste-aware costing, % remaining alerts and clear stock health.','mod.inv.t':'Rolls & units',
         'mod.clients':'Clients','mod.clients.p':'Complete client registration with CNPJ, phone, address and purchase history.','mod.clients.t':'CRM',
-        'mod.purch':'Purchases','mod.purch.p':'Manage purchase orders for suppliers. Control inventory intake.','mod.purch.t':'Suppliers',
+        'mod.purch':'Purchases','mod.purch.p':'Order → receive flow: stock rises only on receipt, supplier PDF and intake control.','mod.purch.t':'Receive + PDF',
         'mod.fin':'Finance','mod.fin.p':'Revenue, expenses and profits — all recorded and categorized.','mod.fin.t':'Control',
         'mod.inv2':'Billing','mod.inv2.p':'Detailed billing reports by product, client and period.','mod.inv2.t':'Reports',
         'mod.ai':'AI Assistant','mod.ai.p':'Chat with an AI that knows your data. Ask about sales, analyze trends.',
@@ -824,9 +826,9 @@
         'mod.help':'Help Center','mod.help.p':'Integrated help panel with keyboard shortcuts and documentation.','mod.help.t':'UX',
         'mod.admin':'Admin & Pricing','mod.admin.p':'Administrative panel for advanced settings and pricing management.','mod.admin.t':'Config',
         'why.tag':'Why Elitium','why.h2':'Simple for anyone. Powerful for any business.','why.p':'Manage your entire operation from a single platform — with clean code that developers can trust.',
-        'why.l1':'Visual dashboard with real-time metrics','why.l2':'Professional quotes with PDF in seconds',
-        'why.l3':'AI assistant that knows your data','why.l4':'Demand forecasting with predictive algorithms',
-        'why.l5':'Granular access control per role',
+        'why.l1':'Visual dashboard with real-time metrics','why.l2':'Quotes with validity, delivery deadline and PDF',
+        'why.l3':'Roll stock with % alerts and waste-aware pricing','why.l4':'Purchases: order, receive and supplier PDF',
+        'why.l5':'AI assistant, forecasts and role-based access',
         'why.l6':'Next.js 16 + React 19 + TypeScript','why.l7':'Versioned REST API with JWT auth',
         'why.l8':'Prisma ORM with typed migrations','why.l9':'Automated tests and CI/CD ready',
         'why.l10':'Error monitoring with Sentry',
@@ -881,8 +883,8 @@
       setLang(btn.dataset.lang);
     });
 
-    const savedLang = localStorage.getItem('elitium-lang') || 'en';
-    if (savedLang !== 'pt') setLang(savedLang);
+    const savedLang = localStorage.getItem('elitium-lang') || 'pt';
+    setLang(savedLang);
   </script>
 </body>
 </html>
