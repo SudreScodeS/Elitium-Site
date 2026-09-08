@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elitium ERP — Gestão Empresarial Inteligente</title>
-  <meta name="description" content="ERP completo: vendas, estoque em rolo, orçamentos com validade e prazo, compras com recebimento e PDF, financeiro e assistente IA. Next.js e TypeScript.">
-  <meta name="keywords" content="ERP, gestão empresarial, vendas, estoque, rolo, orçamentos, compras, recebimento, financeiro, IA, Next.js">
+  <meta name="description" content="ERP comercial: vendas, orçamentos, estoque em rolo, compras, financeiro, relatórios, analytics, Web Push e assistente IA (Groq). Next.js 16 e TypeScript.">
+  <meta name="keywords" content="ERP, gestão empresarial, vendas, estoque, rolo, orçamentos, compras, financeiro, analytics, relatórios, IA, Groq, Next.js">
   <meta property="og:title" content="Elitium ERP — Gestão Empresarial Inteligente">
-  <meta property="og:description" content="Orçamentos com validade e prazo, estoque em rolo com alertas por %, compras pedido→receber com PDF para fornecedor, dashboard e IA.">
+  <meta property="og:description" content="Orçamentos com validade e prazo, estoque em rolo, compras com recebimento, analytics, Web Push e assistente IA com Groq.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#7c5cbf">
   <link rel="icon" type="image/svg+xml" href="Logo.svg">
@@ -196,14 +196,19 @@
     .cta-note{margin-top:20px;font-size:12px;color:var(--text-muted)}
 
     /* ============ FOOTER ============ */
-    footer{border-top:1px solid var(--border-subtle);padding:40px 0}
-    .footer-content{display:flex;align-items:center;justify-content:space-between}
+    footer{border-top:1px solid var(--border-subtle);padding:36px 0 28px}
+    .footer-content{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .footer-left{display:flex;align-items:center;gap:10px}
     .footer-left img{height:20px}
     .footer-left span{font-size:13px;color:var(--text-muted)}
     .footer-links{display:flex;gap:24px;list-style:none}
     .footer-links a{color:var(--text-muted);text-decoration:none;font-size:12px;transition:color var(--transition)}
     .footer-links a:hover{color:var(--text-secondary)}
+    .footer-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle)}
+    .footer-brand a{display:flex;line-height:0}
+    .footer-brand img{height:26px;width:auto;opacity:.8;transition:opacity var(--transition)}
+    .footer-brand a:hover img{opacity:1}
+    .footer-brand span{font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:.02em}
 
     /* ============ ANIMATIONS ============ */
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -260,10 +265,6 @@
         <li><a href="#api">API</a></li>
         <li><a href="#security" data-i18n="nav.security">Security</a></li>
         <li><a href="#start" data-i18n="nav.start">Get Started</a></li>
-        <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-ghost" style="padding:7px 14px;font-size:12px">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a></li>
       </ul>
       <div style="display:flex;align-items:center;gap:10px">
         <div class="lang-toggle" id="langToggle">
@@ -280,18 +281,14 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge"><span class="dot"></span><span data-i18n="hero.badge">2026 · Orçamentos · Estoque em rolo · Compras com recebimento</span></div>
+      <div class="hero-badge"><span class="dot"></span><span data-i18n="hero.badge">2026 · Orçamentos · Estoque em rolo · Analytics · IA</span></div>
       <img src="LogoE.svg" alt="Elitium ERP" class="hero-logo">
       <h1><span data-i18n="hero.h1a">Business management</span><br><span class="gradient" data-i18n="hero.h1b">complete and intelligent</span></h1>
-      <p data-i18n="hero.p">Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Orçamentos com validade e prazo, estoque em rolo com alertas por % e compras com recebimento e PDF para o fornecedor.</p>
+      <p data-i18n="hero.p">Do controle de vendas à previsão de demanda com IA — tudo em uma plataforma. Orçamentos com validade e prazo, estoque em rolo, compras com recebimento, analytics e notificações Web Push.</p>
       <div class="hero-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
           <span data-i18n="hero.demo">Open Demo</span>
-        </a>
-        <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          <span data-i18n="hero.github">View on GitHub</span>
         </a>
         <a href="#about" class="btn btn-ghost btn-lg">
           <span data-i18n="hero.understand">Understand the project</span>
@@ -299,7 +296,7 @@
         </a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="number">15+</div><div class="label" data-i18n="hero.stat1">Modules</div></div>
+        <div class="hero-stat"><div class="number">16+</div><div class="label" data-i18n="hero.stat1">Modules</div></div>
         <div class="hero-stat"><div class="number">REST</div><div class="label" data-i18n="hero.stat2">Full API</div></div>
         <div class="hero-stat"><div class="number">JWT</div><div class="label" data-i18n="hero.stat3">Auth</div></div>
         <div class="hero-stat"><div class="number">AI</div><div class="label" data-i18n="hero.stat4">Integrated</div></div>
@@ -390,13 +387,13 @@
         <div class="module-card">
           <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
           <h3 data-i18n="mod.inv">Inventory</h3>
-          <p data-i18n="mod.inv.p">Products, roll materials with waste-aware costing, % remaining alerts and clear stock health.</p>
+          <p data-i18n="mod.inv.p">Products, groups, variables, roll calculator with nesting, % remaining alerts and product AI.</p>
           <span class="module-tag" data-i18n="mod.inv.t">Rolls & units</span>
         </div>
         <div class="module-card">
           <div class="module-icon cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3 data-i18n="mod.clients">Clients</h3>
-          <p data-i18n="mod.clients.p">Complete client registration with CNPJ, phone, address and purchase history.</p>
+          <p data-i18n="mod.clients.p">Client registry with encrypted PII, seller ownership, CNPJ, phone, address and purchase history.</p>
           <span class="module-tag" data-i18n="mod.clients.t">CRM</span>
         </div>
         <div class="module-card">
@@ -408,20 +405,26 @@
         <div class="module-card">
           <div class="module-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
           <h3 data-i18n="mod.fin">Finance</h3>
-          <p data-i18n="mod.fin.p">Revenue, expenses and profits — all recorded and categorized. Clear cash flow.</p>
+          <p data-i18n="mod.fin.p">Entries, cash flow, audit trail and tools to resolve divergences between records.</p>
           <span class="module-tag" data-i18n="mod.fin.t">Control</span>
         </div>
         <div class="module-card">
           <div class="module-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M14 8H8"/><path d="M16 12H8"/><path d="M13 16H8"/></svg></div>
-          <h3 data-i18n="mod.inv2">Billing</h3>
-          <p data-i18n="mod.inv2.p">Detailed billing reports by product, client and period. Understand what sells best.</p>
-          <span class="module-tag" data-i18n="mod.inv2.t">Reports</span>
+          <h3 data-i18n="mod.inv2">Reports</h3>
+          <p data-i18n="mod.inv2.p">Tabular reports by product, client and period — with PDF and CSV export.</p>
+          <span class="module-tag" data-i18n="mod.inv2.t">Data hub</span>
+        </div>
+        <div class="module-card">
+          <div class="module-icon cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16V8"/><path d="M12 16v-5"/><path d="M17 16V4"/></svg></div>
+          <h3 data-i18n="mod.analytics">Analytics</h3>
+          <p data-i18n="mod.analytics.p">Interactive charts for sales, performance and commercial health — scoped by permissions.</p>
+          <span class="module-tag" data-i18n="mod.analytics.t">Recharts</span>
         </div>
         <div class="module-card">
           <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div>
           <h3 data-i18n="mod.ai">AI Assistant</h3>
-          <p data-i18n="mod.ai.p">Chat with an AI that knows your data. Ask about sales, analyze trends in natural language.</p>
-          <span class="module-tag">Google Gemini</span>
+          <p data-i18n="mod.ai.p">Chat with an AI that knows your data and help docs. Ask about sales, stock and workflows.</p>
+          <span class="module-tag">Groq</span>
         </div>
         <div class="module-card">
           <div class="module-icon cyan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
@@ -437,9 +440,9 @@
         </div>
         <div class="module-card">
           <div class="module-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg></div>
-          <h3 data-i18n="mod.notif">Notifications & Audit</h3>
-          <p data-i18n="mod.notif.p">Complete log of all actions. Know who did what and when. Full traceability.</p>
-          <span class="module-tag" data-i18n="mod.notif.t">Traceability</span>
+          <h3 data-i18n="mod.notif">Notifications</h3>
+          <p data-i18n="mod.notif.p">In-app center, Web Push alerts and activity logs — know what happened and when.</p>
+          <span class="module-tag" data-i18n="mod.notif.t">Web Push</span>
         </div>
         <div class="module-card">
           <div class="module-icon purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></div>
@@ -449,17 +452,16 @@
         </div>
         <div class="module-card">
           <div class="module-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
-          <h3 data-i18n="mod.help">Help Center</h3>
-          <p data-i18n="mod.help.p">Integrated help panel with keyboard shortcuts and contextual documentation.</p>
-          <span class="module-tag" data-i18n="mod.help.t">UX</span>
+          <h3 data-i18n="mod.help">System Guide</h3>
+          <p data-i18n="mod.help.p">Built-in guide with shortcuts, contextual tips and Ask-AI deep links into help.</p>
+          <span class="module-tag" data-i18n="mod.help.t">Guide</span>
         </div>
         <div class="module-card">
           <div class="module-icon orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg></div>
-          <h3 data-i18n="mod.admin">Admin & Pricing</h3>
-          <p data-i18n="mod.admin.p">Administrative panel for advanced settings, pricing management and global parameters.</p>
+          <h3 data-i18n="mod.admin">Admin & Settings</h3>
+          <p data-i18n="mod.admin.p">Pricing, print options, delivery notifications, undo recent actions and global parameters.</p>
           <span class="module-tag" data-i18n="mod.admin.t">Config</span>
         </div>
-        <div class="module-card module-placeholder"></div>
       </div>
     </div>
   </section>
@@ -481,9 +483,9 @@
           <ul class="audience-list">
             <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l1">Visual dashboard with real-time metrics</span></li>
             <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l2">Quotes with validity, delivery deadline and PDF</span></li>
-            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l3">Roll stock with % alerts and waste-aware pricing</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l3">Roll calculator with nesting and % alerts</span></li>
             <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l4">Purchases: order, receive and supplier PDF</span></li>
-            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l5">AI assistant, forecasts and role-based access</span></li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <span data-i18n="why.l5">Analytics, Web Push and Groq AI assistant</span></li>
           </ul>
         </div>
         <div class="audience-card">
@@ -515,9 +517,9 @@
         <div class="arch-card">
           <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></svg> Frontend</div>
           <h3 data-i18n="arch.fe.h3">Modern Interface</h3>
-          <p data-i18n="arch.fe.p">React 19 with Next.js App Router. Reusable components, light/dark themes, drag-and-drop on the dashboard, and PWA support.</p>
+          <p data-i18n="arch.fe.p">React 19 with Next.js App Router. Reusable components, light/dark themes, Recharts analytics and PWA with Service Worker.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Next.js 16</span><span class="tech-tag">React 19</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Tailwind CSS 4</span><span class="tech-tag">PWA</span>
+            <span class="tech-tag">Next.js 16</span><span class="tech-tag">React 19</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Tailwind CSS 4</span><span class="tech-tag">Recharts</span><span class="tech-tag">PWA</span>
           </div>
         </div>
         <div class="arch-card">
@@ -525,23 +527,23 @@
           <h3 data-i18n="arch.be.h3">Robust API</h3>
           <p data-i18n="arch.be.p">Versioned REST API (v1) with JWT authentication, rate limiting, CSRF protection and standardized responses.</p>
           <div class="tech-tags">
-            <span class="tech-tag">API Routes</span><span class="tech-tag">JWT + Refresh</span><span class="tech-tag">Middleware</span><span class="tech-tag">CSRF</span><span class="tech-tag">Rate Limiting</span>
+            <span class="tech-tag">API Routes</span><span class="tech-tag">JWT + Refresh</span><span class="tech-tag">Middleware</span><span class="tech-tag">CSRF</span><span class="tech-tag">Rate Limiting</span><span class="tech-tag">Web Push</span>
           </div>
         </div>
         <div class="arch-card">
           <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg> Data</div>
           <h3 data-i18n="arch.data.h3">Database & ORM</h3>
-          <p data-i18n="arch.data.p">Prisma ORM with versioned migrations, seed scripts and strong typing from database to frontend.</p>
+          <p data-i18n="arch.data.p">PostgreSQL 16 + Prisma ORM with versioned migrations, seed scripts and strong typing from database to frontend.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Prisma</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Migrations</span><span class="tech-tag">Zod</span>
+            <span class="tech-tag">Prisma</span><span class="tech-tag">PostgreSQL 16</span><span class="tech-tag">Migrations</span><span class="tech-tag">Zod</span>
           </div>
         </div>
         <div class="arch-card">
           <div class="tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg> Intelligence</div>
           <h3 data-i18n="arch.ai.h3">AI & Forecasting</h3>
-          <p data-i18n="arch.ai.p">Integration with Google Gemini for AI chat. Demand forecasting algorithms based on sales history.</p>
+          <p data-i18n="arch.ai.p">Groq-powered assistant with tools and product help lookup. Demand forecasting from sales history; pattern matching when no API key is set.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Google Gemini</span><span class="tech-tag">LLM Local</span><span class="tech-tag">Forecasting</span>
+            <span class="tech-tag">Groq</span><span class="tech-tag">Tools</span><span class="tech-tag">Forecasting</span>
           </div>
         </div>
       </div>
@@ -573,7 +575,8 @@
             <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/finance</span><span class="desc" data-i18n="api.d6">Finance</span></div>
             <div class="api-endpoint"><span class="method post">POST</span><span class="route">/api/v1/assistant</span><span class="desc" data-i18n="api.d7">AI Chat</span></div>
             <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/suppliers</span><span class="desc" data-i18n="api.d8">Suppliers</span></div>
-            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/reports/faturamento</span><span class="desc" data-i18n="api.d9">Reports</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/reports</span><span class="desc" data-i18n="api.d9">Reports</span></div>
+            <div class="api-endpoint"><span class="method get">GET</span><span class="route">/api/v1/reports/analytics</span><span class="desc" data-i18n="api.d10">Analytics</span></div>
           </div>
         </div>
         <div class="code-block">
@@ -612,7 +615,7 @@
       <div class="security-grid reveal">
         <div class="security-item">
           <div class="security-icon green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78Zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
-          <div><h4 data-i18n="sec.jwt.h4">JWT with Rotation</h4><p data-i18n="sec.jwt.p">Short-lived access tokens (1h) with rotating refresh tokens.</p></div>
+          <div><h4 data-i18n="sec.jwt.h4">JWT with Rotation</h4><p data-i18n="sec.jwt.p">Short-lived access tokens (~15 min) with rotating refresh tokens.</p></div>
         </div>
         <div class="security-item">
           <div class="security-icon purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg></div>
@@ -646,18 +649,14 @@
         Get Started
       </span>
       <h2 data-i18n="cta.h2">Ready to organize your business?</h2>
-      <p data-i18n="cta.p">Deploy in minutes. Open source. Scalable with no user limits.</p>
+      <p data-i18n="cta.p">Deploy in minutes. Scalable with no user limits.</p>
       <div class="cta-actions">
         <a href="https://elitium-erp.onrender.com" target="_blank" class="btn btn-green btn-lg">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
           <span data-i18n="cta.btn1">Open Elitium ERP</span>
         </a>
-        <a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank" class="btn btn-primary btn-lg">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.02 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span data-i18n="cta.btn2">View on GitHub</span>
-        </a>
       </div>
-      <p class="cta-note" data-i18n="cta.note">Open source · Scalable · No user limits</p>
+      <p class="cta-note" data-i18n="cta.note">Scalable · No user limits</p>
     </div>
   </section>
 
@@ -670,12 +669,18 @@
           <span data-i18n="footer.copy">© 2026 Elitium ERP. All rights reserved.</span>
         </div>
         <ul class="footer-links">
-          <li><a href="https://github.com/SudreScodeS/Elitium-ERP" target="_blank">GitHub</a></li>
+          <li><a href="https://elitium-erp.onrender.com" target="_blank" rel="noopener noreferrer">Demo</a></li>
           <li><a href="#modules" data-i18n="footer.modules">Modules</a></li>
           <li><a href="#api">API</a></li>
           <li><a href="#security" data-i18n="footer.security">Security</a></li>
           <li><a href="#start" data-i18n="footer.start">Get Started</a></li>
         </ul>
+      </div>
+      <div class="footer-brand">
+        <a href="https://github.com/SudreScodeS" target="_blank" rel="noopener noreferrer">
+          <img src="LogoE-VS.png" alt="VS" height="26">
+        </a>
+        <span>por Sudre's Codes</span>
       </div>
     </div>
   </footer>
@@ -731,10 +736,10 @@
     const i18n = {
       pt: {
         'nav.about':'O que é','nav.modules':'Módulos','nav.arch':'Arquitetura','nav.security':'Segurança','nav.start':'Começar',
-        'hero.badge':'2026 · Orçamentos · Estoque em rolo · Compras com recebimento',
+        'hero.badge':'2026 · Orçamentos · Estoque em rolo · Analytics · IA',
         'hero.h1a':'Gestão empresarial','hero.h1b':'completa e inteligente',
-        'hero.p':'Do controle de vendas à previsão de demanda com IA — tudo integrado em uma única plataforma. Orçamentos com validade e prazo, estoque em rolo com alertas por % e compras com recebimento e PDF para o fornecedor.',
-        'hero.demo':'Acessar Demo','hero.github':'Ver no GitHub','hero.understand':'Entenda o projeto',
+        'hero.p':'Do controle de vendas à previsão de demanda com IA — tudo em uma plataforma. Orçamentos com validade e prazo, estoque em rolo, compras com recebimento, analytics e notificações Web Push.',
+        'hero.demo':'Acessar Demo','hero.understand':'Entenda o projeto',
         'hero.stat1':'Módulos','hero.stat2':'API Completa','hero.stat3':'Autenticação','hero.stat4':'Integrada','hero.stat5':'Bilíngue',
         'about.tag':'Entenda o Elitium','about.h2a':'O que é um ERP','about.h2b':'e por que você precisa de um?',
         'about.p1':'ERP significa "Enterprise Resource Planning" — ou seja, um sistema que centraliza toda a gestão da sua empresa em um só lugar.',
@@ -751,52 +756,53 @@
         'mod.dashboard':'Dashboard','mod.dashboard.p':'Painel principal com métricas em tempo real. Veja vendas, receita, estoque e lucro de relance.','mod.dashboard.t':'Visão geral',
         'mod.sales':'Vendas','mod.sales.p':'Crie e acompanhe pedidos de venda do início ao fim. Histórico completo e status em tempo real.','mod.sales.t':'Pedidos',
         'mod.quotes':'Orçamentos','mod.quotes.p':'Data do orçamento, validade editável, prazo de entrega em dias após aprovação, PDF e conversão em pedido.','mod.quotes.t':'Comercial',
-        'mod.inv':'Estoque','mod.inv.p':'Produtos, materiais em rolo com custo por aproveitamento, alertas por % restante e saúde do estoque clara.','mod.inv.t':'Rolos e unidades',
-        'mod.clients':'Clientes','mod.clients.p':'Cadastro completo com CNPJ, telefone, endereço e histórico de compras.','mod.clients.t':'CRM',
+        'mod.inv':'Estoque','mod.inv.p':'Produtos, grupos, variáveis, calculadora de rolo com desdobramento, alertas por % e IA de produto.','mod.inv.t':'Rolos e unidades',
+        'mod.clients':'Clientes','mod.clients.p':'Cadastro com PII criptografada, ownership por vendedor, CNPJ, telefone, endereço e histórico.','mod.clients.t':'CRM',
         'mod.purch':'Compras','mod.purch.p':'Fluxo pedido → receber: estoque sobe só no recebimento, PDF para o fornecedor e controle de entrada.','mod.purch.t':'Receber + PDF',
-        'mod.fin':'Financeiro','mod.fin.p':'Receitas, despesas e lucros — tudo registrado e categorizado.','mod.fin.t':'Controle',
-        'mod.inv2':'Faturamento','mod.inv2.p':'Relatórios detalhados por produto, cliente e período.','mod.inv2.t':'Relatórios',
-        'mod.ai':'Assistente IA','mod.ai.p':'Converse com uma IA que conhece seus dados. Pergunte sobre vendas, analise tendências.',
+        'mod.fin':'Financeiro','mod.fin.p':'Lançamentos, fluxo de caixa, auditoria e ferramentas para resolver divergências.','mod.fin.t':'Controle',
+        'mod.inv2':'Relatórios','mod.inv2.p':'Relatórios tabulares por produto, cliente e período — com exportação PDF e CSV.','mod.inv2.t':'Hub de dados',
+        'mod.analytics':'Analytics','mod.analytics.p':'Gráficos interativos de vendas, performance e saúde comercial — com permissões por escopo.','mod.analytics.t':'Recharts',
+        'mod.ai':'Assistente IA','mod.ai.p':'Converse com uma IA que conhece seus dados e o guia do sistema. Pergunte sobre vendas, estoque e fluxos.',
         'mod.forecast':'Previsão de Demanda','mod.forecast.p':'Algoritmos analisam seu histórico e mostram tendências futuras.','mod.forecast.t':'Preditivo',
         'mod.users':'Usuários & Permissões','mod.users.p':'Controle de acesso granular: admins veem tudo, vendedores veem o que precisam.','mod.users.t':'RBAC',
-        'mod.notif':'Notificações & Auditoria','mod.notif.p':'Log completo de todas as ações. Quem fez o quê e quando.','mod.notif.t':'Rastreabilidade',
+        'mod.notif':'Notificações','mod.notif.p':'Central in-app, alertas Web Push e logs de atividade — saiba o que aconteceu e quando.','mod.notif.t':'Web Push',
         'mod.i18n':'Internacionalização','mod.i18n.p':'Interface em Português (Brasil) e Inglês.',
-        'mod.help':'Central de Ajuda','mod.help.p':'Painel de ajuda integrado com atalhos de teclado e documentação.','mod.help.t':'UX',
-        'mod.admin':'Admin & Pricing','mod.admin.p':'Painel administrativo para configurações avançadas e gestão de preços.','mod.admin.t':'Config',
+        'mod.help':'Guia do Sistema','mod.help.p':'Guia integrado com atalhos, dicas contextuais e deep links Ask-AI na ajuda.','mod.help.t':'Guide',
+        'mod.admin':'Admin & Configurações','mod.admin.p':'Pricing, impressão, notificações de entrega, desfazer ações recentes e parâmetros globais.','mod.admin.t':'Config',
         'why.tag':'Por que Elitium','why.h2':'Simples para qualquer pessoa. Poderoso para qualquer negócio.','why.p':'Gerencie toda a sua operação em uma única plataforma — com código limpo que desenvolvedores podem confiar.',
         'why.l1':'Dashboard visual com métricas em tempo real','why.l2':'Orçamentos com validade, prazo de entrega e PDF',
-        'why.l3':'Estoque em rolo com alertas por % e preço com desperdício','why.l4':'Compras: pedir, receber e PDF para fornecedor',
-        'why.l5':'Assistente IA, previsões e acesso por perfil',
+        'why.l3':'Calculadora de rolo com desdobramento e alertas por %','why.l4':'Compras: pedir, receber e PDF para fornecedor',
+        'why.l5':'Analytics, Web Push e assistente IA com Groq',
         'why.l6':'Next.js 16 + React 19 + TypeScript','why.l7':'API REST versionada com autenticação JWT',
         'why.l8':'Prisma ORM com migrations tipadas','why.l9':'Testes automatizados e CI/CD pronto',
         'why.l10':'Monitoramento de erros com Sentry',
         'arch.tag':'Arquitetura','arch.h2':'Construído para escalar','arch.p':'Stack moderna com separação clara de responsabilidades.',
-        'arch.fe.h3':'Interface Moderna','arch.fe.p':'React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro e suporte a PWA.',
-        'arch.be.h3':'API Robusta','arch.be.p':'API REST versionada (v1) com autenticação JWT, rate limiting e proteção CSRF.',
-        'arch.data.h3':'Banco & ORM','arch.data.p':'Prisma ORM com migrations versionadas e tipagem forte do banco até o frontend.',
-        'arch.ai.h3':'IA & Previsão','arch.ai.p':'Integração com Google Gemini para chat com IA. Algoritmos de previsão de demanda.',
+        'arch.fe.h3':'Interface Moderna','arch.fe.p':'React 19 com Next.js App Router. Componentes reutilizáveis, temas claro/escuro, analytics com Recharts e PWA com Service Worker.',
+        'arch.be.h3':'API Robusta','arch.be.p':'API REST versionada (v1) com autenticação JWT, rate limiting, proteção CSRF e Web Push.',
+        'arch.data.h3':'Banco & ORM','arch.data.p':'PostgreSQL 16 + Prisma ORM com migrations versionadas e tipagem forte do banco até o frontend.',
+        'arch.ai.h3':'IA & Previsão','arch.ai.p':'Assistente com Groq, tools e lookup de ajuda. Previsão de demanda; pattern matching quando não há API key.',
         'api.tag':'API','api.h2':'Documentada & Padronizada','api.p':'Todas as rotas seguem o mesmo contrato. Previsível, testável e fácil de integrar.',
         'api.h3':'Contrato consistente','api.desc':'Toda resposta da API vem no mesmo formato: sucesso, mensagem, dados e metadados com timestamp e ID de rastreamento.',
         'api.d1':'Autenticação','api.d2':'Métricas','api.d3':'Pedidos','api.d4':'Orçamentos','api.d5':'Produtos',
-        'api.d6':'Financeiro','api.d7':'Chat IA','api.d8':'Fornecedores','api.d9':'Relatórios',
+        'api.d6':'Financeiro','api.d7':'Chat IA','api.d8':'Fornecedores','api.d9':'Relatórios','api.d10':'Analytics',
         'api.code.msg':'"Operação realizada com sucesso."',
         'sec.tag':'Segurança','sec.h2':'Segurança por design','sec.p':'Cada camada do sistema tem sua proteção. Não é um recurso extra — é parte da fundação.',
-        'sec.jwt.h4':'JWT com Rotação','sec.jwt.p':'Access tokens curtos (1h) com refresh tokens rotativos.',
+        'sec.jwt.h4':'JWT com Rotação','sec.jwt.p':'Access tokens curtos (~15 min) com refresh tokens rotativos.',
         'sec.cookie.h4':'HttpOnly Cookies','sec.cookie.p':'Refresh tokens em cookies HttpOnly. Protegido contra XSS.',
         'sec.csrf.h4':'Proteção CSRF','sec.csrf.p':'Todas as operações que alteram dados são protegidas contra falsificação.',
         'sec.rate.h4':'Rate Limiting','sec.rate.p':'Controle automático de requisições por IP e usuário.',
         'sec.acl.h4':'Controle de Acesso','sec.acl.p':'Roles granulares (admin/seller) com permissões por módulo.',
         'sec.audit.h4':'Audit Logs','sec.audit.p':'Registro completo de todas as ações. Rastreabilidade total.',
-        'cta.tag':'Começar','cta.h2':'Pronto para organizar seu negócio?','cta.p':'Deploy em minutos. Open source. Escalável e sem limites de usuários.',
-        'cta.btn1':'Acessar Elitium ERP','cta.btn2':'Ver no GitHub','cta.note':'Open source · Escalável · Sem limites de usuários',
+        'cta.tag':'Começar','cta.h2':'Pronto para organizar seu negócio?','cta.p':'Deploy em minutos. Escalável e sem limites de usuários.',
+        'cta.btn1':'Acessar Elitium ERP','cta.note':'Escalável · Sem limites de usuários',
         'footer.copy':'© 2026 Elitium ERP. All rights reserved.','footer.modules':'Módulos','footer.security':'Segurança','footer.start':'Começar',
       },
       en: {
         'nav.about':'About','nav.modules':'Modules','nav.arch':'Architecture','nav.security':'Security','nav.start':'Get Started',
-        'hero.badge':'2026 · Quotes · Roll inventory · Purchases with receiving',
+        'hero.badge':'2026 · Quotes · Roll inventory · Analytics · AI',
         'hero.h1a':'Business management','hero.h1b':'complete and intelligent',
-        'hero.p':'From sales control to AI-powered demand forecasting — everything in one platform. Quotes with validity and delivery deadlines, roll stock with % alerts, and purchases with receive flow plus supplier PDF.',
-        'hero.demo':'Open Demo','hero.github':'View on GitHub','hero.understand':'Understand the project',
+        'hero.p':'From sales control to AI-powered demand forecasting — everything in one platform. Quotes with validity and deadlines, roll stock, purchases with receiving, analytics and Web Push notifications.',
+        'hero.demo':'Open Demo','hero.understand':'Understand the project',
         'hero.stat1':'Modules','hero.stat2':'Full API','hero.stat3':'Auth','hero.stat4':'Integrated','hero.stat5':'Bilingual',
         'about.tag':'Understand Elitium','about.h2a':'What is an ERP','about.h2b':'and why do you need one?',
         'about.p1':'ERP stands for "Enterprise Resource Planning" — a system that centralizes all your company\'s management in one place.',
@@ -813,44 +819,45 @@
         'mod.dashboard':'Dashboard','mod.dashboard.p':'Main panel with real-time metrics. See sales, revenue, inventory and profit at a glance.','mod.dashboard.t':'Overview',
         'mod.sales':'Sales','mod.sales.p':'Create and track sales orders from start to finish. Complete history and real-time status.','mod.sales.t':'Orders',
         'mod.quotes':'Quotes','mod.quotes.p':'Quote date, editable validity, delivery deadline in days from approval, PDF and conversion to orders.','mod.quotes.t':'Commercial',
-        'mod.inv':'Inventory','mod.inv.p':'Products, roll materials with waste-aware costing, % remaining alerts and clear stock health.','mod.inv.t':'Rolls & units',
-        'mod.clients':'Clients','mod.clients.p':'Complete client registration with CNPJ, phone, address and purchase history.','mod.clients.t':'CRM',
+        'mod.inv':'Inventory','mod.inv.p':'Products, groups, variables, roll calculator with nesting, % remaining alerts and product AI.','mod.inv.t':'Rolls & units',
+        'mod.clients':'Clients','mod.clients.p':'Client registry with encrypted PII, seller ownership, CNPJ, phone, address and purchase history.','mod.clients.t':'CRM',
         'mod.purch':'Purchases','mod.purch.p':'Order → receive flow: stock rises only on receipt, supplier PDF and intake control.','mod.purch.t':'Receive + PDF',
-        'mod.fin':'Finance','mod.fin.p':'Revenue, expenses and profits — all recorded and categorized.','mod.fin.t':'Control',
-        'mod.inv2':'Billing','mod.inv2.p':'Detailed billing reports by product, client and period.','mod.inv2.t':'Reports',
-        'mod.ai':'AI Assistant','mod.ai.p':'Chat with an AI that knows your data. Ask about sales, analyze trends.',
+        'mod.fin':'Finance','mod.fin.p':'Entries, cash flow, audit trail and tools to resolve divergences between records.','mod.fin.t':'Control',
+        'mod.inv2':'Reports','mod.inv2.p':'Tabular reports by product, client and period — with PDF and CSV export.','mod.inv2.t':'Data hub',
+        'mod.analytics':'Analytics','mod.analytics.p':'Interactive charts for sales, performance and commercial health — scoped by permissions.','mod.analytics.t':'Recharts',
+        'mod.ai':'AI Assistant','mod.ai.p':'Chat with an AI that knows your data and help docs. Ask about sales, stock and workflows.',
         'mod.forecast':'Demand Forecast','mod.forecast.p':'Algorithms analyze your sales history and show future trends.','mod.forecast.t':'Predictive',
         'mod.users':'Users & Permissions','mod.users.p':'Granular access control: admins see everything, salespeople see what they need.','mod.users.t':'RBAC',
-        'mod.notif':'Notifications & Audit','mod.notif.p':'Complete log of all actions. Know who did what and when.','mod.notif.t':'Traceability',
+        'mod.notif':'Notifications','mod.notif.p':'In-app center, Web Push alerts and activity logs — know what happened and when.','mod.notif.t':'Web Push',
         'mod.i18n':'Internationalization','mod.i18n.p':'Interface in Portuguese (Brazil) and English.',
-        'mod.help':'Help Center','mod.help.p':'Integrated help panel with keyboard shortcuts and documentation.','mod.help.t':'UX',
-        'mod.admin':'Admin & Pricing','mod.admin.p':'Administrative panel for advanced settings and pricing management.','mod.admin.t':'Config',
+        'mod.help':'System Guide','mod.help.p':'Built-in guide with shortcuts, contextual tips and Ask-AI deep links into help.','mod.help.t':'Guide',
+        'mod.admin':'Admin & Settings','mod.admin.p':'Pricing, print options, delivery notifications, undo recent actions and global parameters.','mod.admin.t':'Config',
         'why.tag':'Why Elitium','why.h2':'Simple for anyone. Powerful for any business.','why.p':'Manage your entire operation from a single platform — with clean code that developers can trust.',
         'why.l1':'Visual dashboard with real-time metrics','why.l2':'Quotes with validity, delivery deadline and PDF',
-        'why.l3':'Roll stock with % alerts and waste-aware pricing','why.l4':'Purchases: order, receive and supplier PDF',
-        'why.l5':'AI assistant, forecasts and role-based access',
+        'why.l3':'Roll calculator with nesting and % alerts','why.l4':'Purchases: order, receive and supplier PDF',
+        'why.l5':'Analytics, Web Push and Groq AI assistant',
         'why.l6':'Next.js 16 + React 19 + TypeScript','why.l7':'Versioned REST API with JWT auth',
         'why.l8':'Prisma ORM with typed migrations','why.l9':'Automated tests and CI/CD ready',
         'why.l10':'Error monitoring with Sentry',
         'arch.tag':'Architecture','arch.h2':'Built to scale','arch.p':'Modern stack with clear separation of concerns.',
-        'arch.fe.h3':'Modern Interface','arch.fe.p':'React 19 with Next.js App Router. Reusable components, light/dark themes and PWA support.',
-        'arch.be.h3':'Robust API','arch.be.p':'Versioned REST API (v1) with JWT authentication, rate limiting and CSRF protection.',
-        'arch.data.h3':'Database & ORM','arch.data.p':'Prisma ORM with versioned migrations and strong typing from database to frontend.',
-        'arch.ai.h3':'AI & Forecasting','arch.ai.p':'Integration with Google Gemini for AI chat. Demand forecasting algorithms.',
+        'arch.fe.h3':'Modern Interface','arch.fe.p':'React 19 with Next.js App Router. Reusable components, light/dark themes, Recharts analytics and PWA with Service Worker.',
+        'arch.be.h3':'Robust API','arch.be.p':'Versioned REST API (v1) with JWT authentication, rate limiting, CSRF protection and Web Push.',
+        'arch.data.h3':'Database & ORM','arch.data.p':'PostgreSQL 16 + Prisma ORM with versioned migrations and strong typing from database to frontend.',
+        'arch.ai.h3':'AI & Forecasting','arch.ai.p':'Groq-powered assistant with tools and product help lookup. Demand forecasting from sales history; pattern matching when no API key is set.',
         'api.tag':'API','api.h2':'Documented & Standardized','api.p':'All routes follow the same contract. Predictable, testable and easy to integrate.',
         'api.h3':'Consistent contract','api.desc':'Every API response comes in the same format: success, message, data and metadata with timestamp and tracking ID.',
         'api.d1':'Authentication','api.d2':'Metrics','api.d3':'Orders','api.d4':'Quotes','api.d5':'Products',
-        'api.d6':'Finance','api.d7':'AI Chat','api.d8':'Suppliers','api.d9':'Reports',
+        'api.d6':'Finance','api.d7':'AI Chat','api.d8':'Suppliers','api.d9':'Reports','api.d10':'Analytics',
         'api.code.msg':'"Operation completed successfully."',
         'sec.tag':'Security','sec.h2':'Security by design','sec.p':'Every layer of the system has its protection. It\'s part of the foundation.',
-        'sec.jwt.h4':'JWT with Rotation','sec.jwt.p':'Short-lived access tokens (1h) with rotating refresh tokens.',
+        'sec.jwt.h4':'JWT with Rotation','sec.jwt.p':'Short-lived access tokens (~15 min) with rotating refresh tokens.',
         'sec.cookie.h4':'HttpOnly Cookies','sec.cookie.p':'Refresh tokens in HttpOnly cookies. Protected against XSS.',
         'sec.csrf.h4':'CSRF Protection','sec.csrf.p':'All data-modifying operations are protected against forgery attacks.',
         'sec.rate.h4':'Rate Limiting','sec.rate.p':'Automatic request control per IP and user. Prevents abuse.',
         'sec.acl.h4':'Access Control','sec.acl.p':'Granular roles (admin/seller) with module-specific permissions.',
         'sec.audit.h4':'Audit Logs','sec.audit.p':'Complete record of all actions. Who did it, when, what.',
-        'cta.tag':'Get Started','cta.h2':'Ready to organize your business?','cta.p':'Deploy in minutes. Open source. Scalable with no user limits.',
-        'cta.btn1':'Open Elitium ERP','cta.btn2':'View on GitHub','cta.note':'Open source · Scalable · No user limits',
+        'cta.tag':'Get Started','cta.h2':'Ready to organize your business?','cta.p':'Deploy in minutes. Scalable with no user limits.',
+        'cta.btn1':'Open Elitium ERP','cta.note':'Scalable · No user limits',
         'footer.copy':'© 2026 Elitium ERP. All rights reserved.','footer.modules':'Modules','footer.security':'Security','footer.start':'Get Started',
       }
     };
